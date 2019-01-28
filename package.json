@@ -1,0 +1,23 @@
+{
+  "name": "node-red-linto-skills-optional",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "node-red": {
+    "nodes": {
+      "greeting": "greeting/greeting.js",
+      "goodbye": "goodbye/goodbye.js"
+    }
+  },
+  "dependencies": {
+    "debug": "^4.0.1"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}

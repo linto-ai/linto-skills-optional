@@ -1,0 +1,16 @@
+{
+    "goodbye": {
+        "label": {
+            "name": "Nom"
+        },
+        "placehodler": {
+            "name": "Nom du noeud"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue"
+        },
+        "response": {
+            "bye": "Ce fut un plaisir. A bientôt !"
+        }
+    }
+}

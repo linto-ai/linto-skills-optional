@@ -1,0 +1,16 @@
+{
+    "greeting": {
+        "label": {
+            "name": "Nom"
+        },
+        "placehodler": {
+            "name": "Nom du noeud"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue"
+        },
+        "response": {
+            "hello": "Salut, je m'appelle LinTo."
+        }
+    }
+}

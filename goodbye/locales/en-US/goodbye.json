@@ -1,0 +1,16 @@
+{
+    "goodbye": {
+        "label": {
+            "name": "Name"
+        },
+        "placehodler": {
+            "name": "Node name"
+        },
+        "error": {
+            "init_language": "Error during initialisation of language"
+        },
+        "response": {
+            "bye": "It was a pleasure, see you soon"
+        }
+    }
+}
