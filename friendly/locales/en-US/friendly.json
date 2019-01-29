@@ -1,0 +1,21 @@
+{
+    "friendly": {
+        "label": {
+            "name": "Name"
+        },
+        "placeholder": {
+            "name": "Node name"
+        },
+        "error": {
+            "init_language": "Error during initialisation of language"
+        },
+        "response": {
+            "hello": "Hello, my name is LinTo",
+            "bye": "It was a pleasure, see you soon",
+            "status": "I'm fine thanks, what about you ?",
+            "status_unk": "Sorry i don't know what to say",
+            "isOk": "Nice to hear that, can I help you ?",
+            "isKo": "Sorry to hear that, what can I do for you to feel better ?"
+        }
+    }
+}

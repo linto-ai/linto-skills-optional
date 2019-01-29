@@ -1,0 +1,36 @@
+{
+    "weather": {
+        "label": {
+            "name": "Name",
+            "api": "API",
+            "city": "City",
+            "temperature": "Temperature unit "
+        },
+        "placeholder": {
+            "name": "Node name",
+            "city": "Default city"
+        },
+        "shared": {
+            "list_api": {
+                "microsoft": "Microsoft Weather"
+            },
+            "list_temperature": {
+                "celsius": " celsius",
+                "fahrenheit": " fahrenheit"
+            }
+        },
+        "error": {
+            "init_language": "Error during initialisation of language"
+        },
+        "response": {
+            "microsoft": {
+                "temperatureToday": " temperature is ",
+                "temperatureNextDay": " tomorrow temperature will be between ",
+                "weatherTodayIs": "The weather is ",
+                "weatherNextIs": "tomorrow weather will be",
+                "error_city_weather": "Could not retrive weather for this city : ",
+                "error_api": "Could not retrive weather"
+            }
+        }
+    }
+}

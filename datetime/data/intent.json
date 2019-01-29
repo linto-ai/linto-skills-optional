@@ -1,0 +1,7 @@
+{
+    "keys": {
+        "date": "date",
+        "time": "time"
+    },
+    "description": "Get any date information"
+}

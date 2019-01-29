@@ -1,0 +1,21 @@
+{
+    "friendly": {
+        "label": {
+            "name": "Nom"
+        },
+        "placeholder": {
+            "name": "Nom du noeud"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue"
+        },
+        "response": {
+            "hello": "Salut, je m'appelle LinTo.",
+            "bye": "Ce fut un plaisir. A bientôt !",
+            "status": "Je vais bien merci, et vous ?",
+            "status_unk": "Désoler je ne sais pas quoi répondre",
+            "isOk": "Ravi de l'entendre, à votre service.",
+            "isKo": "Mince. désolé pour vous, puis-je vous aider ?"
+        }
+    }
+}

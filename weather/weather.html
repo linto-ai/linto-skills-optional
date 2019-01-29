@@ -1,0 +1,61 @@
+<script type="text/javascript">
+    RED.nodes.registerType('weather-skill', {
+        category: 'skills',
+        color: '#3cbbf2',
+        defaults: {
+            name: {
+                value: ""
+            },
+            api: {
+                value: ""
+            },
+            temperature: {
+                value: "C"
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "skill.png",
+        label: function () {
+            return this.name || "weather-skill";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="weather-skill">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"/> <span data-i18n="weather.label.name" /></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]weather.placeholder.name" />
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-city"><i class="icon-tag"/> <span data-i18n="weather.label.city" /></label>
+        <input type="text" id="node-input-city" data-i18n="[placeholder]weather.placeholder.city" />
+    </div>
+
+    <div class="form-row"> 
+        <label for="node-input-api"><i class="icon-tag"/><span data-i18n="weather.label.api"/></label>
+        <select id="node-input-api" type="select" >
+            <option value="microsoft" data-i18n="weather.shared.list_api.microsoft"/>
+        </select>
+    </div>
+
+    <div class="form-row"> 
+        <label for="node-input-temperature"><i class="icon-tag"/><span data-i18n="weather.label.temperature"/></label>
+        <select id="node-input-temperature" type="select" >
+            <option value="C" data-i18n="weather.shared.list_temperature.celsius"/>
+            <option value="F" data-i18n="weather.shared.list_temperature.fahrenheit"/>
+        </select>
+    </div>
+
+    
+</script>
+
+<script type="text/x-red" data-help-name="weather-skill">
+    <p>Get acces to the weather of any city</p>
+</script>
+
+"list_unit": {
+"celsius": " celsius",
+"fahrenheit": " fahrenheit"
+}

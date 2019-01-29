@@ -1,0 +1,8 @@
+{
+    "key": "weather",
+    "entities": {
+        "location": "location",
+        "time": "time"
+    },
+    "description": "Weather skill"
+}

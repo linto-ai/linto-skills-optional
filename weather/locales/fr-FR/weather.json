@@ -1,0 +1,27 @@
+{
+    "weather": {
+        "label": {
+            "name": "Nom",
+            "api": "API",
+            "city": "Ville",
+            "temperature": "Unité de temperature"
+        },
+        "placeholder": {
+            "name": "Nom du noeud",
+            "city": "Ville par défaut"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue"
+        },
+        "response": {
+            "microsoft": {
+                "temperatureToday": " la temperature est de ",
+                "temperatureNextDay": " demain la température sera comprit entre ",
+                "weatherTodayIs": "Le temps est : ",
+                "weatherNextIs": "demain le temps sera :",
+                "error_city_weather": "Je n'arrive pas à récupérer les informations de cette ville : ",
+                "error_api" : "Je n'ai pas réussir a récupérer les informations"
+            }
+        }
+    }
+}

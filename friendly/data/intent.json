@@ -1,0 +1,12 @@
+{
+    "keys": {
+        "greeting": "greeting",
+        "goodbye": "goodbye",
+        "status": "status"
+    },
+    "entities": {
+        "isOk": "isOk",
+        "isKo": "isKo"
+    },
+    "description": "Friendly linto skills skill"
+}

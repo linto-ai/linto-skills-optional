@@ -1,16 +1,17 @@
 {
-    "goodbye": {
+    "datetime": {
         "label": {
             "name": "Nom"
         },
-        "placehodler": {
+        "placeholder": {
             "name": "Nom du noeud"
         },
         "error": {
             "init_language": "Erreur durant l'initialisation de la langue"
         },
         "response": {
-            "bye": "Ce fut un plaisir. A bientôt !"
+            "date": "La date est ",
+            "time" : "Il est "
         }
     }
 }

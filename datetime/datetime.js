@@ -18,36 +18,55 @@
  */
 
 module.exports = function (RED) {
-    const debug = require('debug')('redmanager:flow:optional:skill:goodbye')
+    const debug = require('debug')('redmanager:flow:optional:skill:datetime')
     const intent = require('./data/intent')
     let lintoResponse
 
     function loadLanguage(language) {
         if (language === undefined)
             language = process.env.DEFAULT_LANGUAGE
-        lintoResponse = require('./locales/' + language + '/goodbye').goodbye.response
+        lintoResponse = require('./locales/' + language + '/datetime').datetime.response
     }
 
-    function intentDetection(inputNlu) {
-        return (inputNlu.intent === intent.key)
+    // This skill is multiple intention but no conversational skills
+    function intentDetection(input) {
+        return (input.conversationData === undefined && intent.keys.hasOwnProperty(input.nlu.intent))
     }
 
-    function Goodbye(config) {
+    function outputDetection(inputNlu) {
+        if (inputNlu.intent === intent.keys.date) {
+            return lintoResponse.date + getDate()
+        } else if (inputNlu.intent === intent.keys.time) {
+            return lintoResponse.time + getTime()
+        }
+    }
+
+    function getDate() {
+        return (new Date().toISOString().split('T')[0])
+    }
+
+    function getTime() {
+        let now = new Date()
+        let hours = now.getHours()
+        let min = now.getMinutes()
+        return (hours + "h" + min)
+    }
+
+    function Datetime(config) {
         RED.nodes.createNode(this, config);
         let node = this;
-        this.context().flow.get('register').intent.indexOf(intent.key) === -1 ? this.context().flow.get('register').intent.push(intent.key) : debug("This item already exists");
 
         try {
             loadLanguage(this.context().flow.get('language'))
         } catch (err) {
-            node.error(RED._("goodbye.error.init_language"), err)
+            node.error(RED._("datetime.error.init_language"), err)
         }
 
         node.on('input', function (msg) {
-            if (intentDetection(msg.payload.nlu)) {
+            if (intentDetection(msg.payload)) {
                 msg.payload = {
                     behavior: {
-                        say: lintoResponse.bye
+                        say: outputDetection(msg.payload.nlu)
                     }
                 }
                 node.send(msg)
@@ -56,5 +75,5 @@ module.exports = function (RED) {
             }
         });
     }
-    RED.nodes.registerType("goodbye-skill", Goodbye)
+    RED.nodes.registerType("datetime-skill", Datetime)
 }

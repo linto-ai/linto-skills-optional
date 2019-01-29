@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    RED.nodes.registerType('datetime-skill', {
+        category: 'skills',
+        color: '#3cbbf2',
+        defaults: {
+            name: {
+                value: ""
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "skill.png",
+        label: function () {
+            return this.name || "datetime-skill";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="datetime-skill">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"/> <span data-i18n="datetime.label.name" /></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]datetime.placeholder.name" />
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="datetime-skill">
+    <p>A simple datetime skill</p>
+</script>
