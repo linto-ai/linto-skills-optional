@@ -1,0 +1,23 @@
+{
+    "memo": {
+        "label": {
+            "name": "Name"
+        },
+        "placehodler": {
+            "name": "Node name"
+        },
+        "error": {
+            "init_language": "Error during initialisation of language"
+        },
+        "response": {
+            "create": "Ok, I will remind you to: ",
+            "read": "Your reminders are : ",
+            "empty": "You don't have any reminder",
+            "delete": "Do you really want to delete your reminders ?",
+            "isDeleted": "Your reminders has been deleted",
+            "isNotDeleted": "Delete reminders has been cancelled",
+            "error_data_missing": "I don't know what to do",
+            "error_create_reminder_missing" : "Could not detect the reminder to create"
+        }
+    }
+}

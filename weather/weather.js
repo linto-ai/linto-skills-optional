@@ -30,12 +30,12 @@ module.exports = function (RED) {
     }
 
     function intentDetection(inputNlu) {
-        return (inputNlu.intent === intent.key)
+        return (input.conversationData === undefined && input.nlu.intent === intent.key)
     }
 
     function Weather(config) {
-        RED.nodes.createNode(this, config);
-        let node = this;
+        RED.nodes.createNode(this, config)
+        let node = this
 
         try {
             loadLanguage(this.context().flow.get('language'))
@@ -46,7 +46,7 @@ module.exports = function (RED) {
         let weatherApi = new WeatherApi(config.api, lintoResponse)
 
         node.on('input', async function (msg) {
-            if (intentDetection(msg.payload.nlu)) {
+            if (intentDetection(msg.payload)) {
                 config.lang = this.context().flow.get('language')
                 msg.payload = {
                     behavior: {
@@ -57,7 +57,7 @@ module.exports = function (RED) {
             } else {
                 debug("Nothing to do")
             }
-        });
+        })
     }
     RED.nodes.registerType("weather-skill", Weather)
 }

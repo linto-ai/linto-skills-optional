@@ -29,14 +29,14 @@ module.exports = function (RED) {
         lintoResponse = require('./locales/' + language + '/pollution').pollution.response
     }
 
-    function intentDetection(inputNlu) {
-        return (inputNlu.intent === intent.key)
+    function intentDetection(input) {
+        return (input.conversationData === undefined && input.nlu.intent === intent.key)
     }
 
     function Pollution(config) {
-        RED.nodes.createNode(this, config);
-        let node = this;
-        this.context().flow.get('register').intent.indexOf(intent.key) === -1 ? this.context().flow.get('register').intent.push(intent.key) : debug("This item already exists");
+        RED.nodes.createNode(this, config)
+        let node = this
+        this.context().flow.get('register').intent.indexOf(intent.key) === -1 ? this.context().flow.get('register').intent.push(intent.key) : debug("This item already exists")
 
         try {
             loadLanguage(this.context().flow.get('language'))
@@ -46,7 +46,7 @@ module.exports = function (RED) {
 
         let pollutionApi = new PollutionApi(config.api, lintoResponse)
         node.on('input', async function (msg) {
-            if (intentDetection(msg.payload.nlu)) {
+            if (intentDetection(msg.payload)) {
                 msg.payload = {
                     behavior: {
                         say: await pollutionApi.getPollution(msg.payload.nlu, config)
@@ -56,7 +56,7 @@ module.exports = function (RED) {
             } else {
                 debug("Nothing to do")
             }
-        });
+        })
     }
     RED.nodes.registerType("pollution-skill", Pollution)
 }

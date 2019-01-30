@@ -25,7 +25,7 @@ class WeatherApi {
         switch (api) {
             case 'microsoft':
                 this.weatherApi = new WeatherMicrosoft(templateResponse.microsoft)
-                break;
+                break
             default:
                 this.weatherApi = new WeatherMicrosoft(templateResponse.microsoft)
         }

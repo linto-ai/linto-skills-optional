@@ -1,0 +1,23 @@
+{
+    "memo": {
+        "label": {
+            "name": "Nom"
+        },
+        "placehodler": {
+            "name": "Nom du noeud"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue"
+        },
+        "response": {
+            "create": "D'accord, je vous rappellerais de : ",
+            "read": "Votre pense-bête contient : ",
+            "empty": "Aucun pense-bête créé.",
+            "delete": "Voulez-vous supprimer votre pense-bête ?",
+            "isDeleted": "Votre pense-bête a bien été supprimé",
+            "isNotDeleted": "La suppression de votre pense-bête est annulée.",    
+            "error_data_missing": "Je ne sais pas quoi faire",
+            "error_create_reminder_missing": "Je ne détecte pas de pense-bête."
+        }
+    }
+}

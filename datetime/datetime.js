@@ -33,7 +33,7 @@ module.exports = function (RED) {
         return (input.conversationData === undefined && intent.keys.hasOwnProperty(input.nlu.intent))
     }
 
-    function outputDetection(inputNlu) {
+    function dateTimeIntent(inputNlu) {
         if (inputNlu.intent === intent.keys.date) {
             return lintoResponse.date + getDate()
         } else if (inputNlu.intent === intent.keys.time) {
@@ -53,8 +53,8 @@ module.exports = function (RED) {
     }
 
     function Datetime(config) {
-        RED.nodes.createNode(this, config);
-        let node = this;
+        RED.nodes.createNode(this, config)
+        let node = this
 
         try {
             loadLanguage(this.context().flow.get('language'))
@@ -66,14 +66,14 @@ module.exports = function (RED) {
             if (intentDetection(msg.payload)) {
                 msg.payload = {
                     behavior: {
-                        say: outputDetection(msg.payload.nlu)
+                        say: dateTimeIntent(msg.payload.nlu)
                     }
                 }
                 node.send(msg)
             } else {
                 debug("Nothing to do")
             }
-        });
+        })
     }
     RED.nodes.registerType("datetime-skill", Datetime)
 }

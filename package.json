@@ -12,6 +12,7 @@
     "nodes": {
       "datetime": "datetime/datetime.js",
       "friendly": "friendly/friendly.js",
+      "memo": "memo/memo.js",
       "pollution": "pollution/pollution.js",
       "weather": "weather/weather.js"
     }

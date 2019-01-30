@@ -25,7 +25,7 @@ class PollutionApi {
         switch (api) {
             case 'prevair':
                 this.pollutionApi = new PollutionPrevair(templateResponse.prevair)
-                break;
+                break
             default:
                 this.pollutionApi = new PollutionPrevair(templateResponse.prevair)
         }

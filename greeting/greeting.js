@@ -33,9 +33,9 @@ module.exports = function (RED) {
     }
 
     function Greeting(config) {
-        RED.nodes.createNode(this, config);
-        let node = this;
-        this.context().flow.get('register').intent.indexOf(intent.key) === -1 ? this.context().flow.get('register').intent.push(intent.key) : debug("This item already exists");
+        RED.nodes.createNode(this, config)
+        let node = this
+        this.context().flow.get('register').intent.indexOf(intent.key) === -1 ? this.context().flow.get('register').intent.push(intent.key) : debug("This item already exists")
 
         try {
             loadLanguage(this.context().flow.get('language'))
@@ -54,7 +54,7 @@ module.exports = function (RED) {
             } else {
                 debug("Nothing to do")
             }
-        });
+        })
     }
     RED.nodes.registerType("greeting-skill", Greeting)
 }

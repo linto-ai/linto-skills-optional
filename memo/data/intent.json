@@ -1,0 +1,16 @@
+{
+    "key": "memo",
+    "description": "Reminders manager skills",
+    "entities": {
+        "prefix": "action",
+        "action_create": "action_create",
+        "action_delete": "action_delete",
+        "action_list": "action_list",
+        "expression": "expression"
+    },
+    "conversational_entities": {
+        "prefix": "is",
+        "toDelete": "isOk",
+        "toNotDelete": "isKo"
+    }
+}
