@@ -8,7 +8,7 @@
         },
         "placeholder": {
             "name": "Node name",
-            "city": "Default city"
+            "defaultcity": "Default city"
         },
         "shared": {
             "list_api": {
@@ -29,7 +29,8 @@
                 "weatherTodayIs": "The weather is ",
                 "weatherNextIs": "tomorrow weather will be",
                 "error_city_weather": "Could not retrive weather for this city : ",
-                "error_api": "Could not retrive weather"
+                "error_api": "Could not retrive weather",
+                "error_no_city": "No city has been detected"
             }
         }
     }

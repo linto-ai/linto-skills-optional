@@ -18,39 +18,38 @@
  */
 
 module.exports = function (RED) {
-    const debug = require('debug')('redmanager:flow:optional:skill:weather')
+    const debug = require('debug')('redmanager:flow:optional:skill:pollution')
     const intent = require('./data/intent')
-    const WeatherApi = require('./api/weatherApi')
+    const PollutionApi = require('./api/pollutionApi')
     let lintoResponse
 
     function loadLanguage(language) {
         if (language === undefined)
             language = process.env.DEFAULT_LANGUAGE
-        lintoResponse = require('./locales/' + language + '/weather').weather.response
+        lintoResponse = require('./locales/' + language + '/pollution').pollution.response
     }
 
     function intentDetection(inputNlu) {
         return (inputNlu.intent === intent.key)
     }
 
-    function Weather(config) {
+    function Pollution(config) {
         RED.nodes.createNode(this, config);
         let node = this;
+        this.context().flow.get('register').intent.indexOf(intent.key) === -1 ? this.context().flow.get('register').intent.push(intent.key) : debug("This item already exists");
 
         try {
             loadLanguage(this.context().flow.get('language'))
         } catch (err) {
-            node.error(RED._("weather.error.init_language"), err)
+            node.error(RED._("pollution.error.init_language"), err)
         }
 
-        let weatherApi = new WeatherApi(config.api, lintoResponse)
-
+        let pollutionApi = new PollutionApi(config.api, lintoResponse)
         node.on('input', async function (msg) {
             if (intentDetection(msg.payload.nlu)) {
-                config.lang = this.context().flow.get('language')
                 msg.payload = {
                     behavior: {
-                        say: await weatherApi.getWeather(msg.payload.nlu, config)
+                        say: await pollutionApi.getPollution(msg.payload.nlu, config)
                     }
                 }
                 node.send(msg)
@@ -59,5 +58,5 @@ module.exports = function (RED) {
             }
         });
     }
-    RED.nodes.registerType("weather-skill", Weather)
+    RED.nodes.registerType("pollution-skill", Pollution)
 }

@@ -1,11 +1,31 @@
+/*
+ * Copyright (c) 2017 Linagora.
+ *
+ * This file is part of Business-Logic-Server
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 const debug = require('debug')('redmanager:flow:optional:skill:weather:microsoft')
 const weather = require('weather-js')
 let lintoResponse
+const KEY_ENTITIE_LOCATION = 'location'
+const KEY_ENTITIE_TIME = 'time'
 
 class WeatherMicrosoft {
-    constructor(response, language) {
+    constructor(response) {
         lintoResponse = response
-        this.language = language
     }
     extractEntityFromType(entityArr, type) {
         for (let entity of entityArr) {
@@ -22,7 +42,7 @@ class WeatherMicrosoft {
                 weather.find({
                     search: requestInfo.city,
                     degreeType: requestInfo.temperature,
-                    lang: this.language.split('-')[0]
+                    //lang: this.language.split('-')[0]
                 }, function (err, result) {
                     if (result !== undefined && result.length !== 0)
                         resolve(result)
@@ -44,10 +64,13 @@ class WeatherMicrosoft {
     }
 
     async getWeather(nlu, config) {
-        let cityEntitie = this.extractEntityFromType(nlu.entities, 'location')
-        let timeEntitie = this.extractEntityFromType(nlu.entities, 'time')
+        let cityEntitie = this.extractEntityFromType(nlu.entities, KEY_ENTITIE_LOCATION)
+        let timeEntitie = this.extractEntityFromType(nlu.entities, KEY_ENTITIE_TIME)
 
-        cityEntitie === undefined ? config.city = config.defaultCity : config.city = cityEntitie.value
+        cityEntitie === undefined ? config.city = config.defaultcity : config.city = cityEntitie.value
+
+        if (config.city === undefined)
+            return lintoResponse.error_no_city
 
         try {
             let response = await this.callApi(config)

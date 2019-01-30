@@ -1,0 +1,37 @@
+{
+    "pollution": {
+        "label": {
+            "name": "Name",
+            "api": "API",
+            "defaultCity": "City"
+        },
+        "placeholder": {
+            "name": "Node name",
+            "defaultCity": "Default city"
+        },
+        "error": {
+            "init_language": "Error during initialisation of language"
+        },
+        "response": {
+            "prevair": {
+                "seuil": " has a pollution threshold : ",
+                "error_city_unfound": " has not been found.",
+                "error_no_city": "No city has been detected",
+                "error_api": "Could not retrive pollution",
+                "air_quality": {
+                    "very_good": "very good",
+                    "good": "good",
+                    "average": "average",
+                    "poor": "poor",
+                    "bad": "bad",
+                    "very_bad": "very bad"
+                }
+            }
+        },
+        "shared": {
+            "list_api": {
+                "prevair": "prevair"
+            }
+        }
+    }
+}

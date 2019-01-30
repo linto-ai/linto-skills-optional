@@ -1,0 +1,7 @@
+{
+    "key": "pollution",
+    "description": "Get the pollution of city around the world",
+    "entities":{
+        "location" : "location"
+    }
+}

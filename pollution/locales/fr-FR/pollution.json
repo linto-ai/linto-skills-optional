@@ -1,0 +1,32 @@
+{
+    "pollution": {
+        "label": {
+            "name": "Nom",
+            "api": "API",
+            "defaultCity": "Ville"
+        },
+        "placeholder": {
+            "name": "Nom du noeud",
+            "defaultCity": "Ville par défaut"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue"
+        },
+        "response": {
+            "prevair": {
+                "seuil": " a un seuil de pollution : ",
+                "error_city_unfound": " n'a pas été trouvée.",
+                "error_no_city": "Aucune ville détecter",
+                "error_api": "Je n'ai pas réussir a récupérer les informations",
+                "air_quality": {
+                    "very_good": "très bien",
+                    "good": "bon",
+                    "average": "moyen",
+                    "poor": "médiocre",
+                    "bad": "mauvais",
+                    "very_bad": "très mauvais"
+                }
+            }
+        }
+    }
+}

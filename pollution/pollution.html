@@ -1,0 +1,46 @@
+<script type="text/javascript">
+    RED.nodes.registerType('pollution-skill', {
+        category: 'skills',
+        color: '#3cbbf2',
+        defaults: {
+            name: {
+                value: ""
+            },
+            defaultCity: {
+                value: ""
+            },
+            api: {
+                value: "prevair"
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "skill.png",
+        label: function () {
+            return this.name || "pollution-skill";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="pollution-skill">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"/> <span data-i18n="pollution.label.name" /></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]pollution.placeholder.name" />
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-defaultCity"><i class="icon-tag"/> <span data-i18n="pollution.label.defaultCity" /></label>
+        <input type="text" id="node-input-defaultCity" data-i18n="[placeholder]pollution.placeholder.defaultCity" />
+    </div>
+
+    <div class="form-row"> 
+        <label for="node-input-api"><i class="icon-tag"/><span data-i18n="pollution.label.api"/></label>
+        <select id="node-input-api" type="select" >
+            <option value="prevair" data-i18n="pollution.shared.list_api.prevair"/>
+        </select>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="pollution-skill">
+    <p>Get the pollution level status</p>
+</script>
