@@ -27,7 +27,7 @@ class WeatherMicrosoft {
     constructor(response) {
         lintoResponse = response
     }
-    
+
     extractEntityFromType(entityArr, type) {
         for (let entity of entityArr) {
             if (entity.entity.includes(type)) {
@@ -43,7 +43,7 @@ class WeatherMicrosoft {
                 weather.find({
                     search: requestInfo.city,
                     degreeType: requestInfo.temperature,
-                    //lang: this.language.split('-')[0]
+                    lang: requestInfo.language.split('-')[0]
                 }, function (err, result) {
                     if (result !== undefined && result.length !== 0)
                         resolve(result)

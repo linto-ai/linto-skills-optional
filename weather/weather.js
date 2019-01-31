@@ -29,7 +29,7 @@ module.exports = function (RED) {
         lintoResponse = require('./locales/' + language + '/weather').weather.response
     }
 
-    function intentDetection(inputNlu) {
+    function intentDetection(input) {
         return (input.conversationData === undefined && input.nlu.intent === intent.key)
     }
 
@@ -47,7 +47,7 @@ module.exports = function (RED) {
 
         node.on('input', async function (msg) {
             if (intentDetection(msg.payload)) {
-                config.lang = this.context().flow.get('language')
+                config.language = this.context().flow.get('language')
                 msg.payload = {
                     behavior: {
                         say: await weatherApi.getWeather(msg.payload.nlu, config)
