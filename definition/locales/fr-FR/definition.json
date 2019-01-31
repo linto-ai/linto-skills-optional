@@ -1,0 +1,22 @@
+{
+    "definition": {
+        "label": {
+            "name": "Nom",
+            "api": "API"
+        },
+        "placeholder": {
+            "name": "Nom du noeud"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue"
+        },
+        "response": {
+            "wiktionary": {
+                "start": "La définition de ",
+                "middle": " est ",
+                "error_unknown_word": "Impossible de trouver le mot ",
+                "error_entities_number": "J'ai besoin de pluss d'informations."
+            }
+        }
+    }
+}

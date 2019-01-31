@@ -3,7 +3,7 @@
         "label": {
             "name": "Name"
         },
-        "placehodler": {
+        "placeholder": {
             "name": "Node name"
         },
         "error": {

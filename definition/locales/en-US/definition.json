@@ -1,5 +1,5 @@
 {
-    "news": {
+    "definition": {
         "label": {
             "name": "Name",
             "api": "API"
@@ -11,14 +11,16 @@
             "init_language": "Error during initialisation of language"
         },
         "response": {
-            "lemonde": {
-                "title": "Here the main title : ",
-                "error_news_title": "Could not get the news data"
+            "wiktionary": {
+                "start": "The definition of ",
+                "middle": " is ",
+                "error_unknown_word": "Unknown word ",
+                "error_entities_number": "I require more data"
             }
         },
         "shared": {
             "list_api": {
-                "lemonde": "Le Monde"
+                "wiktionary": "wiktionary"
             }
         }
     }

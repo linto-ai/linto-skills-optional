@@ -3,7 +3,7 @@
         "label": {
             "name": "Nom"
         },
-        "placehodler": {
+        "placeholder": {
             "name": "Nom du noeud"
         },
         "error": {

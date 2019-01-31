@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    RED.nodes.registerType('definition-skill', {
+        category: 'skills',
+        color: '#3cbbf2',
+        defaults: {
+            name: {
+                value: ""
+            },
+            api : {
+                value: "wiktionary"
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "skill.png",
+        label: function () {
+            return this.name || "definition-skill"
+        }
+    })
+</script>
+
+<script type="text/x-red" data-template-name="definition-skill">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"/> <span data-i18n="definition.label.name" /></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]definition.placeholder.name" />
+    </div>
+
+    <div class="form-row"> 
+        <label for="node-input-api"><i class="icon-tag"/><span data-i18n="definition.label.api"/></label>
+        <select id="node-input-api" type="select" >
+            <option value="wiktionary" data-i18n="definition.shared.list_api.wiktionary"/>
+        </select>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="definition-skill">
+    <p>Allow to know what mean any word</p>
+</script>
