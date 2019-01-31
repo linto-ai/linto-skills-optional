@@ -1,0 +1,20 @@
+{
+    "news": {
+        "label": {
+            "name": "Nom",
+            "api": "API"
+        },
+        "placeholder": {
+            "name": "Nom du noeud"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue"
+        },
+        "response": {
+            "lemonde": {
+                "title": "Voici les grands titres : ",
+                "error_news_title": "Impossible de récupérer les informations"
+            }
+        }
+    }
+}

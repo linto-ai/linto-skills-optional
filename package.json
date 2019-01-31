@@ -11,15 +11,17 @@
   "node-red": {
     "nodes": {
       "datetime": "datetime/datetime.js",
-      "friendly": "friendly/friendly.js",
       "memo": "memo/memo.js",
+      "news": "news/news.js",
       "pollution": "pollution/pollution.js",
-      "weather": "weather/weather.js"
+      "weather": "weather/weather.js",
+      "welcome": "welcome/welcome.js"
     }
   },
   "dependencies": {
     "debug": "^4.0.1",
-    "weather-js": "^2.0.0"
+    "weather-js": "^2.0.0",
+    "xml2json": "^0.11.2"
   },
   "devDependencies": {
     "jest": "^23.6.0"

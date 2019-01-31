@@ -18,14 +18,14 @@
  */
 
 module.exports = function (RED) {
-    const debug = require("debug")("redmanager:flow:optional:skill:friendly")
+    const debug = require("debug")("redmanager:flow:optional:skill:welcome")
     const intent = require("./data/intent")
     let lintoResponse
 
     function loadLanguage(language) {
         if (language === undefined)
             language = process.env.DEFAULT_LANGUAGE
-        lintoResponse = require("./locales/" + language + "/friendly").friendly.response
+        lintoResponse = require("./locales/" + language + "/welcome").welcome.response
     }
 
     // This skill is multiple intention
@@ -65,14 +65,14 @@ module.exports = function (RED) {
         }
     }
 
-    function Friendly(config) {
+    function Welcome(config) {
         RED.nodes.createNode(this, config)
         let node = this
 
         try {
             loadLanguage(this.context().flow.get("language"))
         } catch (err) {
-            node.error(RED._("friendly.error.init_language"), err)
+            node.error(RED._("welcome.error.init_language"), err)
         }
 
         node.on("input", function (msg) {
@@ -86,5 +86,5 @@ module.exports = function (RED) {
             }
         })
     }
-    RED.nodes.registerType("friendly-skill", Friendly)
+    RED.nodes.registerType("welcome-skill", Welcome)
 }

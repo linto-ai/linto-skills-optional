@@ -27,6 +27,7 @@ class WeatherMicrosoft {
     constructor(response) {
         lintoResponse = response
     }
+    
     extractEntityFromType(entityArr, type) {
         for (let entity of entityArr) {
             if (entity.entity.includes(type)) {

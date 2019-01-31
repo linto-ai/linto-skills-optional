@@ -1,0 +1,25 @@
+{
+    "news": {
+        "label": {
+            "name": "Name",
+            "api": "API"
+        },
+        "placeholder": {
+            "name": "Node name"
+        },
+        "shared": {
+            "list_api": {
+                "lemonde": "Le Monde"
+            }
+        },
+        "error": {
+            "init_language": "Error during initialisation of language"
+        },
+        "response": {
+            "lemonde": {
+                "title": "Here the main title : ",
+                "error_news_title": "Could not get the news data"
+            }
+        }
+    }
+}

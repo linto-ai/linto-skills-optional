@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    RED.nodes.registerType('welcome-skill', {
+        category: 'skills',
+        color: '#3cbbf2',
+        defaults: {
+            name: {
+                value: ""
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "skill.png",
+        label: function () {
+            return this.name || "welcome-skill"
+        }
+    })
+</script>
+
+<script type="text/x-red" data-template-name="welcome-skill">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"/> <span data-i18n="welcome.label.name" /></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]welcome.placeholder.name" />
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="welcome-skill">
+    <p>A welcome skill</p>
+</script>

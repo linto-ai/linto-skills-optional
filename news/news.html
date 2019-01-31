@@ -1,0 +1,39 @@
+<script type="text/javascript">
+    RED.nodes.registerType('news-skill', {
+        category: 'skills',
+        color: '#3cbbf2',
+        defaults: {
+            name: {
+                value: ""
+            },
+            api: {
+                value: "lemonde"
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "skill.png",
+        label: function () {
+            return this.name || "news-skill"
+        }
+    })
+</script>
+
+<script type="text/x-red" data-template-name="news-skill">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"/> <span data-i18n="news.label.name" /></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]news.placeholder.name" />
+    </div>
+
+    <div class="form-row"> 
+        <label for="node-input-api"><i class="icon-tag"/><span data-i18n="news.label.api"/></label>
+        <select id="node-input-api" type="select" >
+            <option value="lemonde" data-i18n="news.shared.list_api.lemonde"/>
+        </select>
+    </div>
+   
+</script>
+
+<script type="text/x-red" data-help-name="news-skill">
+    <p>Get acces to the news of the world</p>
+</script>
