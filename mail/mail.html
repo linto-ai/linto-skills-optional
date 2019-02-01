@@ -1,0 +1,59 @@
+<script type="text/javascript">
+    RED.nodes.registerType('mail-skill', {
+        category: 'skills',
+        color: '#3cbbf2',
+        defaults: {
+            name: {
+                value: ""
+            },
+            api: {
+                value: "jmap"
+            },
+            url: {
+                value: ""
+            },
+            inbox: {
+                value: ""
+            },
+            key: {
+                value: ""
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "skill.png",
+        label: function () {
+            return this.name || "mail-skill"
+        }
+    })
+</script>
+
+<script type="text/x-red" data-template-name="mail-skill">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"/> <span data-i18n="mail.label.name" /></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]mail.placeholder.name" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-api"><i class="icon-tag"/><span data-i18n="mail.label.api"/></label>
+        <select id="node-input-api" type="select" >
+            <option value="jmap" data-i18n="mail.shared.list_api.jmap"/>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-url"><i class="icon-tag"/> <span data-i18n="mail.label.url" /></label>
+        <input type="text" id="node-input-url" data-i18n="[placeholder]mail.placeholder.url" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-inbox"><i class="icon-tag"/> <span data-i18n="mail.label.inbox" /></label>
+        <input type="text" id="node-input-inbox" data-i18n="[placeholder]mail.placeholder.inbox" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-key"><i class="icon-tag"/> <span data-i18n="mail.label.key" /></label>
+        <input type="text" id="node-input-key" data-i18n="[placeholder]mail.placeholder.key" />
+    </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="mail-skill">
+    <p>Allow to manage mail client</p>
+</script>

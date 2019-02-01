@@ -20,13 +20,12 @@
 const debug = require('debug')('redmanager:flow:optional:skill:news:lemonde')
 const request = require('request');
 const parser = require('xml2json')
-const data = require('./data/lemonde')
-let lintoResponse, gender
+const gender = require('./data/lemonde').type_gender
+let lintoResponse
 
 class NewsLeMonde {
     constructor(response) {
         lintoResponse = response
-        gender = data.type_gender
     }
 
     extractEntityFromType(entityArr, type) {

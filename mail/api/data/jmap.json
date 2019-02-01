@@ -1,0 +1,8 @@
+{
+    "type_action": {
+        "prefix": "action",
+        "action_number": "action_number",
+        "action_read": "action_read",
+        "action_read_last": "action_read_last"
+    }
+}

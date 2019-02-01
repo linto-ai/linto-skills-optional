@@ -1,0 +1,33 @@
+{
+    "mail": {
+        "label": {
+            "name": "Name",
+            "api": "API",
+            "url": "Url",
+            "inbox": "Inbox",
+            "key": "Token"
+        },
+        "placeholder": {
+            "name": "Node name",
+            "url": "http://",
+            "inbox": "inbox",
+            "key": "Authentification Token"
+        },
+        "error": {
+            "init_language": "Error during initialisation of language"
+        },
+        "shared": {
+            "list_api": {
+                "jmap": "JMAP"
+            }
+        },
+        "response": {
+            "jmap": {
+                "unread_mail_number": "Unread mail number is ",
+                "list_mail": "Here are the last mail ",
+                "preview_mail": "Preview of the last mail : author - ",
+                "error_connect": "Could not connect to the mail server "
+            }
+        }
+    }
+}

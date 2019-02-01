@@ -12,6 +12,7 @@
     "nodes": {
       "datetime": "datetime/datetime.js",
       "definition": "definition/definition.js",
+      "mail": "mail/mail.js",
       "memo": "memo/memo.js",
       "news": "news/news.js",
       "pollution": "pollution/pollution.js",
@@ -21,6 +22,7 @@
   },
   "dependencies": {
     "debug": "^4.0.1",
+    "request": "^2.88.0",
     "weather-js": "^2.0.0",
     "word-definition": "^2.1.6",
     "xml2json": "^0.11.2"

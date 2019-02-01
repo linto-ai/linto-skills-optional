@@ -1,0 +1,28 @@
+{
+    "mail": {
+        "label": {
+            "name": "Nom",
+            "api" : "API",
+            "url": "Adresse",
+            "inbox": "Boite Mail",
+            "key": "Clé"
+        },
+        "placeholder": {
+            "name": "Nom du noeud",
+            "url": "http://",
+            "inbox": "Boite mail",
+            "key": "Clé d'authentification"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue"
+        },
+        "response": {
+            "jmap": {
+                "unread_mail_number": "Le nombre des mail non lu est : ",
+                "list_mail": "Vos dernier mail sont les suivant : ",
+                "preview_mail": "Lecture du dernier mail : auteur -",
+                "error_connect": "Impossible de ce connecter au serveur jmap"
+            }
+        }
+    }
+}
