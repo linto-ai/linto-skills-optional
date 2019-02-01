@@ -1,0 +1,29 @@
+{
+    "calendar": {
+        "label": {
+            "name": "Nom",
+            "api": "API",
+            "url": "Adresse",
+            "key": "Clé"
+        },
+        "placeholder": {
+            "name": "Nom du noeud",
+            "url": "http://",
+            "key": "Clé d'authentification"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue"
+        },
+        "response": {
+            "jcal": {
+                "delete": "L'événement a bien été supprimé",
+                "create": "L'événement a bien été créée.",
+                "error_create": "Erreur lors de la création d'un événement.",
+                "error_delete": "Erreur lors de la suppression d'un événement.",
+                "error_list": "Erreur lors de la récupération d'un événement.",
+                "error_not_implemented": "Ce skill n'est pas encore implémenté",
+                "error_jcal": "Erreur durant la configuration de jcal"
+            }
+        }
+    }
+}

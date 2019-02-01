@@ -180,7 +180,7 @@ class MailJmap {
                 case (actionEntity.entity === mailAction.action_read):
                     return await this.listMail()
                 default:
-                    return await this.callApi(gender.type_international.value)
+                    return await this.lastMail()
             }
         } catch (err) {
             return lintoResponse.error_news_title

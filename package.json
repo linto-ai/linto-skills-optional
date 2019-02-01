@@ -10,6 +10,7 @@
   "license": "ISC",
   "node-red": {
     "nodes": {
+      "calendar": "calendar/calendar.js",
       "datetime": "datetime/datetime.js",
       "definition": "definition/definition.js",
       "mail": "mail/mail.js",

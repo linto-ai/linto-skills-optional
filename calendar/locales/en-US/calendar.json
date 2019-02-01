@@ -1,0 +1,33 @@
+{
+    "calendar": {
+        "label": {
+            "name": "Name",
+            "api": "API",
+            "url": "Url",
+            "key": "Token"
+        },
+        "placeholder": {
+            "name": "Node name",
+            "url": "http://",
+            "key": "Authentification Token"
+        },
+        "error": {
+            "init_language": "Error during initialisation of language"
+        },
+        "shared": {
+            "list_api": {
+                "jcal": "JCAL"
+            }
+        },
+        "response": {
+            "jcal": {
+                "delete": "Event deleted",
+                "create": "Event created",
+                "error_create": "Error while creating an event",
+                "error_delete": "Error while deleted the next event",
+                "error_list": "Error while retrieving the next event",
+                "error_jcal": "Error while trying to connect to jcal"
+            }
+        }
+    }
+}

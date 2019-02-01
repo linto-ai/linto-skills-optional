@@ -1,0 +1,52 @@
+<script type="text/javascript">
+    RED.nodes.registerType('calendar-skill', {
+        category: 'skills',
+        color: '#3cbbf2',
+        defaults: {
+            name: {
+                value: ""
+            },
+            api: {
+                value: "jcal"
+            },
+            url: {
+                value: ""
+            },
+            key: {
+                value: ""
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "skill.png",
+        label: function () {
+            return this.name || "calendar-skill"
+        }
+    })
+</script>
+
+<script type="text/x-red" data-template-name="calendar-skill">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"/> <span data-i18n="calendar.label.name" /></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]calendar.placeholder.name" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-api"><i class="icon-tag"/><span data-i18n="calendar.label.api"/></label>
+        <select id="node-input-api" type="select" >
+            <option value="jcal" data-i18n="calendar.shared.list_api.jcal"/>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-url"><i class="icon-tag"/> <span data-i18n="calendar.label.url" /></label>
+        <input type="text" id="node-input-url" data-i18n="[placeholder]calendar.placeholder.url" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-key"><i class="icon-tag"/> <span data-i18n="calendar.label.key" /></label>
+        <input type="text" id="node-input-key" data-i18n="[placeholder]calendar.placeholder.key" />
+    </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="calendar-skill">
+    <p>Allow to managage calendar</p>
+</script>
