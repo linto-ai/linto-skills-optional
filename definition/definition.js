@@ -30,7 +30,7 @@ module.exports = function (RED) {
     }
 
     function intentDetection(input) {
-        return (input.conversationData === undefined && input.nlu.intent === intent.key)
+        return (!!input.conversationData && input.nlu.intent === intent.key)
     }
 
     function Definition(config) {

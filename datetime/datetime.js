@@ -30,7 +30,7 @@ module.exports = function (RED) {
 
     // This skill is multiple intention but no conversational skills
     function intentDetection(input) {
-        return (input.conversationData === undefined && intent.keys.hasOwnProperty(input.nlu.intent))
+        return (!!input.conversationData && intent.keys.hasOwnProperty(input.nlu.intent))
     }
 
     function dateTimeIntent(inputNlu) {

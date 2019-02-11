@@ -3,7 +3,7 @@
         "label": {
             "name": "Nom",
             "api": "API",
-            "city": "Ville",
+            "defaultcity": "Ville",
             "temperature": "Unité de temperature"
         },
         "placeholder": {

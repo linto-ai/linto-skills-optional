@@ -31,7 +31,7 @@ module.exports = function (RED) {
     // This skill is multiple intention
     function intentDetection(input) {
         return (
-            (input.conversationData !== undefined && input.conversationData.intent === intent.keys.status) || intent.keys.hasOwnProperty(input.nlu.intent)
+            (!!input.conversationData && input.conversationData.intent === intent.keys.status) || intent.keys.hasOwnProperty(input.nlu.intent)
         )
     }
 

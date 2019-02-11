@@ -30,13 +30,12 @@ module.exports = function (RED) {
     }
 
     function intentDetection(input) {
-        return (input.conversationData === undefined && input.nlu.intent === intent.key)
+        return (!!input.conversationData && input.nlu.intent === intent.key)
     }
 
     function Pollution(config) {
         RED.nodes.createNode(this, config)
         let node = this
-        this.context().flow.get('register').intent.indexOf(intent.key) === -1 ? this.context().flow.get('register').intent.push(intent.key) : debug("This item already exists")
 
         try {
             loadLanguage(this.context().flow.get('language'))

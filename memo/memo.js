@@ -29,7 +29,7 @@ module.exports = function (RED) {
     }
 
     function intentDetection(input) {
-        return ((input.conversationData !== undefined && input.conversationData.intent === intent.key) || input.nlu.intent === intent.key)
+        return ((!!input.conversationData && input.conversationData.intent === intent.key) || input.nlu.intent === intent.key)
     }
 
     function extractEntityFromType(entityArr, type) {

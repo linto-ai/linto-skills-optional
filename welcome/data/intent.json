@@ -2,7 +2,7 @@
     "keys": {
         "greeting": "greeting",
         "goodbye": "goodbye",
-        "status": "status"
+        "status": "howareyou"
     },
     "entities": {
         "isOk": "isOk",
