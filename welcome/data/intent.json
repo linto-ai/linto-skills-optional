@@ -5,8 +5,8 @@
         "howareyou": "howareyou"
     },
     "entities": {
-        "isOk": "isOk",
-        "isKo": "isKo"
+        "isOk": "isok",
+        "isKo": "isko"
     },
     "description": "Friendly linto skills skill"
 }

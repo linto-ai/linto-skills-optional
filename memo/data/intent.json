@@ -10,7 +10,7 @@
     },
     "conversational_entities": {
         "prefix": "is",
-        "toDelete": "isOk",
-        "toNotDelete": "isKo"
+        "toDelete": "isok",
+        "toNotDelete": "isko"
     }
 }
