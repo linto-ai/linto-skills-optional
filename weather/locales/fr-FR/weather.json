@@ -20,7 +20,7 @@
                 "weatherTodayIs": "Le temps est : ",
                 "weatherNextIs": "demain le temps sera : ",
                 "error_city_weather": "Je n'arrive pas à récupérer les informations de cette ville : ",
-                "error_api" : "Je n'ai pas réussir a récupérer les informations",
+                "error_api" : "Je n'ai pas réussi a récupérer les informations",
                 "error_no_city": "Aucune ville détecter"
             }
         }

@@ -48,7 +48,9 @@ module.exports = function (RED) {
         node.on('input', async function (msg) {
             if (intentDetection(msg.payload)) {
                 msg.payload = {
-                    behavior: await definitionApi.getDefinition(msg.payload.nlu, this.context().flow.get('language'))
+                    behavior: {
+                        say: await definitionApi.getDefinition(msg.payload.nlu, this.context().flow.get('language'))
+                    }
                 }
                 node.send(msg)
             } else {
