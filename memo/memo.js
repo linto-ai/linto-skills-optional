@@ -28,8 +28,10 @@ module.exports = function (RED) {
         lintoResponse = require('./locales/' + language + '/memo').memo.response
     }
 
+
     function intentDetection(input) {
-        return ((!!input.conversationData && input.conversationData.intent === intent.key) || input.nlu.intent === intent.key)
+        return ((!!input.conversationData && input.conversationData.intent === intent.key) ||
+            (Object.keys(input.conversationData).length === 0 && input.nlu.intent === intent.key))
     }
 
     function extractEntityFromType(entityArr, type) {
@@ -112,10 +114,10 @@ module.exports = function (RED) {
     }
 
     function memoIntent(payload, memoList) {
-        if (!!payload.conversationData && payload.conversationData.intent === intent.key) {
-            return conversationIntent(payload.nlu)
-        } else {
+        if (Object.keys(payload.conversationData).length === 0) {
             return sayIntent(payload.nlu, memoList)
+        } else {
+            return conversationIntent(payload.nlu)
         }
     }
 
