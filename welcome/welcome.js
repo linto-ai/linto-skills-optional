@@ -31,13 +31,13 @@ module.exports = function (RED) {
     // This skill is multiple intention
     function intentDetection(input) {
         return (
-            (!!input.conversationData && input.conversationData.intent === intent.keys.status) || intent.keys.hasOwnProperty(input.nlu.intent)
+            (input.conversationData !== undefined && input.conversationData.intent === intent.keys.howareyou) || intent.keys.hasOwnProperty(input.nlu.intent)
         )
     }
 
     function outputDetection(input) {
         // Is conversational
-        if (input.conversationData !== undefined && input.conversationData.intent === intent.keys.status) {
+        if (!!input.conversationData && input.conversationData.intent === intent.keys.howareyou) {
             let say = lintoResponse.status_unk
             if (input.nlu.entitiesNumber !== 1)
                 say = lintoResponse.status_unk
@@ -57,7 +57,7 @@ module.exports = function (RED) {
             return {
                 say: lintoResponse.bye
             }
-        } else if (input.nlu.intent === intent.keys.status) {
+        } else if (input.nlu.intent === intent.keys.howareyou) {
             return {
                 ask: lintoResponse.status,
                 conversationData: input.nlu

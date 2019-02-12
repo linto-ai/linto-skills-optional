@@ -17,7 +17,7 @@
             "isDeleted": "Votre pense-bête a bien été supprimé",
             "isNotDeleted": "La suppression de votre pense-bête est annulée.",    
             "error_data_missing": "Je ne sais pas quoi faire",
-            "error_create_reminder_missing": "Je ne détecte pas de pense-bête."
+            "error_create_reminder_missing": "Je ne détecte pas d'expression a créer."
         }
     }
 }

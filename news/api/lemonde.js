@@ -20,7 +20,8 @@
 const debug = require('debug')('redmanager:flow:optional:skill:news:lemonde')
 const request = require('request');
 const parser = require('xml2json')
-const gender = require('./data/lemonde').type_gender
+const data = require('./data/lemonde')
+const gender = data.type_gender
 let lintoResponse
 
 class NewsLeMonde {

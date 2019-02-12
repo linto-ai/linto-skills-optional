@@ -112,10 +112,10 @@ module.exports = function (RED) {
     }
 
     function memoIntent(payload, memoList) {
-        if (payload.conversationData === undefined) {
-            return sayIntent(payload.nlu, memoList)
-        } else {
+        if (!!payload.conversationData && payload.conversationData.intent === intent.key) {
             return conversationIntent(payload.nlu)
+        } else {
+            return sayIntent(payload.nlu, memoList)
         }
     }
 
