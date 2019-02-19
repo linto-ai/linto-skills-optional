@@ -8,14 +8,16 @@
             "name": "Nom du noeud"
         },
         "error": {
-            "init_language": "Erreur durant l'initialisation de la langue"
+            "init_language": "Erreur durant l'initialisation de la langue",
+            "utility_undefined" : "Utility n'est pas définit",
+            "utility_error" : "linto-utility doit être configuré dans red"
         },
         "response": {
             "wiktionary": {
                 "start": "La définition de ",
                 "middle": " est ",
                 "error_unknown_word": "Impossible de trouver le mot ",
-                "error_entities_number": "J'ai besoin de pluss d'informations."
+                "error_entities_number": "J'ai besoin de plus d'informations."
             }
         }
     }

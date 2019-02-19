@@ -14,7 +14,9 @@
             "key": "Authentification Token"
         },
         "error": {
-            "init_language": "Error during initialisation of language"
+            "init_language": "Error during initialisation of language",
+            "utility_undefined" : "Utility is not define",
+            "utility_error" : "linto-utility need to be setup in red settings"
         },
         "shared": {
             "list_api": {

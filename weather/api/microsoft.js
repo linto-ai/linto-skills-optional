@@ -24,17 +24,9 @@ const KEY_ENTITIE_LOCATION = 'location'
 const KEY_ENTITIE_TIME = 'time'
 
 class WeatherMicrosoft {
-    constructor(response) {
+    constructor(response, utility) {
         lintoResponse = response
-    }
-
-    extractEntityFromType(entityArr, type) {
-        for (let entity of entityArr) {
-            if (entity.entity.includes(type)) {
-                return entity
-            }
-        }
-        return undefined
+        this.utility = utility
     }
 
     async callApi(requestInfo) {
@@ -64,9 +56,9 @@ class WeatherMicrosoft {
                 ', ' + lintoResponse.weatherNextIs + response[0].forecast[2].skytextday)
     }
 
-    async getWeather(nlu, config) {
-        let cityEntitie = this.extractEntityFromType(nlu.entities, KEY_ENTITIE_LOCATION)
-        let timeEntitie = this.extractEntityFromType(nlu.entities, KEY_ENTITIE_TIME)
+    async getWeather(payload, config) {
+        let cityEntitie = this.utility.extractEntityFromType(payload, KEY_ENTITIE_LOCATION)
+        let timeEntitie = this.utility.extractEntityFromType(payload, KEY_ENTITIE_TIME)
 
         cityEntitie === undefined ? config.city = config.defaultcity : config.city = cityEntitie.value
 

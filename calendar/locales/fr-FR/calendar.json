@@ -12,7 +12,9 @@
             "key": "Clé d'authentification"
         },
         "error": {
-            "init_language": "Erreur durant l'initialisation de la langue"
+            "init_language": "Erreur durant l'initialisation de la langue",
+            "utility_undefined": "Utility n'est pas définit",
+            "utility_error" : "linto-utility doit être configuré dans red"
         },
         "response": {
             "jcal": {

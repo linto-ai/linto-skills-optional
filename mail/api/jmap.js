@@ -52,12 +52,14 @@ const messageList = [
 const READ_MAIL_NUMBER = 5;
 
 let JMAP_HOST, JMAP_TOKEN
-let JMAP_NAME_INBOX = 'INBOX';
-let lintoResponse;
+let JMAP_NAME_INBOX = 'INBOX'
+let lintoResponse
+
 
 class MailJmap {
-    constructor(response) {
+    constructor(response, utility) {
         lintoResponse = response;
+        this.utility = utility
     }
 
     extractEntityFromType(entityArr, type) {
@@ -162,13 +164,13 @@ class MailJmap {
         }
     }
 
-    async getMail(nlu, config) {
+    async getMail(payload, config) {
         JMAP_HOST = config.url;
         JMAP_TOKEN = config.key;
         if (config.inbox)
             JMAP_NAME_INBOX = config.inbox
 
-        let actionEntity = this.extractEntityFromType(nlu.entities, mailAction.prefix)
+        let actionEntity = this.utility.extractEntityFromPrefix(payload, mailAction.prefix)
         try {
             switch (true) {
                 case (actionEntity === undefined):

@@ -21,20 +21,20 @@ const debug = require('debug')('redmanager:flow:optional:skill:news:api')
 const NewsLeMonde = require('./lemonde')
 
 class NewsApi {
-    constructor(api, templateResponse) {
+    constructor(api, templateResponse, utility) {
         switch (api) {
             case 'lemonde':
-                this.newsApi = new NewsLeMonde(templateResponse.lemonde)
+                this.newsApi = new NewsLeMonde(templateResponse.lemonde, utility)
                 break
             default:
-                this.newsApi = new NewsLeMonde(templateResponse.lemonde)
+                this.newsApi = new NewsLeMonde(templateResponse.lemonde, utility)
         }
         return this
     }
 
-    async getNews(nlu) {
+    async getNews(payload) {
         try {
-            return await this.newsApi.getNews(nlu)
+            return await this.newsApi.getNews(payload)
         } catch (err) {
             return err
         }

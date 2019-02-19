@@ -20,21 +20,12 @@
 const debug = require("debug")("redmanager:flow:optional:skill:calendar:jcal");
 const request = require("request");
 const calendarAction = require('./data/jcal').type_action
-
 let JCAL_HOST, JCAL_TOKEN
-let lintoResponse
-
 
 class JcalCalendar {
-    constructor(response) {
-        lintoResponse = response;
-    }
-
-    extractEntityFromType(entityArr, type) {
-        for (let entity of entityArr)
-            if (entity.entity.includes(type))
-                return entity
-        return undefined
+    constructor(response, utility) {
+        this.lintoResponse = response;
+        this.utility = utility
     }
 
     async connectionDav(method, path, body) {
@@ -73,9 +64,9 @@ class JcalCalendar {
         }
         try {
             let result = await this.connectionDav('POST', path, body)
-            return lintoResponse.create
+            return this.lintoResponse.create
         } catch (err) {
-            return lintoResponse.error_create
+            return this.lintoResponse.error_create
 
         }
     }
@@ -84,9 +75,9 @@ class JcalCalendar {
         let path = '/next'
         try {
             let result = await this.connectionDav('DELETE', path)
-            return lintoResponse.delete
+            return this.lintoResponse.delete
         } catch (err) {
-            return lintoResponse.error_delete
+            return this.lintoResponse.error_delete
 
         }
     }
@@ -97,16 +88,16 @@ class JcalCalendar {
             let nextMetting = await this.connectionDav('GET', path)
             return nextMetting
         } catch (err) {
-            return lintoResponse.error_list
+            return this.lintoResponse.error_list
 
         }
     }
 
-    async getCalendar(nlu, config) {
+    async getCalendar(payload, config) {
         JCAL_HOST = config.url
         JCAL_TOKEN = config.key
 
-        let actionEntity = this.extractEntityFromType(nlu.entities, calendarAction.prefix)
+        let actionEntity = this.utility.extractEntityFromPrefix(payload, calendarAction.prefix)
         try {
             switch (true) {
                 case (actionEntity === undefined):
@@ -116,12 +107,12 @@ class JcalCalendar {
                 case (actionEntity.entity === calendarAction.action_list):
                     return await this.listNextEvent()
                 case (actionEntity.entity === calendarAction.action_create):
-                    return lintoResponse.error_not_implemented
+                    return this.lintoResponse.error_not_implemented
                 default:
                     return await this.listNextEvent()
             }
         } catch (err) {
-            return lintoResponse.error_jcal
+            return this.lintoResponse.error_jcal
         }
     }
 }

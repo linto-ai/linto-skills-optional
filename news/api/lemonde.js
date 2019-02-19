@@ -25,15 +25,9 @@ const gender = data.type_gender
 let lintoResponse
 
 class NewsLeMonde {
-    constructor(response) {
+    constructor(response, utility) {
         lintoResponse = response
-    }
-
-    extractEntityFromType(entityArr, type) {
-        for (let entity of entityArr)
-            if (entity.entity.includes(type))
-                return entity
-        return undefined
+        this.utility = utility
     }
 
     readNewsTitle(jsonStr) {
@@ -57,9 +51,9 @@ class NewsLeMonde {
         })
     }
 
-    async getNews(nluResponse) {
+    async getNews(payload) {
         let newsTitles
-        let actionEntity = this.extractEntityFromType(nluResponse.entities, gender.prefix)
+        let actionEntity = this.utility.extractEntityFromPrefix(payload, gender.prefix)
         try {
             switch (true) {
                 case (actionEntity === undefined):

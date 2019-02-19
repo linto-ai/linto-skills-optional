@@ -21,20 +21,20 @@ const debug = require('debug')('redmanager:flow:optional:skill:definition:api')
 const Wikitionary = require('./wiktionary')
 
 class DefinitionApi {
-    constructor(api, templateResponse) {
+    constructor(api, templateResponse, utility) {
         switch (api) {
             case 'wiktionary':
-                this.definitionApi = new Wikitionary(templateResponse.wiktionary)
+                this.definitionApi = new Wikitionary(templateResponse.wiktionary, utility)
                 break
             default:
-                this.definitionApi = new Wikitionary(templateResponse.wiktionary)
+                this.definitionApi = new Wikitionary(templateResponse.wiktionary, utility)
         }
         return this
     }
 
-    async getDefinition(nlu, config) {
+    async getDefinition(payload, config) {
         try {
-            return await this.definitionApi.getDefinition(nlu, config)
+            return await this.definitionApi.getDefinition(payload, config)
         } catch (err) {
             return err
         }

@@ -21,20 +21,20 @@ const debug = require('debug')('redmanager:flow:optional:skill:calendar:api')
 const JcalCalendar = require('./jcal')
 
 class CalendarApi {
-    constructor(api, templateResponse) {
+    constructor(api, templateResponse, utility) {
         switch (api) {
             case 'jcal':
-                this.calendarApi = new JcalCalendar(templateResponse.jcal)
+                this.calendarApi = new JcalCalendar(templateResponse.jcal, utility)
                 break
             default:
-                this.calendarApi = new JcalCalendar(templateResponse.jcal)
+                this.calendarApi = new JcalCalendar(templateResponse.jcal, utility)
         }
         return this
     }
 
-    async getCalendar(nlu, config) {
+    async getCalendar(payload, config) {
         try {
-            return await this.calendarApi.getCalendar(nlu, config)
+            return await this.calendarApi.getCalendar(payload, config)
         } catch (err) {
             return err
         }

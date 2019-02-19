@@ -21,42 +21,43 @@ module.exports = function (RED) {
     const debug = require('debug')('redmanager:flow:optional:skill:definition')
     const intent = require('./data/intent')
     const DefinitionApi = require('./api/definitionApi')
+    const utility = RED.settings.functionGlobalContext.utility
     let lintoResponse
-
-    function loadLanguage(language) {
-        if (language === undefined)
-            language = process.env.DEFAULT_LANGUAGE
-        lintoResponse = require('./locales/' + language + '/definition').definition.response
-    }
-
-    function intentDetection(input) {
-        return (!!input.conversationData && input.nlu.intent === intent.key)
-    }
 
     function Definition(config) {
         RED.nodes.createNode(this, config)
-        let node = this
+        if (utility) {
+            this.status({})
 
-        try {
-            loadLanguage(this.context().flow.get('language'))
-        } catch (err) {
-            node.error(RED._("greeting.error.init_language"), err)
-        }
-
-        let definitionApi = new DefinitionApi(config.api, lintoResponse)
-
-        node.on('input', async function (msg) {
-            if (intentDetection(msg.payload)) {
-                msg.payload = {
-                    behavior: {
-                        say: await definitionApi.getDefinition(msg.payload.nlu, this.context().flow.get('language'))
-                    }
-                }
-                node.send(msg)
-            } else {
-                debug("Nothing to do")
+            try {
+                lintoResponse = utility.loadLanguage(__filename, 'definition', this.context().flow.get('language'))
+            } catch (err) {
+                this.error(RED._("definition.error.init_language"), err)
             }
-        })
+
+            const definitionApi = new DefinitionApi(config.api, lintoResponse, utility)
+
+            this.on('input', async function (msg) {
+                const intentDetection = utility.intentDetection(msg.payload, intent.key)
+                if (intentDetection.isIntent) {
+                    msg.payload = {
+                        behavior: {
+                            say: await definitionApi.getDefinition(msg.payload, this.context().flow.get('language'))
+                        }
+                    }
+                    this.send(msg)
+                } else {
+                    debug("Nothing to do")
+                }
+            })
+        } else {
+            this.status({
+                fill: "red",
+                shape: "ring",
+                text: RED._("definition.error.utility_undefined")
+            });
+            this.error(RED._("definition.error.utility_error"))
+        }
     }
     RED.nodes.registerType("definition-skill", Definition)
 }

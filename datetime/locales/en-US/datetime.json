@@ -7,11 +7,14 @@
             "name": "Node name"
         },
         "error": {
-            "init_language": "Error during initialisation of language"
+            "init_language": "Error during initialisation of language",
+            "utility_undefined" : "Utility is not define",
+            "utility_error" : "linto-utility need to be setup in red settings"
         },
         "response": {
             "date": "The date is ",
-            "time": "It is "
+            "time": "It is ",
+            "unit": " hour "
         }
     }
 }

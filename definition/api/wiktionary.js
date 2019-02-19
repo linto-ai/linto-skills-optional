@@ -19,17 +19,26 @@
 
 const debug = require('debug')('redmanager:flow:optional:skill:definition:wiktionary')
 const wd = require('word-definition')
+const itemEntities = 'objet'
 let lintoResponse
 
 class Wiktionary {
-    constructor(response) {
+    constructor(response, utility) {
         lintoResponse = response
+        this.utility = utility
     }
 
-    async callApi(words, langue) {
-        langue = langue.split('-')[0]
+    /** 
+     * @summary Allow to get a definition of a specific word
+     * 
+     * @param {String} payload the words to get a defintion
+     * @param {String} language the language word
+     * 
+     * @returns {String} The words definition
+     **/
+    async callApi(words, language) {
         return new Promise((resolve, reject) => {
-            wd.getDef(words, langue, null, function (definitionResponse) {
+            wd.getDef(words, language, null, function (definitionResponse) {
                 if (definitionResponse.definition)
                     resolve(lintoResponse.start + words + lintoResponse.middle + definitionResponse.definition)
                 else
@@ -38,10 +47,11 @@ class Wiktionary {
         })
     }
 
-    async getDefinition(nlu, langue) {
+    async getDefinition(payload, language) {
         try {
-            if (nlu.entitiesNumber === 1) {
-                return await this.callApi(nlu.entities[0].value, langue)
+            if (this.utility.checkEntitiesRequire(payload, [itemEntities])) {
+                language = language.split('-')[0]
+                return await this.callApi(payload.nlu.entities[0].value, language)
             } else {
                 return lintoResponse.error_entities_number
             }

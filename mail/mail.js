@@ -21,39 +21,39 @@ module.exports = function (RED) {
     const debug = require('debug')('redmanager:flow:optional:skill:mail')
     const MailApi = require('./api/mailApi')
     const intent = require('./data/intent')
+    const utility = RED.settings.functionGlobalContext.utility
     let lintoResponse
-
-    function loadLanguage(language) {
-        if (language === undefined)
-            language = process.env.DEFAULT_LANGUAGE
-        lintoResponse = require('./locales/' + language + '/mail').mail.response
-    }
-
-    function intentDetection(input) {
-        return (!!input.conversationData&& input.nlu.intent === intent.key)
-    }
 
     function Mail(config) {
         RED.nodes.createNode(this, config)
-        let node = this
-
-        try {
-            loadLanguage(this.context().flow.get('language'))
-        } catch (err) {
-            node.error(RED._("mail.error.init_language"), err)
-        }
-
-        let mailApi = new MailApi(config.api, lintoResponse)
-        node.on('input', async function (msg) {
-            if (intentDetection(msg.payload)) {
-                msg.payload = {
-                    behavior: await mailApi.getMail(msg.payload.nlu, config)
-                }
-                node.send(msg)
-            } else {
-                debug("Nothing to do")
+        if (utility) {
+            this.status({})
+            try {
+                lintoResponse = utility.loadLanguage(__filename, 'mail', this.context().flow.get('language'))
+            } catch (err) {
+                this.error(RED._("mail.error.init_language"), err)
             }
-        })
+            const mailApi = new MailApi(config.api, lintoResponse, utility)
+
+            this.on('input', async function (msg) {
+                const intentDetection = utility.intentDetection(msg.payload, intent.key)
+                if (intentDetection.isIntent) {
+                    msg.payload = {
+                        behavior: await mailApi.getMail(msg.payload, config)
+                    }
+                    this.send(msg)
+                } else {
+                    debug("Nothing to do")
+                }
+            })
+        } else {
+            this.status({
+                fill: "red",
+                shape: "ring",
+                text: RED._("mail.error.utility_undefined")
+            });
+            this.error(RED._("mail.error.utility_error"))
+        }
     }
     RED.nodes.registerType("mail-skill", Mail)
 }

@@ -26,8 +26,9 @@ const KEY_ENTITIE_LOCATION = 'location'
 let lintoResponse
 
 class PollutionPrevair {
-    constructor(templateResponse) {
-        lintoResponse = templateResponse
+    constructor(response, utility) {
+        lintoResponse = response
+        this.utility = utility
     }
 
     determinateAirQuality(airQualityStr) {
@@ -71,10 +72,14 @@ class PollutionPrevair {
         })
     }
 
-    async getPollution(nlu, config) {
+    async getPollution(payload, config) {
         let city
         try {
-            nlu.entitiesNumber === 1 && nlu.entities[0].entity === KEY_ENTITIE_LOCATION ? city = nlu.entities[0].value.toUpperCase() : city = config.defaultCity.toUpperCase()
+            if (this.utility.checkEntitiesRequire(payload, [KEY_ENTITIE_LOCATION]))
+                city = payload.nlu.entities[0].value.toUpperCase()
+            else
+                city = config.defaultCity.toUpperCase()
+
             if (city !== undefined) {
                 let result = await this.getPolutionByCity(city)
                 return this.formatAnswer(city, result)

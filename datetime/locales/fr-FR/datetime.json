@@ -7,11 +7,14 @@
             "name": "Nom du noeud"
         },
         "error": {
-            "init_language": "Erreur durant l'initialisation de la langue"
+            "init_language": "Erreur durant l'initialisation de la langue",
+            "utility_undefined" : "Utility n'est pas définit",
+            "utility_error" : "linto-utility doit être configuré dans red"
         },
         "response": {
             "date": "La date est ",
-            "time" : "Il est "
+            "time" : "Il est ",
+            "unit": " heure "
         }
     }
 }

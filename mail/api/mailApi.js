@@ -21,20 +21,20 @@ const debug = require('debug')('redmanager:flow:optional:skill:mail:api')
 const JmapMail = require('./jmap')
 
 class MailApi {
-    constructor(api, templateResponse) {
+    constructor(api, templateResponse, utility) {
         switch (api) {
             case 'jmap':
-                this.mailApi = new JmapMail(templateResponse.jmap)
+                this.mailApi = new JmapMail(templateResponse.jmap, utility)
                 break
             default:
-                this.mailApi = new JmapMail(templateResponse.jmap)
+                this.mailApi = new JmapMail(templateResponse.jmap, utility)
         }
         return this
     }
 
-    async getMail(nlu, config) {
+    async getMail(payload, config) {
         try {
-            return await this.mailApi.getMail(nlu, config)
+            return await this.mailApi.getMail(payload, config)
         } catch (err) {
             return err
         }

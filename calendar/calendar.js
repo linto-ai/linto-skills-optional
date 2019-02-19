@@ -17,43 +17,45 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 module.exports = function (RED) {
     const debug = require('debug')('redmanager:flow:optional:skill:calendar')
     const CalendarApi = require('./api/calendarApi')
+    const utility = RED.settings.functionGlobalContext.utility
     const intent = require('./data/intent')
     let lintoResponse
 
-    function loadLanguage(language) {
-        if (language === undefined)
-            language = process.env.DEFAULT_LANGUAGE
-        lintoResponse = require('./locales/' + language + '/calendar').calendar.response
-    }
-
-    function intentDetection(input) {
-        return (!!input.conversationData && input.nlu.intent === intent.key)
-    }
-
     function Calendar(config) {
         RED.nodes.createNode(this, config)
-        let node = this
-
-        try {
-            loadLanguage(this.context().flow.get('language'))
-        } catch (err) {
-            node.error(RED._("calendar.error.init_language"), err)
-        }
-
-        let calendarApi = new CalendarApi(config.api, lintoResponse)
-        node.on('input', async function (msg) {
-            if (intentDetection(msg.payload)) {
-                msg.payload = {
-                    behavior: await calendarApi.getCalendar(msg.payload.nlu, config)
-                }
-                node.send(msg)
-            } else {
-                debug("Nothing to do")
+        if (utility) {
+            this.status({})
+            try {
+                lintoResponse = utility.loadLanguage(__filename, 'calendar', this.context().flow.get('language'))
+            } catch (err) {
+                this.error(RED._("calendar.error.init_language"), err)
             }
-        })
+
+            const calendarApi = new CalendarApi(config.api, lintoResponse, utility)
+
+            this.on('input', async function (msg) {
+                const intentDetection = utility.intentDetection(msg.payload, intent.key)
+                if (intentDetection.isIntent) {
+                    msg.payload = {
+                        behavior: await calendarApi.getCalendar(msg.payload, config)
+                    }
+                    this.send(msg)
+                } else {
+                    debug("Nothing to do")
+                }
+            })
+        } else {
+            this.status({
+                fill: "red",
+                shape: "ring",
+                text: RED._("calendar.error.utility_undefined")
+            });
+            this.error(RED._("calendar.error.utility_error"))
+        }
     }
     RED.nodes.registerType("calendar-skill", Calendar)
 }

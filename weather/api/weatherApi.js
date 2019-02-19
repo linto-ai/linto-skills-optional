@@ -21,20 +21,20 @@ const debug = require('debug')('redmanager:flow:optional:skill:weather:api')
 const WeatherMicrosoft = require('./microsoft')
 
 class WeatherApi {
-    constructor(api, templateResponse) {
+    constructor(api, response, utility) {
         switch (api) {
             case 'microsoft':
-                this.weatherApi = new WeatherMicrosoft(templateResponse.microsoft)
+                this.weatherApi = new WeatherMicrosoft(response.microsoft, utility)
                 break
             default:
-                this.weatherApi = new WeatherMicrosoft(templateResponse.microsoft)
+                this.weatherApi = new WeatherMicrosoft(response.microsoft, utility)
         }
         return this
     }
 
-    async getWeather(nlu, config) {
+    async getWeather(payload, config) {
         try {
-            return await this.weatherApi.getWeather(nlu, config)
+            return await this.weatherApi.getWeather(payload, config)
         } catch (err) {
             return err
         }

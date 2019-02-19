@@ -21,42 +21,41 @@ module.exports = function (RED) {
     const debug = require('debug')('redmanager:flow:optional:skill:news')
     const intent = require('./data/intent')
     const NewsApi = require('./api/newsApi')
+    const utility = RED.settings.functionGlobalContext.utility
     let lintoResponse
-
-    function loadLanguage(language) {
-        if (language === undefined)
-            language = process.env.DEFAULT_LANGUAGE
-        lintoResponse = require('./locales/' + language + '/news').news.response
-    }
-
-    function intentDetection(input) {
-        return (!!input.conversationData && input.nlu.intent === intent.key)
-    }
 
     function News(config) {
         RED.nodes.createNode(this, config)
-        let node = this
-
-        try {
-            loadLanguage(this.context().flow.get('language'))
-        } catch (err) {
-            node.error(RED._("news.error.init_language"), err)
-        }
-
-        let newsApi = new NewsApi(config.api, lintoResponse)
-
-        node.on('input', async function (msg) {
-            if (intentDetection(msg.payload)) {
-                msg.payload = {
-                    behavior: {
-                        say: await newsApi.getNews(msg.payload.nlu)
-                    }
-                }
-                node.send(msg)
-            } else {
-                debug("Nothing to do")
+        if (utility) {
+            this.status({})
+            try {
+                lintoResponse = utility.loadLanguage(__filename, 'news', this.context().flow.get('language'))
+            } catch (err) {
+                this.error(RED._("news.error.init_language"), err)
             }
-        })
+            const newsApi = new NewsApi(config.api, lintoResponse, utility)
+
+            this.on('input', async function (msg) {
+                const intentDetection = utility.intentDetection(msg.payload, intent.key)
+                if (intentDetection.isIntent) {
+                    msg.payload = {
+                        behavior: {
+                            say: await newsApi.getNews(msg.payload)
+                        }
+                    }
+                    this.send(msg)
+                } else {
+                    debug("Nothing to do")
+                }
+            })
+        } else {
+            this.status({
+                fill: "red",
+                shape: "ring",
+                text: RED._("news.error.utility_undefined")
+            });
+            this.error(RED._("news.error.utility_error"))
+        }
     }
     RED.nodes.registerType("news-skill", News)
 }

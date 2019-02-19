@@ -20,29 +20,11 @@
 module.exports = function (RED) {
     const debug = require('debug')('redmanager:flow:optional:skill:memo')
     const intent = require('./data/intent')
+    const utility = RED.settings.functionGlobalContext.utility
     let lintoResponse
 
-    function loadLanguage(language) {
-        if (language === undefined)
-            language = process.env.DEFAULT_LANGUAGE
-        lintoResponse = require('./locales/' + language + '/memo').memo.response
-    }
-
-
-    function intentDetection(input) {
-        return ((!!input.conversationData && input.conversationData.intent === intent.key) ||
-            (Object.keys(input.conversationData).length === 0 && input.nlu.intent === intent.key))
-    }
-
-    function extractEntityFromType(entityArr, type) {
-        for (let entity of entityArr)
-            if (entity.entity.includes(type))
-                return entity
-        return undefined
-    }
-
-    function actionCreate(nlu, memoList) {
-        let entityMemo = extractEntityFromType(nlu.entities, intent.entities.expression)
+    function actionCreate(payload, memoList) {
+        let entityMemo = utility.extractEntityFromType(payload, intent.entities.expression)
         if (entityMemo === undefined)
             return {
                 say: lintoResponse.error_create_reminder_missing
@@ -72,19 +54,19 @@ module.exports = function (RED) {
         }
     }
 
-    function sayIntent(nlu, memoList) {
-        let actionEntity = extractEntityFromType(nlu.entities, intent.entities.prefix)
+    function sayIntent(payload, memoList) {
+        let actionEntity = utility.extractEntityFromPrefix(payload, intent.entities.prefix)
         switch (true) {
             case (actionEntity === undefined):
                 return {
                     say: lintoResponse.error_data_missing
                 }
             case (actionEntity.entity === intent.entities.action_create):
-                return actionCreate(nlu, memoList)
+                return actionCreate(payload, memoList)
             case (actionEntity.entity === intent.entities.action_list):
                 return actionList(memoList)
             case (actionEntity.entity === intent.entities.action_delete):
-                return actionDeleteAsk(nlu)
+                return actionDeleteAsk(payload.nlu)
             default:
                 return {
                     say: lintoResponse.error_data_missing
@@ -92,8 +74,8 @@ module.exports = function (RED) {
         }
     }
 
-    function conversationIntent(nlu) {
-        let acronymeEntity = extractEntityFromType(nlu.entities, intent.conversational_entities.prefix)
+    function conversationIntent(payload) {
+        let acronymeEntity = utility.extractEntityFromPrefix(payload, intent.conversational_entities.prefix)
         if (acronymeEntity === undefined) {
             return {
                 say: lintoResponse.error_data_missing
@@ -113,42 +95,51 @@ module.exports = function (RED) {
             }
     }
 
-    function memoIntent(payload, memoList) {
-        if (Object.keys(payload.conversationData).length === 0) {
-            return sayIntent(payload.nlu, memoList)
-        } else {
-            return conversationIntent(payload.nlu)
-        }
-    }
-
     function Memo(config) {
         RED.nodes.createNode(this, config)
-        let node = this
-
-        try {
-            loadLanguage(this.context().flow.get('language'))
-        } catch (err) {
-            node.error(RED._("greeting.error.init_language"), err)
-        }
-        if (this.context().flow.memo === undefined) {
-            this.context().flow.memo = new Array()
-        }
-
-        node.on('input', function (msg) {
-            if (intentDetection(msg.payload)) {
-                let response = memoIntent(msg.payload, this.context().flow.memo)
-                if (response.memoList) {
-                    this.context().flow.memo = response.memoList
-                    delete response.memoList
-                }
-                msg.payload = {
-                    behavior: response
-                }
-                node.send(msg)
-            } else {
-                debug("Nothing to do")
+        if (utility) {
+            this.status({})
+            try {
+                lintoResponse = utility.loadLanguage(__filename, 'memo', this.context().flow.get('language'))
+            } catch (err) {
+                this.error(RED._("memo.error.init_language"), err)
             }
-        })
+
+            if (this.context().flow.memo === undefined) {
+                this.context().flow.memo = new Array()
+            }
+
+            this.on('input', function (msg) {
+                const intentDetection = utility.intentDetection(msg.payload, intent.key, true)
+                if (intentDetection.isIntent) {
+                    let response
+                    if (intentDetection.isConversational) {
+                        response = conversationIntent(msg.payload)
+                    } else {
+                        response = sayIntent(msg.payload, this.context().flow.memo)
+                    }
+
+                    if (response.memoList) {
+                        this.context().flow.memo = response.memoList
+                        delete response.memoList
+                    }
+
+                    msg.payload = {
+                        behavior: response
+                    }
+                    this.send(msg)
+                } else {
+                    debug("Nothing to do")
+                }
+            })
+        } else {
+            this.status({
+                fill: "red",
+                shape: "ring",
+                text: RED._("memo.error.utility_undefined")
+            });
+            this.error(RED._("memo.error.utility_error"))
+        }
     }
     RED.nodes.registerType("memo-skill", Memo)
 }

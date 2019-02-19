@@ -20,18 +20,8 @@
 module.exports = function (RED) {
     const debug = require('debug')('redmanager:flow:optional:skill:datetime')
     const intent = require('./data/intent')
+    const utility = RED.settings.functionGlobalContext.utility
     let lintoResponse
-
-    function loadLanguage(language) {
-        if (language === undefined)
-            language = process.env.DEFAULT_LANGUAGE
-        lintoResponse = require('./locales/' + language + '/datetime').datetime.response
-    }
-
-    // This skill is multiple intention but no conversational skills
-    function intentDetection(input) {
-        return (!!input.conversationData && intent.keys.hasOwnProperty(input.nlu.intent))
-    }
 
     function dateTimeIntent(inputNlu) {
         if (inputNlu.intent === intent.keys.date) {
@@ -49,31 +39,40 @@ module.exports = function (RED) {
         let now = new Date()
         let hours = now.getHours()
         let min = now.getMinutes()
-        return (hours + "h" + min)
+        return (hours + lintoResponse.unit + min)
     }
 
     function Datetime(config) {
         RED.nodes.createNode(this, config)
-        let node = this
-
-        try {
-            loadLanguage(this.context().flow.get('language'))
-        } catch (err) {
-            node.error(RED._("datetime.error.init_language"), err)
-        }
-
-        node.on('input', function (msg) {
-            if (intentDetection(msg.payload)) {
-                msg.payload = {
-                    behavior: {
-                        say: dateTimeIntent(msg.payload.nlu)
-                    }
-                }
-                node.send(msg)
-            } else {
-                debug("Nothing to do")
+        if (utility) {
+            this.status({})
+            try {
+                lintoResponse = utility.loadLanguage(__filename, 'datetime', this.context().flow.get('language'))
+            } catch (err) {
+                this.error(RED._("datetime.error.init_language"), err)
             }
-        })
+
+            this.on('input', function (msg) {
+                const intentDetection = utility.multipleIntentDetection(msg.payload, intent.keys)
+                if (intentDetection.isIntent) {
+                    msg.payload = {
+                        behavior: {
+                            say: dateTimeIntent(msg.payload.nlu)
+                        }
+                    }
+                    this.send(msg)
+                } else {
+                    debug("Nothing to do")
+                }
+            })
+        } else {
+            this.status({
+                fill: "red",
+                shape: "ring",
+                text: RED._("datetime.error.utility_undefined")
+            });
+            this.error(RED._("datetime.error.utility_error"))
+        }
     }
     RED.nodes.registerType("datetime-skill", Datetime)
 }
