@@ -49,6 +49,9 @@ class Wiktionary {
 
     async getDefinition(payload, language) {
         try {
+            if (language === undefined)
+                language = process.env.DEFAULT_LANGUAGE
+
             if (this.utility.checkEntitiesRequire(payload, [itemEntities])) {
                 language = language.split('-')[0]
                 return await this.callApi(payload.nlu.entities[0].value, language)

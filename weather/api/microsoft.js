@@ -60,8 +60,10 @@ class WeatherMicrosoft {
         let cityEntitie = this.utility.extractEntityFromType(payload, KEY_ENTITIE_LOCATION)
         let timeEntitie = this.utility.extractEntityFromType(payload, KEY_ENTITIE_TIME)
 
-        cityEntitie === undefined ? config.city = config.defaultcity : config.city = cityEntitie.value
+        if (config.language === undefined)
+            config.language = process.env.DEFAULT_LANGUAGE
 
+        cityEntitie === undefined ? config.city = config.defaultcity : config.city = cityEntitie.value
         if (config.city === undefined)
             return lintoResponse.error_no_city
 

@@ -1,0 +1,22 @@
+[{
+    "id": "f1",
+    "type": "tab",
+    "label": "Test flow"
+  },
+  {
+    "id": "n1",
+    "type": "weather-skill",
+    "z": "f1",
+    "name": "nodeName",
+    "api": "microsoft",
+    "defaultcity": "paris",
+    "temperature": "C",
+    "wires": [
+      ["n2"]
+    ]
+  }, {
+    "id": "n2",
+    "z": "f1",
+    "type": "helper"
+  }
+]

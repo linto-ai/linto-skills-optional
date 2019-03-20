@@ -77,7 +77,7 @@ class PollutionPrevair {
         try {
             if (this.utility.checkEntitiesRequire(payload, [KEY_ENTITIE_LOCATION]))
                 city = payload.nlu.entities[0].value.toUpperCase()
-            else
+            else if(config.defaultCity)
                 city = config.defaultCity.toUpperCase()
 
             if (city !== undefined) {

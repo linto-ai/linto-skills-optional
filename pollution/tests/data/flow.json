@@ -1,0 +1,21 @@
+[{
+    "id": "f1",
+    "type": "tab",
+    "label": "Test flow"
+  },
+  {
+    "id": "n1",
+    "type": "pollution-skill",
+    "z": "f1",
+    "name": "nodeName",
+    "defaultCity":"Paris",
+    "api":"prevair",
+    "wires": [
+      ["n2"]
+    ]
+  }, {
+    "id": "n2",
+    "z": "f1",
+    "type": "helper"
+  }
+]
