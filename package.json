@@ -7,7 +7,7 @@
     "test": "mocha \"**/tests/*.test.js\""
   },
   "author": "",
-  "license": "ISC",
+  "license": "AGPL-3.0-or-later",
   "node-red": {
     "nodes": {
       "calendar": "calendar/calendar.js",
