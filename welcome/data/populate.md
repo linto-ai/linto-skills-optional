@@ -1,0 +1,105 @@
+##application|linto
+##intent|goodbye|fr
+- tchao
+- adieu
+- ciao
+- bye bye
+- au plaisir
+- à bientôt
+- a bientôt
+- a la prochaine
+- au revoir linto
+- au revoir
+- au plaisir linto
+- a bientot linto
+- a bientot
+- bye
+- a la revoyure
+- a plus
+##intent|goodbye|en
+- well thank
+- see you soon
+- farewell
+- goodbye
+- good bye linto
+- thank you linto
+- see ya
+- see you
+- good bye
+##intent|greeting|fr
+- bonjour
+- coucou
+- donne moi ton nom
+- bonjour, comment tu t'appelles
+- comment tu t'appelles
+- yo
+- bonsoir
+- salut
+- salut linto
+- bienvenue
+- salutation
+- hey
+##intent|greeting|en
+- greeting
+- hiya
+- good morning
+- good afternoon
+- good evening
+- hello
+- hi
+- what’s your name ?
+- what's your name
+##intent|howareyou|fr
+- bonjour linto comment vas-tu
+- comment ça va
+- comment vas tu
+- comment tu vas
+- ca roule ?
+- est ce que ça va
+- linto comment ça va
+- je vais [pas très bien](isko)
+- ca va pas [très bien](isko)
+- je [vais pas bien](isko)
+- je [vais bien](isok)
+- ca va [bien](isok)
+- [ca va](isok)
+- ça va [bien](isok)
+- [ça va](isok)
+##intent|howareyou|en
+- are you ok
+- are you okay
+- how are you doing
+- how are you
+- how are you doing ?
+- how are you?
+- how do you do?
+- are you fine?
+- are you feeling good?
+- are you ok ?
+- howdy
+- everything is [good](isok)
+- i'm [happy](isok)
+- i'm feel [great](isok)
+- i'm [right](isok)
+- [well](isok) thanks
+- [ok](isok)
+- [fine](isok)
+- [good](isok) thanks
+- i'm [well](isok) thank you
+- i'm [fine](isok)
+- i'm [ok](isok)
+- i'm in a [good mood](isok)
+- everything's [alright](isok)
+- i feel [good](isok)
+- i'm [not well](isko) thank you
+- i'm [not fine](isko)
+- i'm [not ok](isko)
+- i feel [no good](isko)
+- i'm [not feeling good](isko) today
+- [not good](isko)
+- i'm in a [bad mood](isko)
+- [not fine](isko)
+- [not ok](isko)
+- [not good](isko) thanks
+- [not well](isko) thanks
+- i am [sad](isko)

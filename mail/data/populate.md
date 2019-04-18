@@ -1,0 +1,61 @@
+##application|linto
+##intent|mail|en
+- do i have a [new](action_news) messages
+- do i have [new](action_news) messages
+- any [new](action_news) messages for me
+- is there [new](action_news) messages for me
+- [new](action_news) messages for me
+- do i have [new](action_news) message
+- my [new](action_news) messages please
+- give my [new](action_news) messages
+- check my [new](action_news) messages
+- read my [new](action_news) messages
+- read my [last](action_read_last) message
+- can you read my [last](action_read_last) message
+- i want to see my [last](action_read_last) message
+- i want you to read my [last](action_read_last) message
+- read me my [last](action_read_last) message
+- i wanna see my [last](action_read_last) message
+- i wanna you to read my [last](action_read_last) message
+- give my [last](action_read_last) messages
+- my [last](action_read_last) messages please
+- [last](action_read_last) message
+- what is the [last](action_read_last) messages
+- how many [unread](action_unread) message i got
+- give me my [unread](action_unread) message
+##intent|mail|fr
+- ai je reçu de [nouveaux message](action_news)
+- ai je reçu des [nouveaux message](action_news)
+- ai je reçu des [nouveaux messages](action_news)
+- mes [nouveaux messages](action_news)
+- combien de [nouveaux messages](action_news) pour moi
+- combien de [nouveau messages](action_news) pour moi
+- combien de [nouveau message](action_news) pour moi
+- [nouveau message](action_news)
+- lire mes [nouveau message](action_news)
+- lire mes [nouveaux message](action_news)
+- lire mes [nouveaux messages](action_news)
+- y a t'il de [nouveau message](action_news)
+- y a t'il de [nouveau message](action_news) pour moi
+- combien de [nouveau message](action_news)
+- lis mes [dernier](action_read_last) message
+- affiche mon [dernier](action_read_last) message
+- [dernier](action_read_last) message
+- puis je lire mon [dernier](action_read_last) message
+- je veux mon [dernier](action_read_last) message
+- lis mon [dernier](action_read_last) message
+- donne mon [dernier](action_read_last) message
+- je veux avoir mon [dernier](action_read_last) message
+- lis mon [dernier](action_read_last) message reçu
+- j'ai un message [non lu](action_news)
+- lit mon [dernier](action_read_last) message
+- quel est mon [dernier](action_read_last) message non lus
+- quel est mon [dernier](action_read_last) message
+- [lis](action_read_last) mon dernier message non lus
+- [lis](action_read_last) moi mon dernier mail
+- [lis](action_read_last) mon dernier mail non lu
+- [lis](action_read_last) mon dernier mail
+- [combien](action_unread) j’ai de messages non lus
+- [combien](action_unread) de mails j’ai reçu
+- [combien](action_unread) de messages reçu
+- [combien](action_unread) de messages j’ai
