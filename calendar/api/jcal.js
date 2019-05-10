@@ -16,105 +16,108 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-const debug = require("debug")("redmanager:flow:optional:skill:calendar:jcal");
-const request = require("request");
+const debug = require('debug')('redmanager:flow:optional:skill:calendar:jcal')
+const request = require('request'),
+  utility = require('linto-utility')
 const calendarAction = require('./data/jcal').type_action
 let JCAL_HOST, JCAL_TOKEN
 
+// TODO: Not yet
 class JcalCalendar {
-    constructor(response, utility) {
-        this.lintoResponse = response;
-        this.utility = utility
+  constructor(response) {
+    this.lintoResponse = response
+  }
+
+  async connectionDav(method, path, body) {
+    let option = {
+      method: method,
+      url: JCAL_HOST + path,
+      headers: {
+        authorization: JCAL_TOKEN,
+        accept: 'text/plain',
+        'content-type': 'application/json'
+      }
     }
-
-    async connectionDav(method, path, body) {
-        let option = {
-            method: method,
-            url: JCAL_HOST + path,
-            headers: {
-                authorization: JCAL_TOKEN,
-                accept: 'text/plain',
-                'content-type': 'application/json'
-            }
-        }
-        if (body) {
-            option.body = body
-            option.json = true
-        }
-        return new Promise((resolve, reject) => {
-            request(option, function (error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    resolve(body)
-                } else {
-                    reject({
-                        errorMsg: error
-                    })
-                }
-            })
-        })
+    if (body) {
+      option.body = body
+      option.json = true
     }
-
-    async createEvent(body) {
-        let path = ''
-        body = {
-            summary: "my linto test",
-            location: "in linto",
-            when: "2019-02-02T14:30:00"
+    return new Promise((resolve, reject) => {
+      request(option, function(error, response, body) {
+        if (!error && response.statusCode === 200) {
+          resolve(body)
+        } else {
+          reject({
+            errorMsg: error
+          })
         }
-        try {
-            let result = await this.connectionDav('POST', path, body)
-            return this.lintoResponse.create
-        } catch (err) {
-            return this.lintoResponse.error_create
-
-        }
+      })
+    })
+  }
+  async createEvent(body) {
+    let path = ''
+    body = {
+      summary: 'my linto test',
+      location: 'in linto',
+      when: '2019-02-02T14:30:00'
     }
+    try {
+      await this.connectionDav('POST', path, body)
 
-    async deleteNextEvent() {
-        let path = '/next'
-        try {
-            let result = await this.connectionDav('DELETE', path)
-            return this.lintoResponse.delete
-        } catch (err) {
-            return this.lintoResponse.error_delete
+      return this.lintoResponse.create
+    } catch (err) {
+      return this.lintoResponse.error_create
 
-        }
     }
+  }
 
-    async listNextEvent() {
-        let path = '/next'
-        try {
-            let nextMetting = await this.connectionDav('GET', path)
-            return nextMetting
-        } catch (err) {
-            return this.lintoResponse.error_list
+  async deleteNextEvent() {
+    let path = '/next'
+    try {
+      await this.connectionDav('DELETE', path)
 
-        }
+      return this.lintoResponse.delete
+    } catch (err) {
+      return this.lintoResponse.error_delete
+
     }
+  }
 
-    async getCalendar(payload, config) {
-        JCAL_HOST = config.url
-        JCAL_TOKEN = config.key
+  async listNextEvent() {
+    let path = '/next'
+    try {
+      let nextMetting = await this.connectionDav('GET', path)
+      return nextMetting
+    } catch (err) {
+      return this.lintoResponse.error_list
 
-        let actionEntity = this.utility.extractEntityFromPrefix(payload, calendarAction.prefix)
-        try {
-            switch (true) {
-                case (actionEntity === undefined):
-                    return await this.listNextEvent()
-                case (actionEntity.entity === calendarAction.action_delete):
-                    return await this.deleteNextEvent()
-                case (actionEntity.entity === calendarAction.action_list):
-                    return await this.listNextEvent()
-                case (actionEntity.entity === calendarAction.action_create):
-                    return this.lintoResponse.error_not_implemented
-                default:
-                    return await this.listNextEvent()
-            }
-        } catch (err) {
-            return this.lintoResponse.error_jcal
-        }
     }
+  }
+
+  async getCalendar(payload, config) {
+    JCAL_HOST = config.url
+    JCAL_TOKEN = config.key
+
+    let actionEntity = utility.extractEntityFromPrefix(payload, calendarAction.prefix)
+    try {
+      switch (true) {
+        case (!actionEntity):
+          return await this.listNextEvent()
+        case (actionEntity.entity === calendarAction.action_delete):
+          return await this.deleteNextEvent()
+        case (actionEntity.entity === calendarAction.action_list):
+          return await this.listNextEvent()
+        case (actionEntity.entity === calendarAction.action_create):
+          return this.lintoResponse.error_not_implemented
+        default:
+          return await this.listNextEvent()
+      }
+    } catch (err) {
+      return this.lintoResponse.error_jcal
+    }
+  }
 }
 
 module.exports = JcalCalendar

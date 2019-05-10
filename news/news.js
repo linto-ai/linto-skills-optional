@@ -16,46 +16,48 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-module.exports = function (RED) {
-    const debug = require('debug')('redmanager:flow:optional:skill:news')
-    const intent = require('./data/intent')
-    const NewsApi = require('./api/newsApi')
-    const utility = RED.settings.functionGlobalContext.utility
-    let lintoResponse
+module.exports = function(RED) {
+  const debug = require('debug')('redmanager:flow:optional:skill:news')
+  const intent = require('./data/intent'),
+    NewsApi = require('./api/newsApi'),
+    utility = require('linto-utility')
+  let lintoResponse
 
-    function News(config) {
-        RED.nodes.createNode(this, config)
-        if (utility) {
-            this.status({})
-            try {
-                lintoResponse = utility.loadLanguage(__filename, 'news', this.context().flow.get('language'))
-            } catch (err) {
-                this.error(RED._("news.error.init_language"), err)
+  function News(config) {
+    RED.nodes.createNode(this, config)
+    if (utility) {
+      this.status({})
+      try {
+        let language = this.context().flow.get('language')
+        lintoResponse = utility.loadLanguage(__filename, 'news', language)
+      } catch (err) {
+        this.error(RED._('news.error.init_language'), err)
+      }
+      const newsApi = new NewsApi(config.api, lintoResponse)
+
+      this.on('input', async function(msg) {
+        const intentDetection = utility.intentDetection(msg.payload, intent.key)
+        if (intentDetection.isIntent) {
+          msg.payload = {
+            behavior: {
+              say: await newsApi.getNews(msg.payload)
             }
-            const newsApi = new NewsApi(config.api, lintoResponse, utility)
-
-            this.on('input', async function (msg) {
-                const intentDetection = utility.intentDetection(msg.payload, intent.key)
-                if (intentDetection.isIntent) {
-                    msg.payload = {
-                        behavior: {
-                            say: await newsApi.getNews(msg.payload)
-                        }
-                    }
-                    this.send(msg)
-                } else {
-                    debug("Nothing to do")
-                }
-            })
+          }
+          this.send(msg)
         } else {
-            this.status({
-                fill: "red",
-                shape: "ring",
-                text: RED._("news.error.utility_undefined")
-            });
-            this.error(RED._("news.error.utility_error"))
+          debug('Nothing to do')
         }
+      })
+    } else {
+      this.status({
+        fill: 'red',
+        shape: 'ring',
+        text: RED._('news.error.utility_undefined')
+      })
+      this.error(RED._('news.error.utility_error'))
     }
-    RED.nodes.registerType("news-skill", News)
+  }
+  RED.nodes.registerType('news-skill', News)
 }

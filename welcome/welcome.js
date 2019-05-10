@@ -16,81 +16,84 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-module.exports = function (RED) {
-    const debug = require("debug")("redmanager:flow:optional:skill:welcome")
-    const intent = require("./data/intent")
-    const utility = RED.settings.functionGlobalContext.utility
-    let lintoResponse
+module.exports = function(RED) {
+  const debug = require('debug')('redmanager:flow:optional:skill:welcome')
+  const intent = require('./data/intent'),
+    utility = require('linto-utility')
+  let lintoResponse
 
-    function conversationIntent(payload) {
-        if (!!payload.conversationData && payload.conversationData.intent === intent.keys.howareyou) {
-            let say = lintoResponse.status_unk
-            if (payload.nlu.entitiesNumber !== 1)
-                say = lintoResponse.status_unk
-            else if (payload.nlu.entities[0].entity === intent.entities.isOk)
-                say = lintoResponse.isOk
-            else if (payload.nlu.entities[0].entity === intent.entities.isKo)
-                say = lintoResponse.isKo
-            return {
-                say
-            }
-        }
+  function conversationIntent(payload) {
+    if (!!payload.conversationData
+          && payload.conversationData.intent === intent.keys.howareyou) {
+      let say = lintoResponse.status_unk
+      if (payload.nlu.entitiesNumber !== 1)
+        say = lintoResponse.status_unk
+      else if (payload.nlu.entities[0].entity === intent.entities.isOk)
+        say = lintoResponse.isOk
+      else if (payload.nlu.entities[0].entity === intent.entities.isKo)
+        say = lintoResponse.isKo
+      return {
+        say
+      }
     }
+  }
 
-    function sayIntent(payload) {
-        if (payload.nlu.intent === intent.keys.greeting) {
-            return {
-                say: lintoResponse.hello
-            }
-        } else if (payload.nlu.intent === intent.keys.goodbye) {
-            return {
-                say: lintoResponse.bye
-            }
-        } else if (payload.nlu.intent === intent.keys.howareyou) {
-            return {
-                ask: lintoResponse.status,
-                conversationData: payload.nlu
-            }
-        }
+  function sayIntent(payload) {
+    if (payload.nlu.intent === intent.keys.greeting) {
+      return {
+        say: lintoResponse.hello
+      }
+    } else if (payload.nlu.intent === intent.keys.goodbye) {
+      return {
+        say: lintoResponse.bye
+      }
+    } else if (payload.nlu.intent === intent.keys.howareyou) {
+      return {
+        ask: lintoResponse.status,
+        conversationData: payload.nlu
+      }
     }
+  }
 
-    function Welcome(config) {
-        RED.nodes.createNode(this, config)
-        if (utility) {
-            this.status({})
-            try {
-                lintoResponse = utility.loadLanguage(__filename, 'welcome', this.context().flow.get('language'))
-            } catch (err) {
-                this.error(RED._("welcome.error.init_language"), err)
-            }
+  function Welcome(config) {
+    RED.nodes.createNode(this, config)
+    if (utility) {
+      this.status({})
+      try {
+        let language = this.context().flow.get('language')
+        lintoResponse = utility.loadLanguage(__filename, 'welcome', language)
+      } catch (err) {
+        this.error(RED._('welcome.error.init_language'), err)
+      }
 
-            this.on("input", function (msg) {
-                const intentDetection = utility.multipleIntentDetection(msg.payload, intent.keys, true)
-                if (intentDetection.isIntent) {
-                    let response
-                    if (intentDetection.isConversational) {
-                        response = conversationIntent(msg.payload)
-                    } else {
-                        response = sayIntent(msg.payload)
-                    }
+      this.on('input', function(msg) {
+        const intentDetection = utility.multipleIntentDetection(msg.payload, intent.keys, true)
+        if (intentDetection.isIntent) {
+          let response
+          if (intentDetection.isConversational) {
+            response = conversationIntent(msg.payload)
+          } else {
+            response = sayIntent(msg.payload)
+          }
 
-                    msg.payload = {
-                        behavior: response
-                    }
-                    this.send(msg)
-                } else {
-                    debug("Nothing to do")
-                }
-            })
+          msg.payload = {
+            behavior: response
+          }
+          this.send(msg)
         } else {
-            this.status({
-                fill: "red",
-                shape: "ring",
-                text: RED._("welcome.error.utility_undefined")
-            });
-            this.error(RED._("welcome.error.utility_error"))
+          debug('Nothing to do')
         }
+      })
+    } else {
+      this.status({
+        fill: 'red',
+        shape: 'ring',
+        text: RED._('welcome.error.utility_undefined')
+      })
+      this.error(RED._('welcome.error.utility_error'))
     }
-    RED.nodes.registerType("welcome-skill", Welcome)
+  }
+  RED.nodes.registerType('welcome-skill', Welcome)
 }

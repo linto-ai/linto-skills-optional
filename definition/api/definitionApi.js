@@ -16,29 +16,30 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
 const debug = require('debug')('redmanager:flow:optional:skill:definition:api')
 const Wikitionary = require('./wiktionary')
 
 class DefinitionApi {
-    constructor(api, templateResponse, utility) {
-        switch (api) {
-            case 'wiktionary':
-                this.definitionApi = new Wikitionary(templateResponse.wiktionary, utility)
-                break
-            default:
-                this.definitionApi = new Wikitionary(templateResponse.wiktionary, utility)
-        }
-        return this
+  constructor(api, templateResponse) {
+    switch (api) {
+      case 'wiktionary':
+        this.definitionApi = new Wikitionary(templateResponse.wiktionary)
+        break
+      default:
+        this.definitionApi = new Wikitionary(templateResponse.wiktionary)
     }
+    return this
+  }
 
-    async getDefinition(payload, config) {
-        try {
-            return await this.definitionApi.getDefinition(payload, config)
-        } catch (err) {
-            return err
-        }
+  async getDefinition(payload, config) {
+    try {
+      return await this.definitionApi.getDefinition(payload, config)
+    } catch (err) {
+      return err
     }
+  }
 }
 
 module.exports = DefinitionApi

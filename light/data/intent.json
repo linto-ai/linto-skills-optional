@@ -1,0 +1,14 @@
+{
+  "key": "light",
+  "description": "Will detect and send the intent to a philips hue node",
+  "entities": {
+    "prefix": "action",
+    "action_on": "action_on",
+    "action_off": "action_off",
+    "action_set": "action_set",
+    "action_up": "action_up",
+    "action_down": "action_down",
+    "object": "object",
+    "ordinal": "ordinal"
+  }
+}

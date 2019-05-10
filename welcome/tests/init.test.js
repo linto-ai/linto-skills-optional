@@ -16,17 +16,18 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-const assert = require('assert')
-const helper = require('node-red-node-test-helper')
+const assert = require('assert'),
+  helper = require('node-red-node-test-helper'),
 
-const welcome = require('../welcome.js')
-const flow = require('./data/flow.json')
+  welcome = require('../welcome.js'),
+  flow = require('./data/flow.json')
 
 helper.init(require.resolve('node-red'))
 
-describe('check loading welcome node', function () {
-  beforeEach(function (done) {
+describe('check loading welcome node', function() {
+  beforeEach(function(done) {
     process.env.DEFAULT_LANGUAGE = 'fr-FR'
     const settings = {
       functionGlobalContext: {
@@ -36,12 +37,12 @@ describe('check loading welcome node', function () {
     helper.startServer(settings, done)
   })
 
-  afterEach(function () {
+  afterEach(function() {
     helper.unload()
   })
 
-  it('it should load the welcome node', function (done) {
-    helper.load(welcome, flow, function () {
+  it('it should load the welcome node', function(done) {
+    helper.load(welcome, flow, function() {
       let n1 = helper.getNode('n1')
       assert.equal(n1.name, 'nodeName')
       done()

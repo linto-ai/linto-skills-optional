@@ -16,29 +16,30 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
 const debug = require('debug')('redmanager:flow:optional:skill:weather:api')
 const WeatherMicrosoft = require('./microsoft')
 
 class WeatherApi {
-    constructor(api, response, utility) {
-        switch (api) {
-            case 'microsoft':
-                this.weatherApi = new WeatherMicrosoft(response.microsoft, utility)
-                break
-            default:
-                this.weatherApi = new WeatherMicrosoft(response.microsoft, utility)
-        }
-        return this
+  constructor(api, response) {
+    switch (api) {
+      case 'microsoft':
+        this.weatherApi = new WeatherMicrosoft(response.microsoft)
+        break
+      default:
+        this.weatherApi = new WeatherMicrosoft(response.microsoft)
     }
+    return this
+  }
 
-    async getWeather(payload, config) {
-        try {
-            return await this.weatherApi.getWeather(payload, config)
-        } catch (err) {
-            return err
-        }
+  async getWeather(payload, config) {
+    try {
+      return await this.weatherApi.getWeather(payload, config)
+    } catch (err) {
+      return err
     }
+  }
 }
 
 module.exports = WeatherApi

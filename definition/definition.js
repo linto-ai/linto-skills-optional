@@ -16,48 +16,50 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-module.exports = function (RED) {
-    const debug = require('debug')('redmanager:flow:optional:skill:definition')
-    const intent = require('./data/intent')
-    const DefinitionApi = require('./api/definitionApi')
-    const utility = RED.settings.functionGlobalContext.utility
-    let lintoResponse
+module.exports = function(RED) {
+  const debug = require('debug')('redmanager:flow:optional:skill:definition')
+  const intent = require('./data/intent'),
+    DefinitionApi = require('./api/definitionApi'),
+    utility = require('linto-utility')
+  let lintoResponse
 
-    function Definition(config) {
-        RED.nodes.createNode(this, config)
-        if (utility) {
-            this.status({})
+  function Definition(config) {
+    RED.nodes.createNode(this, config)
+    if (utility) {
+      this.status({})
+      let language
+      try {
+        language = this.context().flow.get('language')
+        lintoResponse = utility.loadLanguage(__filename, 'definition', language)
+      } catch (err) {
+        this.error(RED._('definition.error.init_language'), err)
+      }
 
-            try {
-                lintoResponse = utility.loadLanguage(__filename, 'definition', this.context().flow.get('language'))
-            } catch (err) {
-                this.error(RED._("definition.error.init_language"), err)
+      const definitionApi = new DefinitionApi(config.api, lintoResponse)
+
+      this.on('input', async function(msg) {
+        const intentDetection = utility.intentDetection(msg.payload, intent.key)
+        if (intentDetection.isIntent) {
+          msg.payload = {
+            behavior: {
+              say: await definitionApi.getDefinition(msg.payload, language)
             }
-
-            const definitionApi = new DefinitionApi(config.api, lintoResponse, utility)
-
-            this.on('input', async function (msg) {
-                const intentDetection = utility.intentDetection(msg.payload, intent.key)
-                if (intentDetection.isIntent) {
-                    msg.payload = {
-                        behavior: {
-                            say: await definitionApi.getDefinition(msg.payload, this.context().flow.get('language'))
-                        }
-                    }
-                    this.send(msg)
-                } else {
-                    debug("Nothing to do")
-                }
-            })
+          }
+          this.send(msg)
         } else {
-            this.status({
-                fill: "red",
-                shape: "ring",
-                text: RED._("definition.error.utility_undefined")
-            });
-            this.error(RED._("definition.error.utility_error"))
+          debug('Nothing to do')
         }
+      })
+    } else {
+      this.status({
+        fill: 'red',
+        shape: 'ring',
+        text: RED._('definition.error.utility_undefined')
+      })
+      this.error(RED._('definition.error.utility_error'))
     }
-    RED.nodes.registerType("definition-skill", Definition)
+  }
+  RED.nodes.registerType('definition-skill', Definition)
 }

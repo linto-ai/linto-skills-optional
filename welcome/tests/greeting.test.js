@@ -16,19 +16,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-const assert = require('assert')
-const helper = require('node-red-node-test-helper')
-const welcome = require('../welcome.js')
+const assert = require('assert'),
+  helper = require('node-red-node-test-helper'),
+  welcome = require('../welcome.js'),
 
-const flow = require('./data/flow.json')
+  flow = require('./data/flow.json')
 
 helper.init(require.resolve('node-red'))
 
-describe('check greeting intent from welcome node', function () {
+describe('check greeting intent from welcome node', function() {
   let testOutput, intentGreeting
 
-  before(function () {
+  before(function() {
     testOutput = {
       en: require('../locales/en-US/welcome').welcome.response,
       fr: require('../locales/fr-FR/welcome').welcome.response
@@ -36,13 +37,13 @@ describe('check greeting intent from welcome node', function () {
 
     intentGreeting = {
       nlu: {
-        intent: 'greeting',
+        intent: 'greeting'
       },
       conversationData: {}
     }
   })
 
-  beforeEach(function (done) {
+  beforeEach(function(done) {
     process.env.DEFAULT_LANGUAGE = 'fr-FR'
     const settings = {
       functionGlobalContext: {
@@ -52,13 +53,13 @@ describe('check greeting intent from welcome node', function () {
     helper.startServer(settings, done)
   })
 
-  afterEach(function () {
+  afterEach(function() {
     helper.unload()
   })
 
-  it('it should say welcome (fr)', function (done) {
-    helper.load(welcome, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+  it('it should say welcome (fr)', function(done) {
+    helper.load(welcome, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say, testOutput.fr.hello)
         done()
       })
@@ -68,10 +69,10 @@ describe('check greeting intent from welcome node', function () {
     })
   })
 
-  it('it should say welcome (en)', function (done) {
+  it('it should say welcome (en)', function(done) {
     process.env.DEFAULT_LANGUAGE = 'en-US'
-    helper.load(welcome, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+    helper.load(welcome, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say, testOutput.en.hello)
         done()
       })

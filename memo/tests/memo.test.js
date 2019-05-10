@@ -16,20 +16,21 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
- const assert = require('assert')
-const helper = require('node-red-node-test-helper')
+const assert = require('assert'),
+  helper = require('node-red-node-test-helper'),
 
-const memo = require('../memo.js')
-const flow = require('./data/flow.json')
+  memo = require('../memo.js'),
+  flow = require('./data/flow.json')
 
 
 helper.init(require.resolve('node-red'))
 
-describe('check memo intent from node', function () {
+describe('check memo intent from node', function() {
   let testOutput, intentMemo
 
-  before(function () {
+  before(function() {
     testOutput = {
       en: require('../locales/en-US/memo').memo.response,
       fr: require('../locales/fr-FR/memo').memo.response
@@ -45,7 +46,7 @@ describe('check memo intent from node', function () {
     }
   })
 
-  beforeEach(function (done) {
+  beforeEach(function(done) {
     process.env.DEFAULT_LANGUAGE = 'fr-FR'
     const settings = {
       functionGlobalContext: {
@@ -55,13 +56,13 @@ describe('check memo intent from node', function () {
     helper.startServer(settings, done)
   })
 
-  afterEach(function () {
+  afterEach(function() {
     helper.unload()
   })
 
-  it('it should say that data are missing (fr)', function (done) {
-    helper.load(memo, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+  it('it should say that data are missing (fr)', function(done) {
+    helper.load(memo, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say, testOutput.fr.error_data_missing)
         done()
       })
@@ -71,10 +72,10 @@ describe('check memo intent from node', function () {
     })
   })
 
-  it('it should say that data are missing (en)', function (done) {
+  it('it should say that data are missing (en)', function(done) {
     process.env.DEFAULT_LANGUAGE = 'en-US'
-    helper.load(memo, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+    helper.load(memo, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say, testOutput.en.error_data_missing)
         done()
       })
@@ -84,7 +85,7 @@ describe('check memo intent from node', function () {
     })
   })
 
-  it('it should say that the reminder is missing (fr)', function (done) {
+  it('it should say that the reminder is missing (fr)', function(done) {
     let myIntentMemo = intentMemo
     myIntentMemo.nlu.entitiesNumber = 1
     myIntentMemo.nlu.entities = [{
@@ -92,8 +93,8 @@ describe('check memo intent from node', function () {
       value: 'creer'
     }]
 
-    helper.load(memo, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+    helper.load(memo, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say, testOutput.fr.error_create_reminder_missing)
         done()
       })
@@ -103,22 +104,23 @@ describe('check memo intent from node', function () {
     })
   })
 
-  it('it should create a memo (fr)', function (done) {
+  it('it should create a memo (fr)', function(done) {
     let myIntentMemo = intentMemo
     myIntentMemo.nlu.entitiesNumber = 2
     myIntentMemo.nlu.entities = [{
-        entity: 'action_create',
-        value: 'creer'
-      },
-      {
-        entity: 'expression',
-        value: 'appeler patrick'
-      }
+      entity: 'action_create',
+      value: 'creer'
+    },
+    {
+      entity: 'expression',
+      value: 'appeler patrick'
+    }
     ]
 
-    helper.load(memo, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
-        assert.equal(msg.payload.behavior.say, testOutput.fr.create + myIntentMemo.nlu.entities[1].value)
+    helper.load(memo, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
+        let entities = myIntentMemo.nlu.entities
+        assert.equal(msg.payload.behavior.say, testOutput.fr.create + entities[1].value)
         done()
       })
       helper.getNode('n1').receive({
@@ -127,7 +129,7 @@ describe('check memo intent from node', function () {
     })
   })
 
-  it('it should say that no memo are create (fr)', function (done) {
+  it('it should say that no memo are create (fr)', function(done) {
     let myIntentMemo = intentMemo
     myIntentMemo.nlu.entitiesNumber = 1
     myIntentMemo.nlu.entities = [{
@@ -135,8 +137,8 @@ describe('check memo intent from node', function () {
       value: 'list'
     }]
 
-    helper.load(memo, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+    helper.load(memo, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say, testOutput.fr.empty)
         done()
       })
@@ -146,7 +148,7 @@ describe('check memo intent from node', function () {
     })
   })
 
-  it('it should ask to delete all user memo (fr)', function (done) {
+  it('it should ask to delete all user memo (fr)', function(done) {
     let myIntentMemo = intentMemo
     myIntentMemo.nlu.entitiesNumber = 1
     myIntentMemo.nlu.entities = [{
@@ -154,8 +156,8 @@ describe('check memo intent from node', function () {
       value: 'delete'
     }]
 
-    helper.load(memo, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+    helper.load(memo, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.ask, testOutput.fr.delete)
         assert(msg.payload.behavior.conversationData)
         done()
@@ -166,7 +168,7 @@ describe('check memo intent from node', function () {
     })
   })
 
-  it('it should ask to delete all user memo (en)', function (done) {
+  it('it should ask to delete all user memo (en)', function(done) {
     process.env.DEFAULT_LANGUAGE = 'en-US'
     let myIntentMemo = intentMemo
     myIntentMemo.nlu.entitiesNumber = 1
@@ -175,8 +177,8 @@ describe('check memo intent from node', function () {
       value: 'delete'
     }]
 
-    helper.load(memo, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+    helper.load(memo, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.ask, testOutput.en.delete)
         assert(msg.payload.behavior.conversationData)
         done()
@@ -187,7 +189,7 @@ describe('check memo intent from node', function () {
     })
   })
 
-  it('it should cancel the delete (fr)', function (done) {
+  it('it should cancel the delete (fr)', function(done) {
     let myIntentMemo = intentMemo
     myIntentMemo.nlu.entitiesNumber = 1
     myIntentMemo.nlu.entities = [{
@@ -196,8 +198,8 @@ describe('check memo intent from node', function () {
     }]
     myIntentMemo.conversationData.intent = 'memo'
 
-    helper.load(memo, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+    helper.load(memo, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say, testOutput.fr.isNotDeleted)
         done()
       })
@@ -207,7 +209,7 @@ describe('check memo intent from node', function () {
     })
   })
 
-  it('it should delete all the memo (fr)', function (done) {
+  it('it should delete all the memo (fr)', function(done) {
     let myIntentMemo = intentMemo
     myIntentMemo.nlu.entitiesNumber = 1
     myIntentMemo.nlu.entities = [{
@@ -216,8 +218,8 @@ describe('check memo intent from node', function () {
     }]
     myIntentMemo.conversationData.intent = 'memo'
 
-    helper.load(memo, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+    helper.load(memo, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say, testOutput.fr.isDeleted)
         done()
       })
@@ -227,7 +229,7 @@ describe('check memo intent from node', function () {
     })
   })
 
-  it('it should delete all the memo (en)', function (done) {
+  it('it should delete all the memo (en)', function(done) {
     process.env.DEFAULT_LANGUAGE = 'en-US'
     let myIntentMemo = intentMemo
     myIntentMemo.nlu.entitiesNumber = 1
@@ -237,8 +239,8 @@ describe('check memo intent from node', function () {
     }]
     myIntentMemo.conversationData.intent = 'memo'
 
-    helper.load(memo, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+    helper.load(memo, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say, testOutput.en.isDeleted)
         done()
       })

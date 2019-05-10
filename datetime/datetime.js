@@ -16,63 +16,65 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-module.exports = function (RED) {
-    const debug = require('debug')('redmanager:flow:optional:skill:datetime')
-    const intent = require('./data/intent')
-    const utility = RED.settings.functionGlobalContext.utility
-    let lintoResponse
+module.exports = function(RED) {
+  const debug = require('debug')('redmanager:flow:optional:skill:datetime')
+  const intent = require('./data/intent'),
+    utility = require('linto-utility')
+  let lintoResponse
 
-    function dateTimeIntent(inputNlu) {
-        if (inputNlu.intent === intent.keys.date) {
-            return lintoResponse.date + getDate()
-        } else if (inputNlu.intent === intent.keys.time) {
-            return lintoResponse.time + getTime()
-        }
+  function dateTimeIntent(inputNlu) {
+    if (inputNlu.intent === intent.keys.date) {
+      return lintoResponse.date + getDate()
+    } else if (inputNlu.intent === intent.keys.time) {
+      return lintoResponse.time + getTime()
     }
+  }
 
-    function getDate() {
-        return (new Date().toISOString().split('T')[0])
-    }
+  function getDate() {
+    return (new Date().toISOString().split('T')[0])
+  }
 
-    function getTime() {
-        let now = new Date()
-        let hours = now.getHours()
-        let min = now.getMinutes()
-        return (hours + lintoResponse.unit + min)
-    }
+  function getTime() {
+    let now = new Date(),
+      hours = now.getHours(),
+      min = now.getMinutes()
+    return (hours + lintoResponse.unit + min)
+  }
 
-    function Datetime(config) {
-        RED.nodes.createNode(this, config)
-        if (utility) {
-            this.status({})
-            try {
-                lintoResponse = utility.loadLanguage(__filename, 'datetime', this.context().flow.get('language'))
-            } catch (err) {
-                this.error(RED._("datetime.error.init_language"), err)
+  function Datetime(config) {
+    RED.nodes.createNode(this, config)
+    if (utility) {
+      this.status({})
+      try {
+        let language = this.context().flow.get('language')
+        lintoResponse = utility.loadLanguage(__filename, 'datetime', language)
+      } catch (err) {
+        this.error(RED._('datetime.error.init_language'), err)
+      }
+
+      this.on('input', function(msg) {
+        const intentDetection = utility.multipleIntentDetection(msg.payload, intent.keys)
+        if (intentDetection.isIntent) {
+          msg.payload = {
+            behavior: {
+              say: dateTimeIntent(msg.payload.nlu)
             }
-
-            this.on('input', function (msg) {
-                const intentDetection = utility.multipleIntentDetection(msg.payload, intent.keys)
-                if (intentDetection.isIntent) {
-                    msg.payload = {
-                        behavior: {
-                            say: dateTimeIntent(msg.payload.nlu)
-                        }
-                    }
-                    this.send(msg)
-                } else {
-                    debug("Nothing to do")
-                }
-            })
+          }
+          this.send(msg)
         } else {
-            this.status({
-                fill: "red",
-                shape: "ring",
-                text: RED._("datetime.error.utility_undefined")
-            });
-            this.error(RED._("datetime.error.utility_error"))
+          debug('Nothing to do')
         }
+      })
+    } else {
+      this.status({
+        fill: 'red',
+        shape: 'ring',
+        text: RED._('datetime.error.utility_undefined')
+      })
+      this.error(RED._('datetime.error.utility_error'))
     }
-    RED.nodes.registerType("datetime-skill", Datetime)
+  }
+  RED.nodes.registerType('datetime-skill', Datetime)
 }

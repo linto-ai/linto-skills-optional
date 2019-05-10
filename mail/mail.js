@@ -16,44 +16,46 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-module.exports = function (RED) {
-    const debug = require('debug')('redmanager:flow:optional:skill:mail')
-    const MailApi = require('./api/mailApi')
-    const intent = require('./data/intent')
-    const utility = RED.settings.functionGlobalContext.utility
-    let lintoResponse
+module.exports = function(RED) {
+  const debug = require('debug')('redmanager:flow:optional:skill:mail')
+  const MailApi = require('./api/mailApi'),
+    intent = require('./data/intent'),
+    utility = require('linto-utility')
+  let lintoResponse
 
-    function Mail(config) {
-        RED.nodes.createNode(this, config)
-        if (utility) {
-            this.status({})
-            try {
-                lintoResponse = utility.loadLanguage(__filename, 'mail', this.context().flow.get('language'))
-            } catch (err) {
-                this.error(RED._("mail.error.init_language"), err)
-            }
-            const mailApi = new MailApi(config.api, lintoResponse, utility)
+  function Mail(config) {
+    RED.nodes.createNode(this, config)
+    if (utility) {
+      this.status({})
+      try {
+        let language = this.context().flow.get('language')
+        lintoResponse = utility.loadLanguage(__filename, 'mail', language)
+      } catch (err) {
+        this.error(RED._('mail.error.init_language'), err)
+      }
+      const mailApi = new MailApi(config.api, lintoResponse)
 
-            this.on('input', async function (msg) {
-                const intentDetection = utility.intentDetection(msg.payload, intent.key)
-                if (intentDetection.isIntent) {
-                    msg.payload = {
-                        behavior: await mailApi.getMail(msg.payload, config)
-                    }
-                    this.send(msg)
-                } else {
-                    debug("Nothing to do")
-                }
-            })
+      this.on('input', async function(msg) {
+        const intentDetection = utility.intentDetection(msg.payload, intent.key)
+        if (intentDetection.isIntent) {
+          msg.payload = {
+            behavior: await mailApi.getMail(msg.payload, config)
+          }
+          this.send(msg)
         } else {
-            this.status({
-                fill: "red",
-                shape: "ring",
-                text: RED._("mail.error.utility_undefined")
-            });
-            this.error(RED._("mail.error.utility_error"))
+          debug('Nothing to do')
         }
+      })
+    } else {
+      this.status({
+        fill: 'red',
+        shape: 'ring',
+        text: RED._('mail.error.utility_undefined')
+      })
+      this.error(RED._('mail.error.utility_error'))
     }
-    RED.nodes.registerType("mail-skill", Mail)
+  }
+  RED.nodes.registerType('mail-skill', Mail)
 }

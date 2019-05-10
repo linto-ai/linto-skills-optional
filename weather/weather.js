@@ -16,48 +16,50 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-module.exports = function (RED) {
-    const debug = require('debug')('redmanager:flow:optional:skill:weather')
-    const intent = require('./data/intent')
-    const WeatherApi = require('./api/weatherApi')
-    const utility = RED.settings.functionGlobalContext.utility
-    let lintoResponse
+module.exports = function(RED) {
+  const debug = require('debug')('redmanager:flow:optional:skill:weather')
+  const intent = require('./data/intent'),
+    WeatherApi = require('./api/weatherApi'),
+    utility = require('linto-utility')
+  let lintoResponse
 
-    function Weather(config) {
-        RED.nodes.createNode(this, config)
-        if (utility) {
-            this.status({})
-            try {
-                lintoResponse = utility.loadLanguage(__filename, 'weather', this.context().flow.get('language'))
-            } catch (err) {
-                this.error(RED._("weather.error.init_language"), err)
+  function Weather(config) {
+    RED.nodes.createNode(this, config)
+    if (utility) {
+      this.status({})
+      try {
+        let language = this.context().flow.get('language')
+        lintoResponse = utility.loadLanguage(__filename, 'weather', language)
+      } catch (err) {
+        this.error(RED._('weather.error.init_language'), err)
+      }
+
+      const weatherApi = new WeatherApi(config.api, lintoResponse)
+
+      this.on('input', async function(msg) {
+        const intentDetection = utility.intentDetection(msg.payload, intent.key)
+        if (intentDetection.isIntent) {
+          config.language = this.context().flow.get('language')
+          msg.payload = {
+            behavior: {
+              say: await weatherApi.getWeather(msg.payload, config)
             }
-
-            const weatherApi = new WeatherApi(config.api, lintoResponse, utility)
-
-            this.on('input', async function (msg) {
-                const intentDetection = utility.intentDetection(msg.payload, intent.key)
-                if (intentDetection.isIntent) {
-                    config.language = this.context().flow.get('language')
-                    msg.payload = {
-                        behavior: {
-                            say: await weatherApi.getWeather(msg.payload, config)
-                        }
-                    }
-                    this.send(msg)
-                } else {
-                    debug("Nothing to do")
-                }
-            })
+          }
+          this.send(msg)
         } else {
-            this.status({
-                fill: "red",
-                shape: "ring",
-                text: RED._("weather.error.utility_undefined")
-            });
-            this.error(RED._("weather.error.utility_error"))
+          debug('Nothing to do')
         }
+      })
+    } else {
+      this.status({
+        fill: 'red',
+        shape: 'ring',
+        text: RED._('weather.error.utility_undefined')
+      })
+      this.error(RED._('weather.error.utility_error'))
     }
-    RED.nodes.registerType("weather-skill", Weather)
+  }
+  RED.nodes.registerType('weather-skill', Weather)
 }

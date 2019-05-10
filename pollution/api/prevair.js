@@ -16,79 +16,81 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-const debug = require('debug')('redmanager:flow:optional:skill:pollution:prevair')
-const request = require('request')
+'use strict'
 
-const API_URL = 'http://www2.prevair.org/ineris-web-services.php?url=atmo&date='
-const KEY_ENTITIE_LOCATION = 'location'
+const debug = require('debug')('redmanager:flow:optional:skill:pollution:prevair')
+const request = require('request'),
+  utility = require('linto-utility')
+
+const API_URL = 'http://www2.prevair.org/ineris-web-services.php?url=atmo&date=',
+  KEY_ENTITIE_LOCATION = 'location'
 
 let lintoResponse
 
 class PollutionPrevair {
-    constructor(response, utility) {
-        lintoResponse = response
-        this.utility = utility
-    }
+  constructor(response) {
+    lintoResponse = response
+  }
 
-    determinateAirQuality(airQualityStr) {
-        let airQuality = parseInt(airQualityStr)
-        if (airQuality <= 2) {
-            return lintoResponse.air_quality.very_good
-        } else if (airQuality <= 4) {
-            return lintoResponse.air_quality.good
-        } else if (airQuality <= 5) {
-            return lintoResponse.air_quality.average
-        } else if (airQuality <= 7) {
-            return lintoResponse.air_quality.poor
-        } else if (airQuality <= 9) {
-            return lintoResponse.air_quality.bad
+  determinateAirQuality(airQualityStr) {
+    let airQuality = parseInt(airQualityStr)
+    if (airQuality <= 2) {
+      return lintoResponse.air_quality.very_good
+    } else if (airQuality <= 4) {
+      return lintoResponse.air_quality.good
+    } else if (airQuality <= 5) {
+      return lintoResponse.air_quality.average
+    } else if (airQuality <= 7) {
+      return lintoResponse.air_quality.poor
+    } else if (airQuality <= 9) {
+      return lintoResponse.air_quality.bad
+    } else {
+      return lintoResponse.air_quality.very_bad
+    }
+  }
+
+  formatAnswer(city, jsonResponse) {
+    for (let i = 0; i < jsonResponse.length; i++) {
+      if (jsonResponse[i][4] === city) {
+        let airQuality = this.determinateAirQuality(jsonResponse[i][7])
+        return city + lintoResponse.seuil + airQuality
+      }
+    }
+    return city + lintoResponse.error_city_unfound
+  }
+
+  async getPolutionByCity(city) {
+    return new Promise((resolve, reject) => {
+      let date = (new Date().toISOString().split('T')[0]).replace(/-/g, '')
+
+      request(API_URL + date, function(error, response, body) {
+        if (!error && response.statusCode === 200) {
+          resolve(JSON.parse(body))
         } else {
-            return lintoResponse.air_quality.very_bad
+          reject(city + lintoResponse.error_api)
         }
+      })
+    })
+  }
+
+  async getPollution(payload, config) {
+    let city
+    try {
+      if (utility.checkEntitiesRequire(payload, [KEY_ENTITIE_LOCATION]))
+        city = payload.nlu.entities[0].value.toUpperCase()
+      else if (config.defaultCity)
+        city = config.defaultCity.toUpperCase()
+
+      if (city) {
+        let result = await this.getPolutionByCity(city)
+        return this.formatAnswer(city, result)
+      } else {
+        return lintoResponse.error_no_city
+      }
+    } catch (err) {
+      return err
     }
-
-    formatAnswer(city, jsonResponse) {
-        for (let i = 0; i < jsonResponse.length; i++) {
-            if (jsonResponse[i][4] === city) {
-                let airQuality = this.determinateAirQuality(jsonResponse[i][7])
-                return city + lintoResponse.seuil + airQuality
-            }
-        }
-        return city + lintoResponse.error_city_unfound
-    }
-
-    async getPolutionByCity(city) {
-        return new Promise((resolve, reject) => {
-            let date = (new Date().toISOString().split('T')[0]).replace(/-/g, "")
-
-            request(API_URL + date, function (error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    resolve(JSON.parse(body))
-                } else {
-                    reject(city + lintoResponse.error_api)
-                }
-            })
-        })
-    }
-
-    async getPollution(payload, config) {
-        let city
-        try {
-            if (this.utility.checkEntitiesRequire(payload, [KEY_ENTITIE_LOCATION]))
-                city = payload.nlu.entities[0].value.toUpperCase()
-            else if(config.defaultCity)
-                city = config.defaultCity.toUpperCase()
-
-            if (city !== undefined) {
-                let result = await this.getPolutionByCity(city)
-                return this.formatAnswer(city, result)
-            } else {
-                return lintoResponse.error_no_city
-            }
-        } catch (err) {
-            return err
-        }
-    }
+  }
 }
 
 module.exports = PollutionPrevair

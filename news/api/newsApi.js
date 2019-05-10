@@ -16,29 +16,30 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
 const debug = require('debug')('redmanager:flow:optional:skill:news:api')
 const NewsLeMonde = require('./lemonde')
 
 class NewsApi {
-    constructor(api, templateResponse, utility) {
-        switch (api) {
-            case 'lemonde':
-                this.newsApi = new NewsLeMonde(templateResponse.lemonde, utility)
-                break
-            default:
-                this.newsApi = new NewsLeMonde(templateResponse.lemonde, utility)
-        }
-        return this
+  constructor(api, templateResponse) {
+    switch (api) {
+      case 'lemonde':
+        this.newsApi = new NewsLeMonde(templateResponse.lemonde)
+        break
+      default:
+        this.newsApi = new NewsLeMonde(templateResponse.lemonde)
     }
+    return this
+  }
 
-    async getNews(payload) {
-        try {
-            return await this.newsApi.getNews(payload)
-        } catch (err) {
-            return err
-        }
+  async getNews(payload) {
+    try {
+      return await this.newsApi.getNews(payload)
+    } catch (err) {
+      return err
     }
+  }
 }
 
 module.exports = NewsApi

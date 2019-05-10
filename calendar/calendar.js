@@ -16,45 +16,47 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-module.exports = function (RED) {
-    const debug = require('debug')('redmanager:flow:optional:skill:calendar')
-    const CalendarApi = require('./api/calendarApi')
-    const utility = RED.settings.functionGlobalContext.utility
-    const intent = require('./data/intent')
-    let lintoResponse
+module.exports = function(RED) {
+  const debug = require('debug')('redmanager:flow:optional:skill:calendar')
+  const CalendarApi = require('./api/calendarApi'),
+    utility = require('linto-utility'),
+    intent = require('./data/intent')
+  let lintoResponse
 
-    function Calendar(config) {
-        RED.nodes.createNode(this, config)
-        if (utility) {
-            this.status({})
-            try {
-                lintoResponse = utility.loadLanguage(__filename, 'calendar', this.context().flow.get('language'))
-            } catch (err) {
-                this.error(RED._("calendar.error.init_language"), err)
-            }
+  function Calendar(config) {
+    RED.nodes.createNode(this, config)
+    if (utility) {
+      this.status({})
+      try {
+        let language = this.context().flow.get('language')
+        lintoResponse = utility.loadLanguage(__filename, 'calendar', language)
+      } catch (err) {
+        this.error(RED._('calendar.error.init_language'), err)
+      }
 
-            const calendarApi = new CalendarApi(config.api, lintoResponse, utility)
+      const calendarApi = new CalendarApi(config.api, lintoResponse)
 
-            this.on('input', async function (msg) {
-                const intentDetection = utility.intentDetection(msg.payload, intent.key)
-                if (intentDetection.isIntent) {
-                    msg.payload = {
-                        behavior: await calendarApi.getCalendar(msg.payload, config)
-                    }
-                    this.send(msg)
-                } else {
-                    debug("Nothing to do")
-                }
-            })
+      this.on('input', async function(msg) {
+        const intentDetection = utility.intentDetection(msg.payload, intent.key)
+        if (intentDetection.isIntent) {
+          msg.payload = {
+            behavior: await calendarApi.getCalendar(msg.payload, config)
+          }
+          this.send(msg)
         } else {
-            this.status({
-                fill: "red",
-                shape: "ring",
-                text: RED._("calendar.error.utility_undefined")
-            });
-            this.error(RED._("calendar.error.utility_error"))
+          debug('Nothing to do')
         }
+      })
+    } else {
+      this.status({
+        fill: 'red',
+        shape: 'ring',
+        text: RED._('calendar.error.utility_undefined')
+      })
+      this.error(RED._('calendar.error.utility_error'))
     }
-    RED.nodes.registerType("calendar-skill", Calendar)
+  }
+  RED.nodes.registerType('calendar-skill', Calendar)
 }

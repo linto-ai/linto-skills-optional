@@ -16,19 +16,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-const assert = require('assert')
-const helper = require('node-red-node-test-helper')
+const assert = require('assert'),
+  helper = require('node-red-node-test-helper'),
 
-const datetime = require('../datetime.js')
-const flow = require('./data/flow.json')
+  datetime = require('../datetime.js'),
+  flow = require('./data/flow.json')
 
 helper.init(require.resolve('node-red'))
 
-describe('check date intent from datetime node', function () {
-  let testOutput
+describe('check date intent from datetime node', function() {
+  let testOutput, intentDatetime
 
-  before(function () {
+  before(function() {
     testOutput = {
       en: require('../locales/en-US/datetime').datetime.response,
       fr: require('../locales/fr-FR/datetime').datetime.response
@@ -44,7 +45,7 @@ describe('check date intent from datetime node', function () {
     }
   })
 
-  beforeEach(function (done) {
+  beforeEach(function(done) {
     process.env.DEFAULT_LANGUAGE = 'fr-FR'
     const settings = {
       functionGlobalContext: {
@@ -54,13 +55,13 @@ describe('check date intent from datetime node', function () {
     helper.startServer(settings, done)
   })
 
-  afterEach(function () {
+  afterEach(function() {
     helper.unload()
   })
 
-  it('it should get the current time', function (done) {
-    helper.load(datetime, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+  it('it should get the current time', function(done) {
+    helper.load(datetime, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say.indexOf(testOutput.fr.date) > -1, true)
         done()
       })
@@ -71,4 +72,4 @@ describe('check date intent from datetime node', function () {
   })
 })
 
-//        
+//

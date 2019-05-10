@@ -16,29 +16,30 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
 const debug = require('debug')('redmanager:flow:optional:skill:mail:api')
 const JmapMail = require('./jmap')
 
 class MailApi {
-    constructor(api, templateResponse, utility) {
-        switch (api) {
-            case 'jmap':
-                this.mailApi = new JmapMail(templateResponse.jmap, utility)
-                break
-            default:
-                this.mailApi = new JmapMail(templateResponse.jmap, utility)
-        }
-        return this
+  constructor(api, templateResponse) {
+    switch (api) {
+      case 'jmap':
+        this.mailApi = new JmapMail(templateResponse.jmap)
+        break
+      default:
+        this.mailApi = new JmapMail(templateResponse.jmap)
     }
+    return this
+  }
 
-    async getMail(payload, config) {
-        try {
-            return await this.mailApi.getMail(payload, config)
-        } catch (err) {
-            return err
-        }
+  async getMail(payload, config) {
+    try {
+      return await this.mailApi.getMail(payload, config)
+    } catch (err) {
+      return err
     }
+  }
 }
 
 module.exports = MailApi

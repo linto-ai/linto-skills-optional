@@ -16,29 +16,31 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
+
 const debug = require('debug')('redmanager:flow:optional:skill:pollution:api')
 const PollutionPrevair = require('./prevair')
 
 class PollutionApi {
-    constructor(api, templateResponse, utility) {
-        switch (api) {
-            case 'prevair':
-                this.pollutionApi = new PollutionPrevair(templateResponse.prevair, utility)
-                break
-            default:
-                this.pollutionApi = new PollutionPrevair(templateResponse.prevair, utility)
-        }
-        return this
+  constructor(api, templateResponse) {
+    switch (api) {
+      case 'prevair':
+        this.pollutionApi = new PollutionPrevair(templateResponse.prevair)
+        break
+      default:
+        this.pollutionApi = new PollutionPrevair(templateResponse.prevair)
     }
+    return this
+  }
 
-    async getPollution(payload, config) {
-        try {
-            return await this.pollutionApi.getPollution(payload, config)
-        } catch (err) {
-            debug(err)
-            return err
-        }
+  async getPollution(payload, config) {
+    try {
+      return await this.pollutionApi.getPollution(payload, config)
+    } catch (err) {
+      debug(err)
+      return err
     }
+  }
 }
 
 module.exports = PollutionApi

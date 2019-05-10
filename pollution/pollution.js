@@ -16,46 +16,48 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-module.exports = function (RED) {
-    const debug = require('debug')('redmanager:flow:optional:skill:pollution')
-    const intent = require('./data/intent')
-    const PollutionApi = require('./api/pollutionApi')
-    const utility = RED.settings.functionGlobalContext.utility
-    let lintoResponse
+module.exports = function(RED) {
+  const debug = require('debug')('redmanager:flow:optional:skill:pollution')
+  const intent = require('./data/intent'),
+    PollutionApi = require('./api/pollutionApi'),
+    utility = require('linto-utility')
+  let lintoResponse
 
-    function Pollution(config) {
-        RED.nodes.createNode(this, config)
-        if (utility) {
-            this.status({})
-            try {
-                lintoResponse = utility.loadLanguage(__filename, 'pollution', this.context().flow.get('language'))
-            } catch (err) {
-                this.error(RED._("pollution.error.init_language"), err)
+  function Pollution(config) {
+    RED.nodes.createNode(this, config)
+    if (utility) {
+      this.status({})
+      try {
+        let language = this.context().flow.get('language')
+        lintoResponse = utility.loadLanguage(__filename, 'pollution', language)
+      } catch (err) {
+        this.error(RED._('pollution.error.init_language'), err)
+      }
+      const pollutionApi = new PollutionApi(config.api, lintoResponse)
+
+      this.on('input', async function(msg) {
+        const intentDetection = utility.intentDetection(msg.payload, intent.key)
+        if (intentDetection.isIntent) {
+          msg.payload = {
+            behavior: {
+              say: await pollutionApi.getPollution(msg.payload, config)
             }
-            const pollutionApi = new PollutionApi(config.api, lintoResponse, utility)
-
-            this.on('input', async function (msg) {
-                const intentDetection = utility.intentDetection(msg.payload, intent.key)
-                if (intentDetection.isIntent) {
-                    msg.payload = {
-                        behavior: {
-                            say: await pollutionApi.getPollution(msg.payload, config)
-                        }
-                    }
-                    this.send(msg)
-                } else {
-                    debug("Nothing to do")
-                }
-            })
+          }
+          this.send(msg)
         } else {
-            this.status({
-                fill: "red",
-                shape: "ring",
-                text: RED._("pollution.error.utility_undefined")
-            });
-            this.error(RED._("pollution.error.utility_error"))
+          debug('Nothing to do')
         }
+      })
+    } else {
+      this.status({
+        fill: 'red',
+        shape: 'ring',
+        text: RED._('pollution.error.utility_undefined')
+      })
+      this.error(RED._('pollution.error.utility_error'))
     }
-    RED.nodes.registerType("pollution-skill", Pollution)
+  }
+  RED.nodes.registerType('pollution-skill', Pollution)
 }

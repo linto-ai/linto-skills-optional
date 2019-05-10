@@ -16,29 +16,30 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
 const debug = require('debug')('redmanager:flow:optional:skill:calendar:api')
 const JcalCalendar = require('./jcal')
 
 class CalendarApi {
-    constructor(api, templateResponse, utility) {
-        switch (api) {
-            case 'jcal':
-                this.calendarApi = new JcalCalendar(templateResponse.jcal, utility)
-                break
-            default:
-                this.calendarApi = new JcalCalendar(templateResponse.jcal, utility)
-        }
-        return this
+  constructor(api, templateResponse) {
+    switch (api) {
+      case 'jcal':
+        this.calendarApi = new JcalCalendar(templateResponse.jcal)
+        break
+      default:
+        this.calendarApi = new JcalCalendar(templateResponse.jcal)
     }
+    return this
+  }
 
-    async getCalendar(payload, config) {
-        try {
-            return await this.calendarApi.getCalendar(payload, config)
-        } catch (err) {
-            return err
-        }
+  async getCalendar(payload, config) {
+    try {
+      return await this.calendarApi.getCalendar(payload, config)
+    } catch (err) {
+      return err
     }
+  }
 }
 
 module.exports = CalendarApi

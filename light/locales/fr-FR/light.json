@@ -1,0 +1,32 @@
+{
+    "light": {
+        "label": {
+            "name": "Nom",
+            "userKey" : "Utilisateur",
+            "authToken" : "Clé",
+            "refreshToken" : "Réactualisation clé",
+            "description": "Une simple description du skill",
+            "clientId" : "Identifiant client",
+            "clientSecret" : "Mot de passe client"
+        },
+        "placeholder": {
+            "name": "Nom du noeud",
+            "userKey" : "Nom d'utilisateur",
+            "authToken" : "Clé d'authentification",
+            "refreshToken" : "Actualiser le jeton d'authentification",
+            "clientId" : "Identifiant client",
+            "clientSecret" : "Mot de passe client"
+        },
+        "response": {
+            "on": "Lumière allumé",
+            "off": "Lumière éteinte",
+            "error_data_missing": "Je ne sais pas quoi faire",
+            "unknown": "Je ne sais pas quoi faire"
+        },
+        "error": {
+            "init_language": "Erreur durant l'initialisation de la langue",
+            "utility_undefined": "Utility n'est pas définit",
+            "utility_error": "linto-utility doit être configuré dans red"
+        }
+    }
+}

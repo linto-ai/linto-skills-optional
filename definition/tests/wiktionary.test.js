@@ -16,19 +16,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+'use strict'
 
-const assert = require('assert')
-const helper = require('node-red-node-test-helper')
+const assert = require('assert'),
+  helper = require('node-red-node-test-helper'),
 
-const definition = require('../definition.js')
-const flow = require('./data/flow.json')
+  definition = require('../definition.js'),
+  flow = require('./data/flow.json')
 
 helper.init(require.resolve('node-red'))
 
-describe('check news intent for wiktionary api', function () {
+describe('check news intent for wiktionary api', function() {
   let testOutput, intentDefinition
 
-  before(function () {
+  before(function() {
     testOutput = {
       en: require('../locales/en-US/definition').definition.response.wiktionary,
       fr: require('../locales/fr-FR/definition').definition.response.wiktionary
@@ -44,7 +45,7 @@ describe('check news intent for wiktionary api', function () {
     }
   })
 
-  beforeEach(function (done) {
+  beforeEach(function(done) {
     process.env.DEFAULT_LANGUAGE = 'fr-FR'
     const settings = {
       functionGlobalContext: {
@@ -54,13 +55,13 @@ describe('check news intent for wiktionary api', function () {
     helper.startServer(settings, done)
   })
 
-  afterEach(function () {
+  afterEach(function() {
     helper.unload()
   })
 
-  it('it should get an error, data are missing (fr)', function (done) {
-    helper.load(definition, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
+  it('it should get an error, data are missing (fr)', function(done) {
+    helper.load(definition, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
         assert.equal(msg.payload.behavior.say, testOutput.fr.error_entities_number)
         done()
       })
@@ -70,7 +71,7 @@ describe('check news intent for wiktionary api', function () {
     })
   })
 
-  it('it should give the definition of the given word (fr)', function (done) {
+  it('it should give the definition of the given word (fr)', function(done) {
     let myIntentDefinition = intentDefinition
     myIntentDefinition.nlu.entitiesNumber = 1
     myIntentDefinition.nlu.entities = [{
@@ -78,9 +79,11 @@ describe('check news intent for wiktionary api', function () {
       value: 'arbre'
     }]
 
-    helper.load(definition, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
-        assert.equal(msg.payload.behavior.say.indexOf(testOutput.fr.start + myIntentDefinition.nlu.entities[0].value) > -1, true)
+    helper.load(definition, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
+        let myEntitie = myIntentDefinition.nlu.entities,
+          res = msg.payload.behavior.say
+        assert.equal(res.indexOf(testOutput.fr.start + myEntitie[0].value) > -1, true)
         done()
       })
       helper.getNode('n1').receive({
@@ -89,7 +92,7 @@ describe('check news intent for wiktionary api', function () {
     })
   })
 
-  it('it should give the definition of the given word (en)', function (done) {
+  it('it should give the definition of the given word (en)', function(done) {
     process.env.DEFAULT_LANGUAGE = 'en-US'
     let myIntentDefinition = intentDefinition
     myIntentDefinition.nlu.entitiesNumber = 1
@@ -98,9 +101,11 @@ describe('check news intent for wiktionary api', function () {
       value: 'tree'
     }]
 
-    helper.load(definition, flow, function () {
-      helper.getNode('n2').on('input', function (msg) {
-        assert.equal(msg.payload.behavior.say.indexOf(testOutput.en.start + myIntentDefinition.nlu.entities[0].value) > -1, true)
+    helper.load(definition, flow, function() {
+      helper.getNode('n2').on('input', function(msg) {
+        let myEntitie = myIntentDefinition.nlu.entities,
+          res = msg.payload.behavior.say
+        assert.equal(res.indexOf(testOutput.en.start + myEntitie[0].value) > -1, true)
         done()
       })
       helper.getNode('n1').receive({
