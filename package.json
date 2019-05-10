@@ -1,10 +1,12 @@
 {
-  "name": "node-red-linto-skills-optional",
-  "version": "1.0.0",
+  "name": "linto-skills-optional",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha \"**/tests/*.test.js\""
+    "test": "mocha \"**/tests/*.test.js\"",
+    "pretest": "eslint --ignore-path .gitignore .",
+    "pretest-fix": "eslint --ignore-path .gitignore . --fix"
   },
   "author": "",
   "license": "AGPL-3.0-or-later",
@@ -13,6 +15,7 @@
       "calendar": "calendar/calendar.js",
       "datetime": "datetime/datetime.js",
       "definition": "definition/definition.js",
+      "light": "light/light.js",
       "mail": "mail/mail.js",
       "memo": "memo/memo.js",
       "news": "news/news.js",
@@ -23,15 +26,18 @@
   },
   "dependencies": {
     "debug": "^4.0.1",
+    "linto-utility": "git+ssh://git@ci.linagora.com:7999/linagora/lgs/labs/Linto-Device/Linto-Backend/linto-skills-utility.git",
+    "prettier": "^1.17.0",
     "request": "^2.88.0",
     "weather-js": "^2.0.0",
     "word-definition": "^2.1.6",
     "xml2json": "^0.11.2"
   },
   "devDependencies": {
-    "linto-utility": "git+ssh://git@ci.linagora.com:7999/linagora/lgs/labs/Linto-Device/Linto-Backend/linto-skills-utility.git",
-    "node-red": "^0.19.6",
+    "eslint": "^5.16.0",
+    "eslint-config-strongloop": "^2.1.0",
     "express": "4.16.2",
+    "node-red": "0.19.6",
     "node-red-contrib-config": "^1.1.2",
     "node-red-node-test-helper": "git+https://github.com/Houpert/node-red-node-test-helper.git#fix-settings"
   }
