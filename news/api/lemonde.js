@@ -22,7 +22,7 @@ const debug = require('debug')('redmanager:flow:optional:skill:news:lemonde')
 const request = require('request'),
   parser = require('xml2json'),
   data = require('./data/lemonde'),
-  utility = require('linto-utility')
+  utility = require('@linto-ai/linto-skills-toolbox')
 
 const gender = data.type_gender
 let lintoResponse

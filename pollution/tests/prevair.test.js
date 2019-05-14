@@ -52,7 +52,7 @@ describe('check pollution intent for prevair api', function() {
     process.env.DEFAULT_LANGUAGE = 'fr-FR'
     const settings = {
       functionGlobalContext: {
-        utility: require('linto-utility')
+        utility: require('@linto-ai/linto-skills-toolbox')
       }
     }
     helper.startServer(settings, done)
@@ -154,7 +154,7 @@ describe('check pollution intent for prevair api without default city', function
     process.env.DEFAULT_LANGUAGE = 'fr-FR'
     const settings = {
       functionGlobalContext: {
-        utility: require('linto-utility')
+        utility: require('@linto-ai/linto-skills-toolbox')
       }
     }
     helper.startServer(settings, done)

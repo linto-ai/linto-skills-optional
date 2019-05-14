@@ -22,7 +22,7 @@ module.exports = function(RED) {
   const debug = require('debug')('redmanager:flow:optional:skill:light')
   const intent = require('./data/intent'),
     HueConnect = require('./api/hueConnect'),
-    utility = require('linto-utility')
+    utility = require('@linto-ai/linto-skills-toolbox')
 
   let lintoResponse, hue
 

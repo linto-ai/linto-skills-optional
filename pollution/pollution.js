@@ -22,7 +22,7 @@ module.exports = function(RED) {
   const debug = require('debug')('redmanager:flow:optional:skill:pollution')
   const intent = require('./data/intent'),
     PollutionApi = require('./api/pollutionApi'),
-    utility = require('linto-utility')
+    utility = require('@linto-ai/linto-skills-toolbox')
   let lintoResponse
 
   function Pollution(config) {

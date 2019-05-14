@@ -20,7 +20,7 @@
 
 const debug = require('debug')('redmanager:flow:optional:skill:definition:wiktionary')
 const wd = require('word-definition'),
-  utility = require('linto-utility')
+  utility = require('@linto-ai/linto-skills-toolbox')
 
 const itemEntities = 'objet'
 let lintoResponse

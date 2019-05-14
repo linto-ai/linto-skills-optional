@@ -22,7 +22,7 @@ module.exports = function(RED) {
   const debug = require('debug')('redmanager:flow:optional:skill:weather')
   const intent = require('./data/intent'),
     WeatherApi = require('./api/weatherApi'),
-    utility = require('linto-utility')
+    utility = require('@linto-ai/linto-skills-toolbox')
   let lintoResponse
 
   function Weather(config) {

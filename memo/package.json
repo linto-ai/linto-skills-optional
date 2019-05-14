@@ -1,32 +1,22 @@
 {
-  "name": "linto-skills-optional",
+  "name": "@linto-ai/node-red-linto-skill-memo",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "A news LinTO skill",
   "scripts": {
-    "test": "mocha \"**/tests/*.test.js\"",
+    "test": "mocha tests",
     "pretest": "eslint --ignore-path .gitignore .",
     "pretest-fix": "eslint --ignore-path .gitignore . --fix"
   },
-  "author": "",
+  "author": "yhoupert@linagora.com",
   "license": "AGPL-3.0-or-later",
   "node-red": {
     "nodes": {
-      "calendar": "calendar/calendar.js",
-      "datetime": "datetime/datetime.js",
-      "definition": "definition/definition.js",
-      "light": "light/light.js",
-      "mail": "mail/mail.js",
-      "memo": "memo/memo.js",
-      "news": "news/news.js",
-      "pollution": "pollution/pollution.js",
-      "weather": "weather/weather.js",
-      "welcome": "welcome/welcome.js"
+      "memo": "memo.js"
     }
   },
   "dependencies": {
     "debug": "^4.0.1",
-    "linto-utility": "git+ssh://git@ci.linagora.com:7999/linagora/lgs/labs/Linto-Device/Linto-Backend/linto-skills-utility.git",
+    "@linto-ai/linto-skills-toolbox": "0.0.2",
     "prettier": "^1.17.0",
     "request": "^2.88.0",
     "weather-js": "^2.0.0",
@@ -40,5 +30,23 @@
     "node-red": "0.19.6",
     "node-red-contrib-config": "^1.1.2",
     "node-red-node-test-helper": "git+https://github.com/Houpert/node-red-node-test-helper.git#fix-settings"
+  },
+  "homepage": "https://linto.ai/",
+  "main": "memo.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "linto",
+    "node-red",
+    "skills",
+    "memo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linto-ai/linto-skills-optional.git"
+  },
+  "bugs": {
+    "url": "https://github.com/linto-ai/linto-skills-optional/issues"
   }
 }

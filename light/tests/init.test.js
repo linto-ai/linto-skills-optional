@@ -21,30 +21,12 @@
 const assert = require('assert'),
   helper = require('node-red-node-test-helper'),
 
-  datetime = require('../datetime.js'),
+  mail = require('../light.js'),
   flow = require('./data/flow.json')
 
 helper.init(require.resolve('node-red'))
 
-describe('check date intent from datetime node', function() {
-  let testOutput, intentDatetime
-
-  before(function() {
-    testOutput = {
-      en: require('../locales/en-US/datetime').datetime.response,
-      fr: require('../locales/fr-FR/datetime').datetime.response
-    }
-
-    intentDatetime = {
-      nlu: {
-        intent: 'date',
-        entitiesNumber: 0,
-        entities: []
-      },
-      conversationData: {}
-    }
-  })
-
+describe('check loading light node', function() {
   beforeEach(function(done) {
     process.env.DEFAULT_LANGUAGE = 'fr-FR'
     const settings = {
@@ -59,17 +41,11 @@ describe('check date intent from datetime node', function() {
     helper.unload()
   })
 
-  it('it should get the current time', function(done) {
-    helper.load(datetime, flow, function() {
-      helper.getNode('n2').on('input', function(msg) {
-        assert.equal(msg.payload.behavior.say.indexOf(testOutput.fr.date) > -1, true)
-        done()
-      })
-      helper.getNode('n1').receive({
-        payload: intentDatetime
-      })
+  it('it should load the light node with exeption no hue connect', function(done) {
+    helper.load(mail, flow, function() {
+      let n1 = helper.getNode('n1')
+      assert.equal(n1.name, 'nodeName')
+      done()
     })
   })
 })
-
-//

@@ -22,7 +22,7 @@ module.exports = function(RED) {
   const debug = require('debug')('redmanager:flow:optional:skill:news')
   const intent = require('./data/intent'),
     NewsApi = require('./api/newsApi'),
-    utility = require('linto-utility')
+    utility = require('@linto-ai/linto-skills-toolbox')
   let lintoResponse
 
   function News(config) {

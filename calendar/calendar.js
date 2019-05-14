@@ -21,7 +21,7 @@
 module.exports = function(RED) {
   const debug = require('debug')('redmanager:flow:optional:skill:calendar')
   const CalendarApi = require('./api/calendarApi'),
-    utility = require('linto-utility'),
+    utility = require('@linto-ai/linto-skills-toolbox'),
     intent = require('./data/intent')
   let lintoResponse
 

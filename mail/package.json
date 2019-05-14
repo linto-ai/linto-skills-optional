@@ -1,0 +1,53 @@
+{
+  "name": "@linto-ai/node-red-linto-skill-mail",
+  "version": "0.0.1",
+  "description": "A mail LinTO skill",
+  "scripts": {
+    "test": "mocha tests",
+    "pretest": "eslint --ignore-path .gitignore .",
+    "pretest-fix": "eslint --ignore-path .gitignore . --fix"
+  },
+  "author": "yhoupert@linagora.com",
+  "license": "AGPL-3.0-or-later",
+  "node-red": {
+    "nodes": {
+      "mail": "mail.js"
+    }
+  },
+  "dependencies": {
+    "debug": "^4.0.1",
+    "@linto-ai/linto-skills-toolbox": "0.0.2",
+    "prettier": "^1.17.0",
+    "request": "^2.88.0",
+    "weather-js": "^2.0.0",
+    "word-definition": "^2.1.6",
+    "xml2json": "^0.11.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-strongloop": "^2.1.0",
+    "express": "4.16.2",
+    "node-red": "0.19.6",
+    "node-red-contrib-config": "^1.1.2",
+    "node-red-node-test-helper": "git+https://github.com/Houpert/node-red-node-test-helper.git#fix-settings"
+  },
+  "homepage": "https://linto.ai/",
+  "main": "mail.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "linto",
+    "node-red",
+    "skills",
+    "mail",
+    "jmap"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linto-ai/linto-skills-optional.git"
+  },
+  "bugs": {
+    "url": "https://github.com/linto-ai/linto-skills-optional/issues"
+  }
+}

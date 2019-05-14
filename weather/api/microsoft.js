@@ -20,7 +20,7 @@
 
 const debug = require('debug')('redmanager:flow:optional:skill:weather:microsoft')
 const weather = require('weather-js'),
-  utility = require('linto-utility')
+  utility = require('@linto-ai/linto-skills-toolbox')
 
 let lintoResponse
 const KEY_ENTITIE_LOCATION = 'location',

@@ -21,7 +21,7 @@
 module.exports = function(RED) {
   const debug = require('debug')('redmanager:flow:optional:skill:welcome')
   const intent = require('./data/intent'),
-    utility = require('linto-utility')
+    utility = require('@linto-ai/linto-skills-toolbox')
   let lintoResponse
 
   function conversationIntent(payload) {

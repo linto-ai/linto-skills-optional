@@ -20,7 +20,7 @@
 
 const debug = require('debug')('redmanager:flow:optional:skill:calendar:jcal')
 const request = require('request'),
-  utility = require('linto-utility')
+  utility = require('@linto-ai/linto-skills-toolbox')
 const calendarAction = require('./data/jcal').type_action
 let JCAL_HOST, JCAL_TOKEN
 

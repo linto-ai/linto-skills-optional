@@ -21,7 +21,7 @@
 const debug = require('debug')('redmanager:flow:optional:skill:mail:jmap')
 const request = require('request')
 const mailAction = require('./data/jmap').type_action
-const utility = require('linto-utility')
+const utility = require('@linto-ai/linto-skills-toolbox')
 
 
 const mailBoxes = [

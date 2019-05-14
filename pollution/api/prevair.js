@@ -20,7 +20,7 @@
 
 const debug = require('debug')('redmanager:flow:optional:skill:pollution:prevair')
 const request = require('request'),
-  utility = require('linto-utility')
+  utility = require('@linto-ai/linto-skills-toolbox')
 
 const API_URL = 'http://www2.prevair.org/ineris-web-services.php?url=atmo&date=',
   KEY_ENTITIE_LOCATION = 'location'

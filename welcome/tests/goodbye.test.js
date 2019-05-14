@@ -48,7 +48,7 @@ describe('check goodbye intent from welcome node', function() {
 
     const settings = {
       functionGlobalContext: {
-        utility: require('linto-utility')
+        utility: require('@linto-ai/linto-skills-toolbox')
       }
     }
 

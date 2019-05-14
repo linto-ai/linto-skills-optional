@@ -47,7 +47,7 @@ describe('check greeting intent from welcome node', function() {
     process.env.DEFAULT_LANGUAGE = 'fr-FR'
     const settings = {
       functionGlobalContext: {
-        utility: require('linto-utility')
+        utility: require('@linto-ai/linto-skills-toolbox')
       }
     }
     helper.startServer(settings, done)
