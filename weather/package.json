@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "description": "A Weather LinTO skill",
   "scripts": {
-    "test": "mocha tests",
-    "pretest": "eslint --ignore-path .gitignore .",
-    "pretest-fix": "eslint --ignore-path .gitignore . --fix"
+    "test": "mocha tests"
   },
   "author": "yhoupert@linagora.com",
   "license": "AGPL-3.0-or-later",
