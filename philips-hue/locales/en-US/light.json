@@ -1,0 +1,32 @@
+{
+    "light": {
+        "label": {
+            "name": "Name",
+            "userKey" : "User",
+            "authToken" : "Key",
+            "refreshToken" : "Refresh Key",
+            "description": "A simple description skill",
+            "clientId" : "Id client",
+            "clientSecret" : "Password client"
+        },
+        "placeholder": {
+            "name": "Nom du noeud",
+            "userKey" : "Username",
+            "authToken" : "Authentification Token",
+            "refreshToken" : "Refresh Token",
+            "clientId" : "Id client",
+            "clientSecret" : "Password client"
+        },
+        "response": {
+            "on": "Light on",
+            "off": "Light off",
+            "error_data_missing": "I don't know what to do",
+            "unknown": "The action is unknow"
+        },
+        "error": {
+            "init_language": "Error during initialisation of language",
+            "utility_undefined": "Utility is not define",
+            "utility_error": "linto-utility need to be setup in red settings"
+        }
+    }
+}

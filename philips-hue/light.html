@@ -1,0 +1,63 @@
+<script type="text/javascript">
+  RED.nodes.registerType('philips-hue-skill', {
+    category: 'skills',
+    color: '#3cbbf2',
+    defaults: {
+      name: {
+        value: ""
+      },
+      userKey: {
+        value: ""
+      },
+      clientId: {
+        value: ""
+      },
+      clientSecret: {
+        value: ""
+      },
+      authToken: {
+        value: ""
+      },
+      refreshToken: {
+        value: ""
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "skill.png",
+    label: function () {
+      return this.name || "philips-hue-skill";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="philips-hue-skill">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"/> <span data-i18n="light.label.name" /></label>
+    <input type="text" id="node-input-name" data-i18n="[placeholder]light.placeholder.name" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-userKey"><i class="icon-tag"/> <span data-i18n="light.label.userKey" /></label>
+    <input type="text" id="node-input-userKey" data-i18n="[placeholder]light.placeholder.userKey" />
+  </div> 
+  <div class="form-row">
+    <label for="node-input-clientId"><i class="icon-tag"/> <span data-i18n="light.label.clientId" /></label>
+    <input type="text" id="node-input-clientId" data-i18n="[placeholder]light.placeholder.clientId" />
+  </div> 
+  <div class="form-row">
+    <label for="node-input-clientSecret"><i class="icon-tag"/> <span data-i18n="light.label.clientSecret" /></label>
+    <input type="password" id="node-input-clientSecret" data-i18n="[placeholder]light.placeholder.clientSecret" />
+  </div> 
+  <div class="form-row">
+    <label for="node-input-authToken"><i class="icon-tag"/> <span data-i18n="light.label.authToken" /></label>
+    <input type="password" id="node-input-authToken" data-i18n="[placeholder]light.placeholder.authToken" />
+  </div>  
+  <div class="form-row">
+    <label for="node-input-refreshToken"><i class="icon-tag"/> <span data-i18n="light.label.refreshToken" /></label>
+    <input type="password" id="node-input-refreshToken" data-i18n="[placeholder]light.placeholder.refreshToken" />
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="philips-hue-skill">
+  <p>A simple node detect the intent for a philips hue lamp</p>
+</script>

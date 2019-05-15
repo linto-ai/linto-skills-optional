@@ -1,0 +1,25 @@
+[{
+  "id": "f1",
+  "type": "tab",
+  "label": "Test flow"
+},
+{
+  "id": "n1",
+  "z": "f1",
+  "type": "philips-hue-skill",
+  "name": "nodeName",
+  "userKey":"test",
+  "clientId":"test",
+  "clientSecret":"test",
+  "authToken":"test",
+  "refreshToken":"test",
+  "wires": [
+    ["n2"]
+  ]
+},
+{
+  "id": "n2",
+  "z": "f1",
+  "type": "helper"
+}
+]
