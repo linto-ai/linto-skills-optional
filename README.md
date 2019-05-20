@@ -1,30 +1,30 @@
 # LinTo-Skills-Optional
-Will containt the Linto Skills that allow LinTo to speak.
-Each skills work on their own and have different setup in their configuration template
+This entry provides information about LinTO skill
+This node is part of the project [LinTO](https://linto.ai/)
 
 ## LinTo Skills
-Here is information about their input require and the ouput of thoses skill
+The following describes the possible inputs and outputs for the welcome skill
 
 **Input**
 ```
-{ 
+{
     transcript : 'text transcript',
     nlu : {
-        intent : 'intentDetected',
-        entitiesNumber : 1, //integer of entities
+    intent : 'intentDetected',
+        entitiesNumber : 1, //number of entities
         entities : [{
-            entity: 'entitiesName',
-            value: 'entitie text'
+            entity: 'entity type',
+            value: 'entity name'
         }]
     },
-    conversationData : { } //optional json from the previous intention if a conversation is require
+    conversationData : { } //optional json from the previous intention if a conversation is required
 }
 ```
 
 **Output**
-Depend if it's the say or conversational mode
+Depends on the speaking mode (say or conversation).
 
-__Say Mode__ :
+__Say Mode__ : In say mode, LinTO provides a single response to a given question.
 ```
 {
     behavior: {
@@ -32,22 +32,31 @@ __Say Mode__ :
     }
 }
 ```
+For example, when asked "What time is it?", LinTO might respond, "It is 7:30 a.m."
 
-__Conversational Mode__ :
+__Conversation Mode__ : In conversation mode, LinTO first demands additional information before responding to the original request.
 ```
 {
     behavior: {
         ask: 'message that linto gonna say',
-        conversationData : { //json nlu generaly copy the intent from input but some data can be added has the skills require
+        conversationData : { //json nlu generally copies the intent from input but  data can be added if required by the skill
             requireData :  'some data',
             requireDataJson : {}, //some other data
             intent : 'intentDetected',
-            entitiesNumber : 1, //integer of entities
+            entitiesNumber : 1, //number of entities
             entities : [{
-                entity: 'entitiesName',
-                value: 'entitie text'
+                entity: 'entity type',
+                value: 'entity name'
             }]
         }
-    } 
+    }
 }
 ```
+
+For example, if asked, "What is the cheapest flight to Paris?", LinTO will first ask questions such as "What is your departure city?" and "What is your departure date?" before providing an answer to the original question.
+
+## Intentions
+Any skill will require an intent to be trigger
+
+## Entities
+Entities can be added to increase data about what to do in the skill

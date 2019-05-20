@@ -3,5 +3,5 @@
         "date": "date",
         "time": "time"
     },
-    "description": "Get any date information"
+    "description": "Get information about the time or date"
 }

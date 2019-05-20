@@ -1,38 +1,29 @@
 # LinTo-Skills-Optional - Datetime
-This intention will be used to give the information about the datetime
-This node is part of the project [LinTO](https://linto.ai/) 
+This entry provides information about the datetime skill
+This node is part of the project [LinTO](https://linto.ai/)
 
-## Intent
-Here the list that will be able to trigger this skills
-  * date
-  * time
-
-## Entities
-This skills don't take any entities
+It will give information about the date or the time
 
 ## LinTo Skills
-Here is information about their input require and the ouput of thoses skill
+The following describes the possible inputs and outputs for the datetime skill
 
 **Input**
 ```
-{ 
+{
     transcript : 'text transcript',
     nlu : {
-        intent : 'intentDetected',
-        entitiesNumber : 1, //integer of entities
-        entities : [{
-            entity: 'entitiesName',
-            value: 'entitie text'
-        }]
+    intent : 'intentDetected',
+        entitiesNumber : 0, //number of entities
+        entities : []
     },
-    conversationData : { } //optional json from the previous intention if a conversation is require
+    conversationData : { } //optional json from the previous intention if a conversation is required
 }
 ```
 
 **Output**
-Depend on the speak mode (say | conversation)
+Depends on the speaking mode (say or conversation).
 
-__Say Mode__ :
+__Say Mode__ : In say mode, LinTO provides a single response to a given question.
 ```
 {
     behavior: {
@@ -40,22 +31,14 @@ __Say Mode__ :
     }
 }
 ```
+For example, when asked "What time is it?", LinTO might respond, "It is 7:30 a.m."
 
-__Conversational Mode__ :
-```
-{
-    behavior: {
-        ask: 'message that linto gonna say',
-        conversationData : { //json nlu generaly copy the intent from input but some data can be added has the skills require
-            requireData :  'some data',
-            requireDataJson : {}, //some other data
-            intent : 'intentDetected',
-            entitiesNumber : 1, //integer of entities
-            entities : [{
-                entity: 'entitiesName',
-                value: 'entitie text'
-            }]
-        }
-    } 
-}
-```
+__Conversation Mode__ : This skill does not support a conversation mode
+
+## Intentions
+The datetime skill is triggered by the following intentions:
+  * date
+  * time
+
+## Entities
+This skill does currently not take any entities

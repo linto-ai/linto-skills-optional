@@ -8,5 +8,5 @@
         "isOk": "isok",
         "isKo": "isko"
     },
-    "description": "Friendly linto skills skill"
+    "description": "It will manage some friendly skills (greeting, goodbye, how are you)"
 }

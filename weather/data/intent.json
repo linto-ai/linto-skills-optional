@@ -4,5 +4,5 @@
         "location": "location",
         "time": "time"
     },
-    "description": "Weather skill"
+    "description": "Get the weather of city around the world"
 }

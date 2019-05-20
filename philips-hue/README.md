@@ -1,44 +1,32 @@
-# LinTo-Skills-Optional - Philips-Hue
-This intention will be used to give the information about the Philips hue
-This node is part of the project [LinTO](https://linto.ai/) 
+# LinTo-Skills-Optional - Philips-hue
+This entry provides information about the Philips-hue skill
+This node is part of the project [LinTO](https://linto.ai/)
 
-## Intent
-Here the list that will be able to trigger this skills
-  * light
-
-## Entities
-Here is the entities that can be interpreted by this skills
-  * action_on
-  * action_off
-  * action_set
-  * action_up
-  * action_down
-  * object
-  * ordinal
+It will be able to control remotly a Philips-Hue light
 
 ## LinTo Skills
-Here is information about their input require and the ouput of thoses skill
+The following describes the possible inputs and outputs for the Philips-hue skill
 
 **Input**
 ```
-{ 
+{
     transcript : 'text transcript',
     nlu : {
-        intent : 'intentDetected',
-        entitiesNumber : 1, //integer of entities
+    intent : 'intentDetected',
+        entitiesNumber : 1, //number of entities
         entities : [{
-            entity: 'entitiesName',
-            value: 'entitie text'
+            entity: 'entity type',
+            value: 'entity name'
         }]
     },
-    conversationData : { } //optional json from the previous intention if a conversation is require
+    conversationData : { } //optional json from the previous intention if a conversation is required
 }
 ```
 
 **Output**
-Depend on the speak mode (say | conversation)
+Depends on the speaking mode (say or conversation).
 
-__Say Mode__ :
+__Say Mode__ : In say mode, LinTO provides a single response to a given question.
 ```
 {
     behavior: {
@@ -46,22 +34,19 @@ __Say Mode__ :
     }
 }
 ```
+For example, when asked "What time is it?", LinTO might respond, "It is 7:30 a.m."
 
-__Conversational Mode__ :
-```
-{
-    behavior: {
-        ask: 'message that linto gonna say',
-        conversationData : { //json nlu generaly copy the intent from input but some data can be added has the skills require
-            requireData :  'some data',
-            requireDataJson : {}, //some other data
-            intent : 'intentDetected',
-            entitiesNumber : 1, //integer of entities
-            entities : [{
-                entity: 'entitiesName',
-                value: 'entitie text'
-            }]
-        }
-    } 
-}
-```
+__Conversation Mode__ : This skill does not support a conversation mode
+
+## Intentions
+The Philips-hue skill is triggered by the following intentions: `light`
+
+## Entities
+Here the supported entities for this skill:
+ * `action_on`, turn on the light
+ * `action_off`, turn off the light
+ * `action_set`, set the light at X percent
+ * `action_up`, increases the light brightness
+ * `action_down`, reduce the light brightness
+ * `ordinal`, used with the `action_set`
+ * `object`, used to identify the light (by name). It is combined with any `action_` entities

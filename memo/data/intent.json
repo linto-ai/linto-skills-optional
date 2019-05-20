@@ -1,6 +1,6 @@
 {
     "key": "memo",
-    "description": "Reminders manager skills",
+    "description": "Will create, delete or list all reminder create by the use of this skill",
     "entities": {
         "prefix": "action",
         "action_create": "action_create",

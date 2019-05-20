@@ -1,6 +1,6 @@
 {
   "key": "light",
-  "description": "Will detect and send the intent to a philips hue node",
+  "description": "Will manage a philips-hue light by cloud connection",
   "entities": {
     "prefix": "action",
     "action_on": "action_on",
