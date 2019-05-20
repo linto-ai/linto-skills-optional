@@ -1,6 +1,5 @@
 # LinTo-Skills-Optional
-This entry provides information about LinTO skill
-This node is part of the project [LinTO](https://linto.ai/)
+This entry provides information about any skills in the context of the project [LinTO](https://linto.ai/)
 
 ## LinTo Skills
 The following describes the possible inputs and outputs for the welcome skill
@@ -59,4 +58,4 @@ For example, if asked, "What is the cheapest flight to Paris?", LinTO will first
 Any skill will require an intent to be trigger
 
 ## Entities
-Entities can be added to increase data about what to do in the skill
+Entities can be added to increase information about the user request

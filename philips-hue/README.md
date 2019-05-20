@@ -1,8 +1,7 @@
 # LinTo-Skills-Optional - Philips-hue
-This entry provides information about the Philips-hue skill
-This node is part of the project [LinTO](https://linto.ai/)
+This entry provides information about the philips-Hue skill in the context of the project [LinTO](https://linto.ai/)
 
-It will be able to control remotly a Philips-Hue light
+The skill gives information about operating Philips-Hue lights
 
 ## LinTo Skills
 The following describes the possible inputs and outputs for the Philips-hue skill
@@ -24,8 +23,6 @@ The following describes the possible inputs and outputs for the Philips-hue skil
 ```
 
 **Output**
-Depends on the speaking mode (say or conversation).
-
 __Say Mode__ : In say mode, LinTO provides a single response to a given question.
 ```
 {
@@ -42,11 +39,11 @@ __Conversation Mode__ : This skill does not support a conversation mode
 The Philips-hue skill is triggered by the following intentions: `light`
 
 ## Entities
-Here the supported entities for this skill:
+Here are the entities supported for this skill:
  * `action_on`, turn on the light
  * `action_off`, turn off the light
  * `action_set`, set the light at X percent
- * `action_up`, increases the light brightness
+ * `action_up`, increase the light brightness
  * `action_down`, reduce the light brightness
- * `ordinal`, used with the `action_set`
+ * `ordinal`, used with the `action_set` has value
  * `object`, used to identify the light (by name). It is combined with any `action_` entities

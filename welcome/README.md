@@ -1,8 +1,7 @@
 # LinTo-Skills-Optional - Welcome
-This entry provides information about the welcome skill
-This node is part of the project [LinTO](https://linto.ai/)
+This entry provides information about the welcome skill in the context of the project [LinTO](https://linto.ai/)
 
-It will manage some friendly skills (greeting, goodbye, how are you)
+The skill gives information about welcoming (greeting, goodbye, how are you)
 
 ## LinTo Skills
 The following describes the possible inputs and outputs for the welcome skill
@@ -64,6 +63,6 @@ The welcome skill is triggered by the following intentions:
   * `howareyou`
 
 ## Entities
-Here the supported entities for this skill:
+Here are the entities supported for this skill:
  * `isok` determine if the user is alright for the intent `howareyou`
  * `isko` determine if the user is sad for the intent `howareyou`

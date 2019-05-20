@@ -1,8 +1,7 @@
 # LinTo-Skills-Optional - Definition
-This entry provides information about the definition skill
-This node is part of the project [LinTO](https://linto.ai/)
+This entry provides information about the definition skill in the context of the project [LinTO](https://linto.ai/)
 
-It will give a definition about an object
+The skill gives information about the definition of an object
 
 ## LinTo Skills
 The following describes the possible inputs and outputs for the definition skill
@@ -24,8 +23,6 @@ The following describes the possible inputs and outputs for the definition skill
 ```
 
 **Output**
-Depends on the speaking mode (say or conversation).
-
 __Say Mode__ : In say mode, LinTO provides a single response to a given question.
 ```
 {
@@ -42,4 +39,4 @@ __Conversation Mode__ : This skill does not support a conversation mode
 The definition skill is triggered by the following intentions: `definition`
 
 ## Entities
-This skill require the entity type `object` to work, if none is detected the skill will trigger an error
+This skill requires the entity type `object` to work; if none is detected the skill will trigger an error

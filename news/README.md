@@ -1,8 +1,7 @@
 # LinTo-Skills-Optional - News
-This entry provides information about the news skill
-This node is part of the project [LinTO](https://linto.ai/)
+This entry provides information about the news skill in the context of the project [LinTO](https://linto.ai/)
 
-It will give informations about the news of the world
+The skill gives information about world news
 
 ## LinTo Skills
 The following describes the possible inputs and outputs for the news skill
@@ -24,8 +23,6 @@ The following describes the possible inputs and outputs for the news skill
 ```
 
 **Output**
-Depends on the speaking mode (say or conversation).
-
 __Say Mode__ : In say mode, LinTO provides a single response to a given question.
 ```
 {
@@ -42,7 +39,7 @@ __Conversation Mode__ : This skill does not support a conversation mode
 The news skill is triggered by the following intentions: `news`
 
 ## Entities
-Here the supported entities for this skill:
+Here are the entities supported for this skill:
   * `type_international`, (default entity)
   * `type_cultural`
   * `type_music`

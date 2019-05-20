@@ -1,8 +1,7 @@
 # LinTo-Skills-Optional - Datetime
-This entry provides information about the datetime skill
-This node is part of the project [LinTO](https://linto.ai/)
+This entry provides information about the datetime skill in the context of the project [LinTO](https://linto.ai/)
 
-It will give information about the date or the time
+The skill gives information about the date or the time
 
 ## LinTo Skills
 The following describes the possible inputs and outputs for the datetime skill
@@ -21,7 +20,6 @@ The following describes the possible inputs and outputs for the datetime skill
 ```
 
 **Output**
-Depends on the speaking mode (say or conversation).
 
 __Say Mode__ : In say mode, LinTO provides a single response to a given question.
 ```
@@ -41,4 +39,4 @@ The datetime skill is triggered by the following intentions:
   * time
 
 ## Entities
-This skill does currently not take any entities
+This skill does not currently take any entities

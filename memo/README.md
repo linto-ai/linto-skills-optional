@@ -1,8 +1,7 @@
 # LinTo-Skills-Optional - Memo
-This entry provides information about the memo skill
-This node is part of the project [LinTO](https://linto.ai/)
+This entry provides information about the memo skill in the context of the project [LinTO](https://linto.ai/)
 
-It will manage any reminders for the user (create, list, delete) 
+The skill gives information about reminders (create, list and delete)
 
 ## LinTo Skills
 The following describes the possible inputs and outputs for the memo skill
@@ -61,9 +60,9 @@ For example, if asked, "What is the cheapest flight to Paris?", LinTO will first
 The memo skill is triggered by the following intentions: `memo`
 
 ## Entities
-Here the supported entities for this skill:
+Here are the entities supported for this skill:
  * `action_create` combined with `expression` will create a memo 
- * `action_delete` will remove all reminder create
-   * `isok`, valide the delete action
-   * `isko`, stop the delete action
- * `action_list` will read all reminder
+ * `action_delete` will remove all current reminders
+   * `isok`, validate the remove action
+   * `isko`, cancel the remove action
+ * `action_list` will read all reminders
