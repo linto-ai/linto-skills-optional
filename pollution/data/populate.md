@@ -23,9 +23,9 @@
 - pollution à [las vegas hotel](location)
 - pollution à [las venise hotel](location)
 - pollution à [center venise hotel](location)
-- la pollution est elle bonne a [paris toulouse](location)
-- la pollution est elle bonne a [saint etienne en cogles](location)
-- la pollution est elle bonne a [saint brice en cogles](location)
+- la pollution est elle bonne a [lyon](location)
+- la pollution est elle bonne a [saint etienne](location)
+- la pollution est elle bonne a [saint brice](location)
 - donne moi la pollution de [paris](location)
 - donne-moi la pollution a [valence](location).
 - donne-moi la pollution à [orléans](location).
@@ -36,18 +36,13 @@
 - donne-moi le seuil de pollution à [paris](location).
 - donne-moi le seuil de pollution à [grenoble](location).
 - quelle est la pollution à [grenoble](location) ?
-- quelle est la pollution et à [rouen](location) ?
-- quelle est la pollution à [rouen](location) ?
 - quelle est la pollution a [rouen](location) ?
 - quelle est la pollution à [lyon](location) ?
 - quelle est la pollution à [lille](location) ?
 - quelle est la pollution à [rennes](location) ?
 - quel est le niveau de pollution à [strasbourg](location) ?
-- quel est le niveau de pollution a [strasbourg](location) ?
-- quel est le niveau de pollution et à [toulouse](location) ?
 - quel est le niveau de pollution à [toulouse](location) ?
 - quel est le niveau de pollution à [paris](location) ?
-- quel est le niveau de bullition à [paris](location) ?
 - donne-moi le niveau de pollution à [paris](location).
 - comment est la pollution à [himeji](location)
 - comment est la pollution à [nagazaki](location)
@@ -68,30 +63,29 @@
 - donne moi le niveau de pollution à [fuji](location)
 - donne moi le niveau de pollution à [osaka](location)
 - donne moi le niveau de pollution à [tokyo](location)
-- est ce que l’air est fortement pollué
-- est ce que l’air est respirable
+- est ce que l’air est fortement pollué à [grenoble](location)
+- est ce que l’air est pollué à [orai](location)
 - quel est le niveau de pollution à [tunis](location)
 - quel est le niveau de pollution à [pekin](location)
 - quel est le niveau de pollution à [seoul](location)
 - quel est le niveau de pollution à [kyoto](location)
-- on quel est le niveau de pollution à [strasbourg](location)
-- lis quel est le niveau de pollution à [strasbourg](location)
+- quel est le niveau de pollution à [strasbourg](location)
 - quel est le niveau de pollution à [bastia](location)
-## intent|pollution|en
+##intent|pollution|en
 - what's the pollution in [new york](location)
 - pollution at [new work](location)
-- give me the pollution of [madrid](location)
-- give me the pollution of [london](location)
+- give me the pollution at [madrid](location)
+- give me the pollution at [london](location)
 - could you give me the pollution of [london](location)
 - pollution of [london](location)
-- pollution of [londre](location)
+- pollution of [vegas](location)
 - pollution of [venise](location)
-- pollution at [londre](location)
-- pollution at [venise](location)
+- pollution at [osaka](location)
+- pollution at [narita](location)
 - can you give me the pollution of [venise](location)
 - can you give me the pollution of [phoenix](location)
 - what is the pollution in [paris](location)
-- what's the pollution in [vegas](location)
+- what's the pollution at [vegas](location)
 - what's the pollution in [grenoble](location)
 - what's the pollution in [paris](location)
-- what's the pollution in [las vegas airport](location)
+- what's the pollution at [las vegas airport](location)

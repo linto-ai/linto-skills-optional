@@ -46,4 +46,4 @@ Here are the entities supported for this skill:
  * `action_up`, increase the light brightness
  * `action_down`, reduce the light brightness
  * `ordinal`, used with the `action_set` has value
- * `object`, used to identify the light (by name). It is combined with any `action_` entities
+ * `id`, used to identify the light (by name). It is combined with any `action_` entities

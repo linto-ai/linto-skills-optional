@@ -11,8 +11,8 @@
 - au revoir linto
 - au revoir
 - au plaisir linto
-- a bientot linto
-- a bientot
+- a bientôt linto
+- a bientôt
 - bye
 - a la revoyure
 - a plus
@@ -21,7 +21,9 @@
 - see you soon
 - farewell
 - goodbye
+- good bye 
 - good bye linto
+- thank you 
 - thank you linto
 - see ya
 - see you
@@ -42,6 +44,7 @@
 ##intent|greeting|en
 - greeting
 - hiya
+- hey
 - good morning
 - good afternoon
 - good evening
@@ -89,7 +92,7 @@
 - i'm [fine](isok)
 - i'm [ok](isok)
 - i'm in a [good mood](isok)
-- everything's [alright](isok)
+- everything is [alright](isok)
 - i feel [good](isok)
 - i'm [not well](isko) thank you
 - i'm [not fine](isko)

@@ -18,7 +18,7 @@
 - donne moi l'heure
 - donne moi l heure
 - donne moi heure
-- donne moi heure s'il te plait
+- donne moi l'heure s'il te plait
 - heure linto
 - heure merci
 - quelle est l'heure
@@ -54,8 +54,6 @@
 - quelle est la date
 - peux-tu me donner la date s'il te plaît
 - date s'il te plaît
-- quelle date quelle est la date
 - donne-moi la date du jour
 - donne-moi la date
 - c'est quoi la date
-- quelle date est t’il

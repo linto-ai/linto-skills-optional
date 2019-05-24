@@ -8,7 +8,7 @@
     "action_set": "action_set",
     "action_up": "action_up",
     "action_down": "action_down",
-    "object": "object",
+    "object": "id",
     "ordinal": "ordinal"
   }
 }
