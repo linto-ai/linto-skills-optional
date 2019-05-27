@@ -67,6 +67,14 @@
 - quelles sont les actualités
 - actualité [sportif](type_sport)
 - actualité [culturel](type_cultural)
+- Quelles sont les infos du [monde](type_international)
+- quelle est l’actualité du jour
+- quels sont les grands titres des informations aujourd’hui
+- actualité [musicale](type_music)
+- actualité [politique](type_politique)
+- actualité [mondiale](type_international)
+- actualité [sportive](type_sport)
+- actualité [nationale](type_national)
 ##intent|news|en
 - what are the [sport](type_sport) news
 - what's the [sport](type_sport) news
@@ -95,3 +103,7 @@
 - [sport](type_international) news
 - [international](type_international) news
 - [national](type_national) news
+- what's the [politics](type_politique) Updates
+- what are the [national](type_national) Updates
+- what are the current News
+- give me the [national](type_national)  headlines updates

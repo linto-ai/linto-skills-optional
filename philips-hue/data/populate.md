@@ -1,20 +1,29 @@
 ##application|linto
 ##intent|light|en
 - turn [on](action_on) the light
-- turn [on](action_on) the [kitchen](id) light
-- turn [on](action_on) the [room](id) light
+- [light up](action_on) the room
+- switch [on](action_on) the [kitchen](id) light
+- turn [on](action_on) the [meetings](id) light
 - turn [off](action_off) the light
-- turn [off](action_off) the [bathroom](id) light
+- switch [off](action_off) the light
+- turn [off](action_off) the [bathroom](id) room
 - turn [off](action_off) the [desktop](id) light
 - [sift](action_set_down) the light
 - [soothe](action_set_down) the light
 - [mitigate](action_set_down) the [bedroom](id) light
-- [increases](action_set_down) the light
+- [increases](action_set_up) the light
 - [soften](action_set_down) the light
 - [reduce](action_set_down) the light
 - [increase](action_set_up) the light
-- [amplify](action_set_up) the [living room](id) light
-- [raise](action_set_up) the light
+- [amplify](action_set_up) the [break](id) light
+- [raise](action_set_up) the light by [twenty](ordinal) percent
+- [amplify](action_set_up) the light by [thirty](ordinal) percent
+- [increase](action_set_up) the light by [forty](ordinal) percent
+- [raise](action_set_up) the light by [fifty](ordinal) percent
+- [increase](action_set_up) the light by [sixty](ordinal) percent
+- [reduce](action_set_down) the light by [ninety](ordinal percent)
+- [reduce](action_set_down) the light by [ten](ordinal percent)
+- [reduce](action_set_down) the light by [eighty](ordinal percent)
 ##intent|light|fr
 - [apaiser](action_set_down) la lumière
 - [atténuer](action_set_down) la lumière
@@ -23,7 +32,7 @@
 - [tamise](action_set_down) la lumière
 - [augmente](action_set_up) la luminosité
 - [intensifie](action_set_up) la lumière
-- [amplifie](action_set_up) de la [cuisine](id)
+- [amplifie](action_set_up) de [cuisine](id)
 - [baisse](action_set_down) la luminosité de la [chambre](id)
 - [diminuer](action_set_down) la lumière
 - [diminue](action_set_down) le lumière
@@ -35,4 +44,17 @@
 - [illuminer](action_on) la [salle](id)
 - [illumine](action_on) la [salle de bain](id)
 - [allumer](action_on) la lumière
+- [allumer](action_on) la salle
+- [éclairci](action_on) la salle
 - [allume](action_on) la lumière du [garage](id)
+- [allume](action_on) la lumière de [conférence](id)
+- [allume](action_on) la lumière de [pause](id)
+- [tamise](action_set_down) la lumière de [dix](ordinal) pourcent
+- [amplifie](action_set_up) de [vingt](ordinal) pourcent
+- [amplifie](action_set_up) de [trente](ordinal) pourcent
+- [intensifie](action_set_up) la lumière de [quarante](ordinal) pourcent
+- [intensifie](action_set_up) la lumière de [cinquante](ordinal) pourcent
+- [apaiser](action_set_down) la lumière de [soixante](ordinal) pourcent
+- [atténuer](action_set_down) la lumière de [soixante dix](ordinal) pourcent
+- [réduire](action_set_down) la lumière de [quatre vingt](ordinal) pourcent
+- [adoucit](action_set_down) la lumière de [cent](ordinal) pourcent

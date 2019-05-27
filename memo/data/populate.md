@@ -37,7 +37,9 @@
 - could you [delete](action_delete) my reminders
 - [delete](action_delete) the reminders please
 - [remind me](action_create) to [call david](expression)
-- [remind me](action_create) to [send documents to bruno](expression)
+- [remind me](action_create) to [call david](expression)
+- [remind me](action_create) to [call leeroy jenkins](expression)
+- [remind me](action_create) to [send document to John Smith](expression)
 - [i have](action_create) to [call david](expression)
 - [i have](action_create) to [call someone](expression)
 - [i have](action_create) to [go to paris tomorrow](expression)
@@ -45,13 +47,23 @@
 - [remind me](action_create) to [call the hotel to change the room](expression)
 - [note](action_create) [call david](expression) in my reminders please
 - [note](action_create) [send video to pascal](expression) in my reminders please
+- [note](action_create) [call david spencer ](expression) in my reminders please
+- [note](action_create) [send document to Leeroy jenkins ](expression) in my reminders please
+- [reminders](action_create) [call david spencer](expression)
 - [reminders](action_create) [send an email to bruno about documents](expression)
 - [reminders](action_create) [call the hotel to change the room](expression)
+- [reminders](action_create) [send document to Patrick Young](expression)
 - [remind](action_create) me to [call david](expression)
 - [remind](action_create) me to [send the document to bruno](expression)
 - [note](action_create) [send an email to bruno about documents](expression) in my reminders please
 - [note](action_create) [call the hotel to change the room](expression) in my reminders please
 - [note](action_create) [send document to bruno](expression) in my reminders please
+- [remind me](action_create) to [send an email To david spencer about documents](expression)
+- [note](action_create) [send document to bruno](expression) in my reminders please
+- [note](action_create) [call the hotel to change the room](expression) in my reminders please
+- [note](action_create) [send an email To David Spencer about documents](expression) in my reminders please
+- [reminders](action_create) [send an email To David Spencer about documents](expression)
+- [reminders](action_create) [call the hotel to change the room](expression)
 - can you [remind](action_create) me to [call david](expression)
 - can you [remind](action_create) me to [send documents to bruno](expression)
 - can you [remind](action_create) me to [call bruno](expression)
@@ -183,6 +195,11 @@
 - [note](action_create) que [j’ai un tournois de volley à toulouse](expression)
 - [note](action_create) que [j’ai un rendez-vous avec pierre](expression)
 - [note](action_create) que [j’ai un repas d’affaire vendredi midi](expression)
+- [rappelle moi](action_create) [d’appeler David](expression)
+- [rappelle moi](action_create) [de envoyer les documents à Bruno](expression)
+- peux-tu me [rappeler](action_create) [de appeler David](expression)
+- [je dois appeler](action_create) [l'hôtel pour un changement de chambre](expression)
+- [rappelle moi](action_create) [Envoyer un mail à Bruno à propos des documents](expression)
 - [rappelle-moi](action_create) que [je dois allez faire mes course](expression)
 - [rappelle-moi](action_create) que [j'ai un document a faire pour mardi ](expression)
 - [rappelle-moi](action_create) que [je dois appeler alexandre à treize heure](expression)
@@ -195,3 +212,9 @@
 - [oui](isok)
 - [non](isok)
 - [négatif](isko)
+- [lis](action_list) mon pense-bete ?
+- [lis](action_list) mon pense-bête s’il te plait ?
+- peux tu [lire](action_list) mon pense-bête
+- [lis](action_list) le pense-bête
+- peux-tu [supprimer](action_delete) mon pense-bête
+- [supprimer](action_delete) mon pense-bête

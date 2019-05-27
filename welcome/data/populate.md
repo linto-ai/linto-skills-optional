@@ -28,6 +28,11 @@
 - see ya
 - see you
 - good bye
+- bye
+- bye bye
+- goodbye LinTo
+- thank you LinTo
+- thanks
 ##intent|greeting|fr
 - bonjour
 - coucou
@@ -48,6 +53,7 @@
 - good morning
 - good afternoon
 - good evening
+- howdy
 - hello
 - hi
 - what’s your name ?
@@ -60,14 +66,26 @@
 - ca roule ?
 - est ce que ça va
 - linto comment ça va
-- je vais [pas très bien](isko)
-- ca va pas [très bien](isko)
-- je [vais pas bien](isko)
+- je me sens [bien](isok)
+- tout va [bien](isok)
+- tout va [bien](isok) merci
+- je vais [bien](isok)
 - je [vais bien](isok)
 - ca va [bien](isok)
 - [ca va](isok)
+- [ca va](isok) merci
 - ça va [bien](isok)
 - [ça va](isok)
+- [oui](isok)
+- [tranquille](isok)
+- je vais [pas très bien](isko)
+- ca va pas [très bien](isko)
+- je [vais pas bien](isko)
+- je me sens [pas bien](isko)
+- je ne me sens [pas bien](isko) aujourd'hui
+- [pas très](isko) en forme
+- je suis de [mauvaise](isko) humeur
+- ça [ne va pas](isko) trop
 ##intent|howareyou|en
 - are you ok
 - are you okay
@@ -75,7 +93,7 @@
 - how are you
 - how are you doing ?
 - how are you?
-- how do you do?
+- how do you do
 - are you fine?
 - are you feeling good?
 - are you ok ?
@@ -86,6 +104,7 @@
 - i'm [right](isok)
 - [well](isok) thanks
 - [ok](isok)
+- i am [fine](isok)
 - [fine](isok)
 - [good](isok) thanks
 - i'm [well](isok) thank you

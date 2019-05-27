@@ -36,6 +36,10 @@
 - il est quelle heure
 - quelle heure est t’il
 - donne moi l’heure
+- quelle heure est-il
+- donne-moi l'heure s'il te plait
+- quelle est l'heure
+- peux tu me donner l'heure
 ##intent|date|en
 - what's date it is
 - actual date
