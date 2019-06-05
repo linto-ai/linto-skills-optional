@@ -1,6 +1,6 @@
 {
   "name": "@linto-ai/node-red-linto-skill-datetime",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The datetime LinTO skill",
   "scripts": {
     "test": "mocha tests"

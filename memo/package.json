@@ -1,6 +1,6 @@
 {
   "name": "@linto-ai/node-red-linto-skill-memo",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A news LinTO skill",
   "scripts": {
     "test": "mocha tests"

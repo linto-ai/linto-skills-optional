@@ -1,6 +1,6 @@
 {
   "name": "@linto-ai/node-red-linto-skill-definition",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A definition LinTO skills",
   "scripts": {
     "test": "mocha tests"

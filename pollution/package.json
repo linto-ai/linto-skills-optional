@@ -1,6 +1,6 @@
 {
   "name": "@linto-ai/node-red-linto-skill-pollution",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A pollution LinTO skill",
   "scripts": {
     "test": "mocha tests"
