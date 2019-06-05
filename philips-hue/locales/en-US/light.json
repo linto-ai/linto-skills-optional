@@ -20,11 +20,15 @@
         "response": {
             "on": "Light on",
             "off": "Light off",
+            "up": "Brightness increase",
+            "down": "Brightness reduce",
             "error_data_missing": "I don't know what to do",
-            "unknown": "The action is unknow"
+            "unknown": "The action is unknow",
+            "errorReach": "Unable to reach any lamp"
         },
         "error": {
             "init_language": "Error during initialisation of language",
+            "setup": "Error during initialisation of phillups-hue lights",
             "utility_undefined": "Utility is not define",
             "utility_error": "linto-utility need to be setup in red settings"
         }

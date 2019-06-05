@@ -161,6 +161,7 @@
 - [note](action_create) de [participer a un tournois de volley](expression)
 - [note](action_create) [faire les courses](expression)
 - [note](action_create) de [générer la documentation pour laine](expression)
+- [créer](action_create) moi [une réunion avec Bruno](expression)
 - [pense-bête](action_create) [allez voir le match de foot](expression)
 - [pense bête](action_create) [allez voir le match de foot](expression)
 - [pense bête](action_create) [allez rencontrer macron](expression)
@@ -210,7 +211,7 @@
 - [d'accord](isok)
 - [ok](isok)
 - [oui](isok)
-- [non](isok)
+- [non](isko)
 - [négatif](isko)
 - [lis](action_list) mon pense-bete ?
 - [lis](action_list) mon pense-bête s’il te plait ?

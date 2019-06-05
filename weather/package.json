@@ -17,9 +17,7 @@
     "@linto-ai/linto-skills-toolbox": "^0.0.3",
     "prettier": "^1.17.0",
     "request": "^2.88.0",
-    "weather-js": "^2.0.0",
-    "word-definition": "^2.1.6",
-    "xml2json": "^0.11.2"
+    "weather-js": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

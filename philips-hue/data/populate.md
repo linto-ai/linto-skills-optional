@@ -21,9 +21,9 @@
 - [increase](action_set_up) the light by [forty](ordinal) percent
 - [raise](action_set_up) the light by [fifty](ordinal) percent
 - [increase](action_set_up) the light by [sixty](ordinal) percent
-- [reduce](action_set_down) the light by [ninety](ordinal percent)
-- [reduce](action_set_down) the light by [ten](ordinal percent)
-- [reduce](action_set_down) the light by [eighty](ordinal percent)
+- [reduce](action_set_down) the light by [ninety](ordinal)
+- [reduce](action_set_down) the light by [ten](ordinal)
+- [reduce](action_set_down) the light by [eighty](ordinal)
 ##intent|light|fr
 - [apaiser](action_set_down) la lumière
 - [atténuer](action_set_down) la lumière

@@ -18,7 +18,7 @@
  */
 'use strict'
 
-module.exports = function(RED) {
+module.exports = function (RED) {
   const debug = require('debug')('redmanager:flow:optional:skill:philips-hue')
   const intent = require('./data/intent'),
     HueConnect = require('./api/hueConnect'),
@@ -63,19 +63,18 @@ module.exports = function(RED) {
   }
 
   function doActionBright(payload, isBrightUp, language) {
-    let ordinal = 50,
+    let ordinal = 25,
       lightName = utility.extractEntityFromType(payload, intent.entities.object),
       ordinalEntity = utility.extractEntityFromType(payload, intent.entities.ordinal)
-
-    // Prepare data
     try {
-      if (ordinalEntity && typeof parseInt(ordinalEntity.value))
-        ordinal = utility.wordsToNumber(ordinal, language)
+      if (ordinalEntity) {
+        ordinal = utility.wordsToNumber(ordinalEntity.value, language)
+      }
     } catch (err) {
       ordinal = 50
     }
-
     ordinal = brightToPercent(ordinal)
+
     if (!isBrightUp)
       ordinal = ordinal * -1
 
@@ -90,49 +89,71 @@ module.exports = function(RED) {
   function LightHue(config) {
     RED.nodes.createNode(this, config)
     var node = this
-    let language
+    let language, isConnect = false
     // Configure the skill language for linto has deployment flow bases on language
     try {
       language = this.context().flow.get('language')
-      lintoResponse = utility.loadLanguage(__filename, 'philips-hue', language)
+      lintoResponse = utility.loadLanguage(__filename, 'light', language)
     } catch (err) {
       this.error(RED._('light.error.init_language'), err)
     }
 
-    let clientRemote = {
-      clientId: config.clientId,
-      clientSecret: config.clientSecret
-    }
-    hue = new HueConnect(clientRemote, config.userKey, config.authToken, config.refreshToken)
+    try {
+      let clientRemote = {
+        clientId: config.clientId,
+        clientSecret: config.clientSecret
+      }
+      hue = new HueConnect(clientRemote, config.userKey, config.authToken, config.refreshToken)
+      isConnect = true
+    } catch (err) {
 
+      this.error(RED._('light.error.setup'), err)
+    }
     // Do your stuff when an input is detected
-    node.on('input', function(msg) {
+    node.on('input', function (msg) {
       let payload = msg.payload
       // Check if message receive match the intent in data
       const intentDetection = utility.intentDetection(payload, intent.key)
       if (intentDetection.isIntent) {
         let actionEntity = utility.extractEntityFromPrefix(payload, intent.entities.prefix)
-
-        switch (true) {
-          case (!actionEntity):
-            return utility.formatToSay(lintoResponse.error_data_missing)
-          case (actionEntity.entity === intent.entities.action_on):
-            doActionLight(payload, true, language)
-            break
-          case (actionEntity.entity === intent.entities.action_off):
-            doActionLight(payload, false, language)
-            break
-          case (actionEntity.entity === intent.entities.action_up):
-            doActionBright(payload, true, language)
-            break
-          case (actionEntity.entity === intent.entities.action_down):
-            doActionBright(payload, false, language)
-            break
-          default:
-            return utility.formatToSay(lintoResponse.unknown)
+        let say
+        debug(isConnect)
+        if (isConnect) {
+          try {
+            switch (true) {
+              case (!actionEntity):
+                say = lintoResponse.error_data_missing
+              case (actionEntity.entity === intent.entities.action_on):
+                doActionLight(payload, true, language)
+                say = lintoResponse.on
+                break
+              case (actionEntity.entity === intent.entities.action_off):
+                doActionLight(payload, false, language)
+                say = lintoResponse.off
+                break
+              case (actionEntity.entity === intent.entities.action_up):
+                doActionBright(payload, true, language)
+                say = lintoResponse.up
+                break
+              case (actionEntity.entity === intent.entities.action_down):
+                doActionBright(payload, false, language)
+                say = lintoResponse.down
+                break
+              default:
+                say = lintoResponse.unknown
+            }
+          } catch (e) {
+            debug(e)
+          }
+        } else {
+          say = lintoResponse.errorReach
         }
-      } else {
-        node.error(RED._('light.text.example')) // Print an error into node-red-debug panel ui
+        msg.payload = {
+          behavior: {
+            say
+          }
+        }
+        this.send(msg)
       }
     })
   }

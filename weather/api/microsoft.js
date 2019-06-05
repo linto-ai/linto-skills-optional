@@ -38,7 +38,7 @@ class WeatherMicrosoft {
           search: requestInfo.city,
           degreeType: requestInfo.temperature,
           lang: requestInfo.language.split('-')[0]
-        }, function(error, result) {
+        }, function (error, result) {
           if (error)
             reject(lintoResponse.error_city_weather + requestInfo.city)
           if (result && result.length !== 0)
@@ -67,10 +67,16 @@ class WeatherMicrosoft {
     let cityEntitie = utility.extractEntityFromType(payload, KEY_ENTITIE_LOCATION),
       timeEntitie = utility.extractEntityFromType(payload, KEY_ENTITIE_TIME)
 
+
     if (!config.language)
       config.language = process.env.DEFAULT_LANGUAGE
 
-    cityEntitie ? config.city = config.defaultcity : config.city = cityEntitie.value
+    if (cityEntitie) {
+      config.city = cityEntitie.value
+    } else {
+      config.city = config.defaultcity
+    }
+
     if (!config.city)
       return lintoResponse.error_no_city
 

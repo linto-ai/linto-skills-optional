@@ -5,9 +5,8 @@
     "prefix": "action",
     "action_on": "action_on",
     "action_off": "action_off",
-    "action_set": "action_set",
-    "action_up": "action_up",
-    "action_down": "action_down",
+    "action_up": "action_set_up",
+    "action_down": "action_set_down",
     "object": "id",
     "ordinal": "ordinal"
   }
