@@ -12,10 +12,10 @@
             "utility_error" : "linto-utility doit être configuré dans red"
         },
         "response": {
-            "hello": "Salut, je m'appelle LinTo.",
+            "hello": "Salut, je m'appelle LineTo.",
             "bye": "Ce fut un plaisir. A bientôt !",
             "status": "Je vais bien merci, et vous ?",
-            "status_unk": "Désoler je ne sais pas quoi répondre",
+            "status_unk": "Désolé je ne sais pas quoi répondre",
             "isOk": "Ravi de l'entendre, à votre service.",
             "isKo": "Mince. désolé pour vous, puis-je vous aider ?"
         }

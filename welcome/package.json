@@ -1,6 +1,6 @@
 {
   "name": "@linto-ai/node-red-linto-skill-welcome",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A welcome LinTO skill",
   "scripts": {
     "test": "mocha test"
