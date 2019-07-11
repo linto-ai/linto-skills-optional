@@ -92,7 +92,7 @@ class SkillCalendar {
     let actionEntity = utility.extractEntityFromPrefix(payload, intent.entities.prefix)
     switch (true) {
       case (!actionEntity):
-        return { say: this.lintoTTS.error.error_data_missing }
+        return { say: this.lintoTTS.error.errorDataMissing }
       case (actionEntity.entity === intent.entities.action_create):
         return this.actionCreate(payload)
       case (actionEntity.entity === intent.entities.action_list):
@@ -100,7 +100,7 @@ class SkillCalendar {
       case (actionEntity.entity === intent.entities.action_delete):
         return this.actionDelete()
       default:
-        return { say: this.lintoTTS.error.error_data_missing }
+        return { say: this.lintoTTS.error.errorDataMissing }
     }
   }
 
