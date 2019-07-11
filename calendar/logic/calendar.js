@@ -23,13 +23,13 @@ const intent = require('../data/intent')
 const moment = require('moment')
 const utility = require('@linto-ai/linto-skills-toolbox')
 
-const MOMENT_FORMAT = 'D MMMM [' + this.lintoTTS.say.at + '] H [' + this.lintoTTS.say.hours + '] m'
-
+let momentFormat
 
 class SkillCalendar {
   constructor(openPaasJcal, lintoTTS) {
     this.openPaasJcal = openPaasJcal
     this.lintoTTS = lintoTTS
+    momentFormat = 'D MMMM [' + this.lintoTTS.say.at + '] H [' + this.lintoTTS.say.hours + '] m'
     moment.locale(lintoTTS.loadedLanguage)
   }
 
@@ -74,7 +74,7 @@ class SkillCalendar {
       return { say: this.lintoTTS.error.nextEvent }
     } else if (res.status === 200) {
       res.body = JSON.parse(res.body)
-      let eventDate = moment(res.body.start).format(MOMENT_FORMAT)
+      let eventDate = moment(res.body.start).format(momentFormat)
       return {
         say: this.lintoTTS.say.nextEvent + res.body.summary + ' '
           + this.lintoTTS.say.nextEventStart + eventDate
@@ -150,7 +150,7 @@ class SkillCalendar {
             result.say += this.lintoTTS.say.at + result.conversationData.location + ' , '
           try {
             let date = result.conversationData.date.slice(0, -1)
-            result.say += this.lintoTTS.say.resumeTime + moment(date).format(MOMENT_FORMAT)
+            result.say += this.lintoTTS.say.resumeTime + moment(date).format(momentFormat)
           } catch (e) { }
 
         } else if (res.status === 401) {

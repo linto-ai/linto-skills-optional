@@ -1,6 +1,6 @@
 {
     "name": "@linto-ai/node-red-linto-skill-calendar",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "A calendar skill for node-red that connect to the OpenPaas API",
     "author": "yhoupert@linagora.com",
     "license": "AGPL-3.0-or-later",
