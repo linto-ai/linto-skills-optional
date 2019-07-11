@@ -1,0 +1,20 @@
+{
+    "opCalendar": {
+        "label": {
+            "name": "Name",
+            "host": "Host",
+            "user": "Mail",
+            "password": "Password"
+        },
+        "placeholder": {
+            "name": "Node name",
+            "host": "https://",
+            "user": "User Mail",
+            "password": "User Password"
+        },
+        "error": {
+            "init_language_tts": "Language TTS initialisation error, default language has been loaded (en-US)",
+            "op_connector_param_missing": "The OpenPaas connector missing parameter"
+        }
+    }
+}

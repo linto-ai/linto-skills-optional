@@ -12,6 +12,7 @@
     "max-len": ["error", { "code": 100 , "ignoreComments": true , "ignoreTrailingComments": true }],
     "no-unused-vars" : ["error", { "varsIgnorePattern": "debug" }],
     "radix": ["error", "as-needed"],
+    "new-cap": ["error", { "newIsCapExceptions": ["Buffer.from"] }],
     "semi": ["error", "never"]
   }
 }

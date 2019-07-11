@@ -1,4 +1,13 @@
 {
-    "key": "calendar",
-    "description": "Allow to detect the calendar intent"
+  "key": "calendar",
+  "description": "Here a description of the intent",
+  "entities": {
+    "prefix": "action",
+    "action_create": "action_create",
+    "action_delete": "action_delete",
+    "action_list": "action_list",
+    "visioconference": "visioconference",
+    "evenement": "evenement",
+    "datetime" : "datetime"
+  }
 }

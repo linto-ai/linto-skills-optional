@@ -1,0 +1,32 @@
+{
+  "loadedLanguage" : "en-US",
+  "say": {
+    "title": "Title",
+    "location": "Location",
+    "date": "Date",
+    "attendee" : "Do you want to invite an attendee or create the event",
+    "invite" : " has been invited . ",
+    "create" : "This event has been created",
+    "userNotFound": "User not found ",
+    "nextEvent" : "You'r next event is ",
+    "nextEventStart" : " it's start at ",
+    "noNextEvent" : "You don't have any event",
+    "eventDelete" : "Next event has been deleted",
+    "noEventToDelete" : "No event to delete",
+    "noDateDetected" : "Unable to find a date, try again",
+    "hours" : "hours",
+    "at" : " at ",
+    "resumeTime" : " on ",
+    "visioconf" : " has a visioconference",
+    "redo" : "Redo the last step"
+  },
+  "error": {
+    "nextEvent" : "Unable to get the next event" ,
+    "delete" : "Error while deleting the next event",
+    "errorDataMissing": "I don't know what to do",
+    "missingTypeEvent" : "I don't know the event type",
+    "create" : "Error while creating an event",
+    "unauthorized" : "Unauthorized user",
+    "config" : "Check the configuration of the skill calendar"
+  }
+}
