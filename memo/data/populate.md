@@ -81,41 +81,39 @@
 - [nop](isko)
 - [revert](isko)
 - [cancel](isko)
+
 ##intent|memo|fr
 - [supprime](action_delete) mes notes
 - [supprime](action_delete) moi mes mémos
-- [supprime](action_delete) mon pense bête
-- [supprime](action_delete) mes pense bêtes
-- [ôter](action_delete) mes pense bêtes
-- [purge](action_delete) mon pense-bête
-- peux tu [supprimer](action_delete) mon pense-bête
-- peux tu [supprimer](action_delete) mon pense bête
-- peux tu [supprimer](action_delete) mes pense bêtes
-- peux tu [purge](action_delete) mes penses bêtes
-- peux tu [purge](action_delete) mon pense bête
-- peux tu [purge](action_delete) mon pense-bête
-- peux tu [ôter](action_delete) mon pense-bête
-- peux tu [ôter](action_delete) mes pense-bêtes
-- [ôter](action_delete) mes pense-bêtes
-- [ôter](action_delete) mon pense-bête
 - [supprime](action_delete) mon pense-bête
-- [purge](action_delete) mon pense bête
-- [purge](action_delete) mes pense bêtes
-- [ôter](action_delete) mes mémos
-- [ôter](action_delete) mes notes
-- [ôtez](action_delete) la note
-- [ôtez](action_delete) le mémo
+- [supprime](action_delete) mes pense-bêtes
+- [ôte](action_delete) mes pense-bêtes
+- [purge](action_delete) mon pense-bête
+- peux-tu [supprimer](action_delete) mon pense-bête
+- peux-tu [supprimer](action_delete) mes pense-bêtes
+- peux-tu [purger](action_delete) mes pense-bêtes
+- peux-tu [purger](action_delete) mon pense-bête
+- peux-tu [ôter](action_delete) mon pense-bête
+- peux-tu [ôter](action_delete) mes pense-bêtes
+- [ôter](action_delete) mes pense-bêtes
+- [ôte](action_delete) mon pense-bête
+- [supprime](action_delete) mon pense-bête
+- [purge](action_delete) mon pense-bête
+- [purge](action_delete) mes pense-bêtes
+- [ôte](action_delete) mes mémos
+- [ôte](action_delete) mes notes
+- [ôte](action_delete) la note
+- [ôte](action_delete) le mémo
 - [supprime](action_delete) le mémo
-- [supprimer](action_delete) le mémo
 - [efface](action_delete) mes notes
 - [efface](action_delete) mes mémos
 - [supprime](action_delete) ma dernière note
 - [supprime](action_delete) mon dernier mémo
 - [énumère](action_list) mes mémos
-- [liste](action_list) moi mes mémos
+- [liste-moi](action_list) mes mémos
 - [lis](action_list) mon pense-bête
 - [lis](action_list) mon pense-bête linto
-- [affiche](action_list) mes pense bêtes
+- [affiche](action_list) mes pense-bêtes
 - [donne](action_list) mes pense-bêtes
 - [lis](action_list) mes pense-bêtes
 - [affiche](action_list) mes pense-bêtes
@@ -127,95 +125,91 @@
 - donne la [liste](action_list) de mes notes
 - [affiche](action_list) mes notes
 - [enumère](action_list) mes notes
-- [affiche](action_list) toute mes notes
+- [affiche](action_list) toutes mes notes
 - [affiche](action_list) tous mes mémos
 - [affiche](action_list) mes mémos
 - [énumère](action_list) mes notes
 - [liste](action_list) mes notes
 - [liste](action_list) mes mémos
-- [créer](action_create) un mémo [pour allez voir maudet](expression)
-- [créer](action_create) un mémo [pour allez voir julien](expression)
-- [fait moi penser](action_create) qu'il [faut que j'appelle sonia](expression)
-- [rappelle](action_create) moi de [prendre un rendez-vous avec bruno](expression)
-- [rappel](action_create) moi de [prendre un rendez-vous avec bruno](expression)
-- [rappel](action_create) moi de [faire le document pour linto](expression)
-- [rappel](action_create) moi de [planifier le repas pour demain soir](expression)
-- [rappel](action_create) moi de [m'acheter du pain](expression)
-- [rappel](action_create) moi de [créer une nouvelle compétence pour linto](expression)
-- [rappel](action_create) moi de [souhaiter la nouvelle année](expression)
-- [rappel](action_create) moi de [souhaiter la nouvelle année a mes amis](expression)
-- [rappel](action_create) moi de [souhaiter la nouvelle année à mes amis](expression)
-- [rappel](action_create) moi de [revoir le modèle économique 2019](expression)
-- peux tu me [rappeler](action_create) de [faire un rendez-vous](expression)
-- peux tu me [rappeler](action_create) de [manger demain soir avec jean](expression)
-- peux tu me [rappeler](action_create) de [manger demain soir au restaurant](expression)
+- [crée](action_create) un mémo [pour allez voir Maudet](expression)
+- [crée](action_create) un mémo [pour allez voir Julien](expression)
+- [fais-moi penser](action_create) qu'il [faut que j'appelle Sonia](expression)
+- [rappelle](action_create) moi de [prendre un rendez-vous avec Bruno](expression)
+- [rappelle](action_create) moi de [prendre un rendez-vous avec Bruno](expression)
+- [rappelle](action_create) moi de [faire le document pour Linto](expression)
+- [rappelle](action_create) moi de [planifier le repas pour demain soir](expression)
+- [rappelle](action_create) moi de [m'acheter du pain](expression)
+- [rappelle](action_create) moi de [créer une nouvelle compétence pour Linto](expression)
+- [rappelle](action_create) moi de [souhaiter la nouvelle année](expression)
+- [rappelle](action_create) moi de [souhaiter la nouvelle année a mes amis](expression)
+- [rappelle](action_create) moi de [souhaiter la nouvelle année à mes amis](expression)
+- [rappelle](action_create) moi de [revoir le modèle économique 2019](expression)
+- peux-tu me [rappeler](action_create) de [faire un rendez-vous](expression)
+- peux-tu me [rappeler](action_create) de [manger demain soir avec jean](expression)
+- peux-tu me [rappeler](action_create) de [manger demain soir au restaurant](expression)
 - [rappelle](action_create) de [manger demain soir au restaurant](expression)
-- peux tu me [rappeler](action_create) de [faire du vélo](expression)
-- peux tu me [rappeler](action_create) qu'il y a [un tournois de badminton sous peu](expression)
-- peux tu me [rappeler](action_create) moi [du tournois de tennis sous peu](expression)
-- je [dois](action_create) [participer a un tournois](expression)
+- peux-tu me [rappeler](action_create) de [faire du vélo](expression)
+- peux-tu me [rappeler](action_create) qu'il y a [un tournois de badminton sous peu](expression)
+- peux-tu me [rappeler](action_create) moi [du tournois de tennis sous peu](expression)
+- je [dois](action_create) [participer à un tournois](expression)
 - je [dois](action_create) [prévoir les rendez-vous](expression)
 - je [dois](action_create) [envoyer un mail](expression)
-- [rappelle](action_create) moi de [prendre un rendez vous avec pierre](expression)
-- [note](action_create) de [rencontrer zapolsky pour 2019](expression)
-- [note](action_create) de [participer a un tournois de volley](expression)
+- [rappelle](action_create) moi de [prendre un rendez vous avec Pierre](expression)
+- [note](action_create) de [rencontrer Zapolsky pour 2019](expression)
+- [note](action_create) de [participer à un tournois de volley](expression)
 - [note](action_create) [faire les courses](expression)
-- [note](action_create) de [générer la documentation pour laine](expression)
-- [créer](action_create) moi [une réunion avec Bruno](expression)
+- [note](action_create) de [générer la documentation pour Laine](expression)
+- [crée](action_create) moi [une réunion avec Bruno](expression)
 - [pense-bête](action_create) [allez voir le match de foot](expression)
-- [pense bête](action_create) [allez voir le match de foot](expression)
-- [pense bête](action_create) [allez rencontrer macron](expression)
-- [pense bête](action_create) [allez au cinéma](expression)
 - [pense-bête](action_create) [allez au cinéma](expression)
 - [pense-bête](action_create) [allez a mon rendez-vous gallant](expression)
 - [pense-bête](action_create) [allez au parc de vegas](expression)
 - [pense-bête](action_create) [allez faire les courses](expression)
-- [créer](action_create) moi [un mémo pour allez a vegas](expression)
-- [rappelle](action_create) moi [d'appeler jean-pierre](expression)
-- [ajoute](action_create) la note que [j'ai un rendez-vous important vendredi matin à toulouse](expression)
-- [rappelle](action_create) moi [d'acheter des pattes](expression)
+- [créer](action_create) moi [un mémo pour allez à vegas](expression)
+- [rappelle](action_create) moi [d'appeler Jean-Pierre](expression)
+- [ajoute](action_create) la note que [j'ai un rendez-vous important vendredi matin à Toulouse](expression)
+- [rappelle](action_create) moi [d'acheter des pâtes](expression)
 - [rappelle-moi](action_create) que [je dois faire mes courses](expression)
-- [ajoute](action_create) une note [pour la réunion open passe](expression)
-- [ajoute](action_create) une note [pour que j'aille à paris](expression)
-- [note](action_create) que [j'irai à san diego](expression)
+- [ajoute](action_create) une note [pour la réunion open-paas](expression)
+- [ajoute](action_create) une note [pour que j'aille à Paris](expression)
+- [note](action_create) que [j'irai à San Diego](expression)
 - [crée](action_create) un mémo [dans mon calendrier](expression)
-- [note](action_create) que [je vais à paris](expression)
+- [note](action_create) que [je vais à Paris](expression)
 - [note](action_create) que [j'ai un repas vendredi matin](expression)
-- [rappelle-moi](action_create) que [je dois aller à paris](expression)
+- [rappelle-moi](action_create) que [je dois aller à Paris](expression)
 - [ajoute](action_create) le mémo de [prendre un rendez-vous](expression)
 - [note](action_create) que [j'ai un document à faire](expression)
 - [note](action_create) que [j'ai un tournoi](expression)
 - [note](action_create) que [je vais aux jeux olympiques dans 57 ans](expression)
 - [note](action_create) que [j'ai un rendez-vous de prévu dans 5 jours](expression)
-- [ajoute](action_create) le mémo [pour définir la preuve priorité du projet](expression)
-- [créer](action_create) un mémo [pour préparer la prochaine réunion](expression)
-- [créer](action_create) un mémo [pour aller à disneyland](expression)
-- [créer](action_create) un mémo [pour prendre un rendez-vous demain](expression)
-- [créer](action_create) un mémo [pour aller voir jean pierre](expression)
+- [crée](action_create) un mémo [pour préparer la prochaine réunion](expression)
+- [créer](action_create) le mémo [pour aller à Disneyland](expression)
+- [créer](action_create) le mémo [pour prendre un rendez-vous demain](expression)
+- [créer](action_create) un mémo [pour aller voir Jean-Pierre](expression)
 - [créer](action_create) un mémo [pour que j'aille à la réunion de demain matin](expression)
-- [note](action_create) que [j’ai un tournois de volley à toulouse](expression)
+- [note](action_create) que [j’ai un tournois de volley à Toulouse](expression)
 - [note](action_create) que [j’ai un rendez-vous avec pierre](expression)
 - [note](action_create) que [j’ai un repas d’affaire vendredi midi](expression)
 - [rappelle moi](action_create) [d’appeler David](expression)
-- [rappelle moi](action_create) [de envoyer les documents à Bruno](expression)
+- [rappelle moi](action_create) [d'envoyer les documents à Bruno](expression)
 - peux-tu me [rappeler](action_create) [de appeler David](expression)
 - [je dois appeler](action_create) [l'hôtel pour un changement de chambre](expression)
 - [rappelle moi](action_create) [Envoyer un mail à Bruno à propos des documents](expression)
 - [rappelle-moi](action_create) que [je dois allez faire mes course](expression)
 - [rappelle-moi](action_create) que [j'ai un document a faire pour mardi ](expression)
-- [rappelle-moi](action_create) que [je dois appeler alexandre à treize heure](expression)
+- [rappelle-moi](action_create) que [je dois appeler Alexandre à treize heures](expression)
 - [ajoute](action_create) le mémo [pour définir les priorités du projet](expression)
-- [ajoute](action_create) le mémo [de créer un model vocal pour linto](expression)
-- [ajoute](action_create) le mémo [de prendre un rendez-vous avec bertrand](expression)
-- [créer](action_create) un mémo [pour énumérer les étapes importante de la plénière](expression)
+- [ajoute](action_create) le mémo [de créer un model vocal pour Linto](expression)
+- [ajoute](action_create) le mémo [de prendre un rendez-vous avec Bertrand](expression)
+- [crée](action_create) un mémo [pour énumérer les étapes importantes de la plénière](expression)
 - [d'accord](isok)
 - [ok](isok)
 - [oui](isok)
 - [non](isko)
 - [négatif](isko)
-- [lis](action_list) mon pense-bete ?
-- [lis](action_list) mon pense-bête s’il te plait ?
-- peux tu [lire](action_list) mon pense-bête
+- [lis](action_list) mon pense-bête ?
+- [lis](action_list) mon pense-bête s’il te plaît ?
+- peux-tu [lire](action_list) mon pense-bête
 - [lis](action_list) le pense-bête
 - peux-tu [supprimer](action_delete) mon pense-bête
-- [supprimer](action_delete) mon pense-bête
+- [supprime](action_delete) mon pense-bête
