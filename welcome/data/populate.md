@@ -6,33 +6,30 @@
 - bye bye
 - au plaisir
 - à bientôt
-- a bientôt
-- a la prochaine
+- à la prochaine
 - au revoir linto
 - au revoir
 - au plaisir linto
-- a bientôt linto
-- a bientôt
+- à bientôt linto
+- à bientôt
 - bye
-- a la revoyure
-- a plus
+- à la revoyure
+- à plus
+
 ##intent|goodbye|en
 - well thank
 - see you soon
 - farewell
 - goodbye
-- good bye 
-- good bye linto
+- goodbye linto
 - thank you 
 - thank you linto
 - see ya
 - see you
-- good bye
 - bye
 - bye bye
-- goodbye LinTo
-- thank you LinTo
 - thanks
+
 ##intent|greeting|fr
 - bonjour
 - coucou
@@ -46,9 +43,9 @@
 - bienvenue
 - salutation
 - hey
+
 ##intent|greeting|en
 - greeting
-- hiya
 - hey
 - good morning
 - good afternoon
@@ -56,52 +53,46 @@
 - howdy
 - hello
 - hi
-- what’s your name ?
+- what's your name ?
 - what's your name
+
 ##intent|howareyou|fr
 - bonjour linto comment vas-tu
 - comment ça va
-- comment vas tu
+- comment vas-tu
 - comment tu vas
-- ca roule ?
-- est ce que ça va
+- est-ce que ça va
 - linto comment ça va
 - je me sens [bien](isok)
 - tout va [bien](isok)
 - tout va [bien](isok) merci
 - je vais [bien](isok)
 - je [vais bien](isok)
-- ca va [bien](isok)
-- [ca va](isok)
-- [ca va](isok) merci
 - ça va [bien](isok)
-- [ça va](isok)
 - [oui](isok)
-- [tranquille](isok)
 - je vais [pas très bien](isko)
-- ca va pas [très bien](isko)
+- ça va pas [très bien](isko)
 - je [vais pas bien](isko)
 - je me sens [pas bien](isko)
 - je ne me sens [pas bien](isko) aujourd'hui
 - [pas très](isko) en forme
-- je suis de [mauvaise](isko) humeur
+- je suis de [mauvais](isko) humeur
 - ça [ne va pas](isko) trop
+
 ##intent|howareyou|en
 - are you ok
 - are you okay
 - how are you doing
 - how are you
-- how are you doing ?
-- how are you?
 - how do you do
-- are you fine?
-- are you feeling good?
-- are you ok ?
+- are you fine
+- are you feeling good
+- are you ok
 - howdy
 - everything is [good](isok)
-- i'm [happy](isok)
-- i'm feel [great](isok)
-- i'm [right](isok)
+- i am [happy](isok)
+- i am feel [great](isok)
+- i am [right](isok)
 - [well](isok) thanks
 - [ok](isok)
 - i am [fine](isok)
