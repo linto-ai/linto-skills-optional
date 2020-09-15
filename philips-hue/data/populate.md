@@ -25,36 +25,31 @@
 - [reduce](action_set_down) the light by [ten](ordinal)
 - [reduce](action_set_down) the light by [eighty](ordinal)
 ##intent|light|fr
-- [apaiser](action_set_down) la lumière
-- [atténuer](action_set_down) la lumière
-- [réduire](action_set_down) la lumière
+- [atténue](action_set_down) la lumière
+- [réduis](action_set_down) la lumière
 - [adoucit](action_set_down) la lumière
 - [tamise](action_set_down) la lumière
 - [augmente](action_set_up) la luminosité
 - [intensifie](action_set_up) la lumière
-- [amplifie](action_set_up) de [cuisine](id)
+- [amplifie](action_set_up) la lumière de la [cuisine](id)
 - [baisse](action_set_down) la luminosité de la [chambre](id)
-- [diminuer](action_set_down) la lumière
-- [diminue](action_set_down) le lumière
-- [ferme](action_off) la lumière de la [cuisine](id)
-- [fermer](action_off) la lumière
-- [éteindre](action_off) la lumière de la [chambre](id)
-- [éteins](action_off) la lumière
+- [diminue](action_set_down) la lumière
+- [éteins](action_off) la lumière de la [cuisine](id)
+- [ferme](action_off) la lumière
 - [coupe](action_off) la lumière
-- [illuminer](action_on) la [salle](id)
+- [illumine](action_on) la [salle](id)
 - [illumine](action_on) la [salle de bain](id)
-- [allumer](action_on) la lumière
-- [allumer](action_on) la salle
-- [éclairci](action_on) la salle
+- [allume](action_on) la lumière
+- [allume](action_on) la lumière dans la salle
 - [allume](action_on) la lumière du [garage](id)
-- [allume](action_on) la lumière de [conférence](id)
-- [allume](action_on) la lumière de [pause](id)
+- [allume](action_on) la lumière de la salle de [conférence](id)
+- [allume](action_on) la lumière de la salle de [pause](id)
 - [tamise](action_set_down) la lumière de [dix](ordinal) pourcent
-- [amplifie](action_set_up) de [vingt](ordinal) pourcent
-- [amplifie](action_set_up) de [trente](ordinal) pourcent
+- [amplifie](action_set_up) la lumière de [vingt](ordinal) pourcent
+- [amplifie](action_set_up) la lumière de [trente](ordinal) pourcent
 - [intensifie](action_set_up) la lumière de [quarante](ordinal) pourcent
 - [intensifie](action_set_up) la lumière de [cinquante](ordinal) pourcent
-- [apaiser](action_set_down) la lumière de [soixante](ordinal) pourcent
-- [atténuer](action_set_down) la lumière de [soixante dix](ordinal) pourcent
-- [réduire](action_set_down) la lumière de [quatre vingt](ordinal) pourcent
-- [adoucit](action_set_down) la lumière de [cent](ordinal) pourcent
+- [baisse](action_set_down) la lumière de [soixante](ordinal) pourcent
+- [atténue](action_set_down) la lumière de [soixante-dix](ordinal) pourcent
+- [réduire](action_set_down) la lumière de [quatre-vingts](ordinal) pourcent
+- [adoucis](action_set_down) la lumière de [cent](ordinal) pourcent
